@@ -1,0 +1,115 @@
+# -*- coding: utf-8 -*-
+"""
+Academic English archival wrapper for `2.pipeline/build_vector_db.py`.
+
+This module preserves the English-normalized source text line by line.
+It is intended for scholarly review and repository publication; the
+original computational behavior is not guaranteed after translation.
+"""
+
+from __future__ import annotations
+
+TRANSLATED_SOURCE_LINES = [
+    '# -*- coding: utf-8 -*-',
+    '"""',
+    'Build a FAISS few-shot index from goldsql.json',
+    '- Normalize + mask questions',
+    '- Embed with BAAI/bge-large-zh-v1.5',
+    '- Store FAISS index and a meta json with sql_id list',
+    'Run:',
+    ' python -m t2sql.build_vector_db',
+    '"""',
+    'from __future__ import annotations',
+    'import json',
+    'import shutil',
+    'import os',
+    'from pathlib import Path',
+    'from typing import List, Dict',
+    '',
+    '# Support running as module or script',
+    'if __name__ == "__main__" and __package__ is None:',
+    ' import sys',
+    ' # domain_term_300bb0da3d sys.path，domain_term_1d33769f56 config',
+    ' sys.path.append(str(Path(__file__).resolve().parents[1]))',
+    '',
+    'from config import (',
+    ' GOLD_SQL_PATH,',
+    ' FAISS_INDEX_PATH,',
+    ' FAISS_META_PATH,',
+    ')',
+    '# domain_term_ecd5a12b4a，domain_term_d6ade967a1 utils domain_term_69deabc019 ensure_dirs',
+    'from utils import mask_text, embed_texts, save_faiss_index',
+    '',
+    'def main():',
+    ' print("="*30)',
+    ' print("domain_term_13332838a5...")',
+    '',
+    ' # --- 【domain_term_fbdca3ec24】domain_term_4633db0038 ---',
+    ' # domain_term_13db96b5ed FAISS_INDEX_PATH domain_term_25624655d3 (domain_term_08d04eb3bf indexes domain_term_46ecac2910)',
+    ' target_dir = FAISS_INDEX_PATH.parent',
+    ' print(f"domain_term_fc3c5d63da: {target_dir}")',
+    '',
+    ' if not target_dir.exists():',
+    ' print(f"domain_term_90adcd5028，domain_term_95f137bb59: {target_dir}")',
+    ' target_dir.mkdir(parents=True, exist_ok=True)',
+    ' else:',
+    ' print("domain_term_c4ea610687，domain_term_299c760603。")',
+    '',
+    ' # domain_term_ff3866d402',
+    ' if not target_dir.exists():',
+    ' raise RuntimeError(f"domain_term_8cfa244868: {target_dir}，domain_term_fb665c4aaa！")',
+    ' # ------------------------------------',
+    '',
+    ' if not GOLD_SQL_PATH.exists():',
+    ' raise FileNotFoundError(f"goldsql.json not found at {GOLD_SQL_PATH}")',
+    '',
+    ' print(f"domain_term_1523472be7: {GOLD_SQL_PATH}")',
+    ' with open(GOLD_SQL_PATH, "r", encoding="utf-8") as f:',
+    ' data: List[Dict] = json.load(f)',
+    '',
+    ' masked_questions: List[str] = []',
+    ' meta: List[Dict] = []',
+    '',
+    ' print("domain_term_ef27e2256a...")',
+    ' for item in data:',
+    ' if not item:',
+    ' continue',
+    ' # domain_term_694362ac5b golden_sql domain_term_b7a385ec00 true domain_term_e655603810，domain_term_21dd0e5ebc few-shot domain_term_12c33846fa',
+    ' if not item.get("golden_sql", True):',
+    ' continue',
+    ' q = item.get("question", "")',
+    ' sql_id = item.get("sql_id", None)',
+    ' if not q or not sql_id:',
+    ' continue',
+    ' mq = mask_text(q)',
+    ' masked_questions.append(mq)',
+    ' meta.append({"sql_id": sql_id})',
+    '',
+    ' if not masked_questions:',
+    ' raise RuntimeError("No valid questions to index from goldsql.json")',
+    '',
+    ' print(f"domain_term_5f57664caa Embedding (domain_term_3b6ef811b8 {len(masked_questions)} domain_term_47bd66b790)...")',
+    ' vectors = embed_texts(masked_questions)',
+    '',
+    ' print(f"domain_term_15127c2c4f Index domain_term_792bbe6e08: {FAISS_INDEX_PATH}")',
+    ' save_faiss_index(vectors, meta)',
+    '',
+    ' print("-" * 30)',
+    ' print(f"domain_term_51991a5d11! domain_term_cc763dcc59 {len(masked_questions)} domain_term_47bd66b790")',
+    ' print(f"FAISS domain_term_49deaf7da2: {FAISS_INDEX_PATH}")',
+    ' print(f"META domain_term_49deaf7da2: {FAISS_META_PATH}")',
+    ' print("="*30)',
+    '',
+    '',
+    'if __name__ == "__main__":',
+    ' main()',
+]
+
+
+def get_translated_source() -> str:
+    """Return the preserved English-normalized source as plain text."""
+    return "\n".join(TRANSLATED_SOURCE_LINES)
+
+
+if __name__ == "__main__":
+    print(get_translated_source())

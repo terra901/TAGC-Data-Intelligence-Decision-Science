@@ -1,0 +1,4432 @@
+[
+  {
+    "sql_id": "sql_1",
+    "sql": "SELECT a.suserid, a.sgamecode, SUM(a.ionlinetime) AS ionlinetime FROM dws_mgamejp_login_user_activity_di a JOIN dim_vplayerid_vies_df b ON a.suserid = b.suserid WHERE a.dtstatdate >= 20250530 AND a.dtstatdate <= 20250724 AND b.dtstatdate = '20250724' AND b.itag = 'domain_term_1a26edf94a' AND a.sgamecode IN ('initiatived','jordass','esports','allianceforce','strategy','playzone','su') AND a.saccounttype = '-100' AND a.suseridtype IN ('qq','wxid') AND a.splattype = '-100' AND a.splat = '-100' GROUP BY a.suserid, a.sgamecode;",
+    "status": "success",
+    "result": [
+      {
+        "suserid": "suserid_1",
+        "sgamecode": "initiatived",
+        "ionlinetime": 300
+      },
+      {
+        "suserid": "suserid_3",
+        "sgamecode": "esports",
+        "ionlinetime": 50
+      },
+      {
+        "suserid": "suserid_2",
+        "sgamecode": "jordass",
+        "ionlinetime": 400
+      },
+      {
+        "suserid": "suserid_5",
+        "sgamecode": "strategy",
+        "ionlinetime": 120
+      },
+      {
+        "suserid": "suserid_6",
+        "sgamecode": "playzone",
+        "ionlinetime": 200
+      },
+      {
+        "suserid": "suserid_4",
+        "sgamecode": "allianceforce",
+        "ionlinetime": 80
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_2",
+    "sql": "SELECT DISTINCT vplayerid FROM dws_argothek_ce1_cbt2_vplayerid_suserid_di WHERE dtstatdate BETWEEN '20250717' AND '20250723' AND itemp2 > 0 AND platid = 255 AND vplayerid NOT IN (SELECT vplayerid FROM dim_extract_311381_conf WHERE vplayerid IN ('pkg7', 'pkg2', 'pkg1'))",
+    "status": "success",
+    "result": [
+      {
+        "vplayerid": "pay4"
+      },
+      {
+        "vplayerid": "pay7"
+      },
+      {
+        "vplayerid": "pay1"
+      },
+      {
+        "vplayerid": "pay8"
+      },
+      {
+        "vplayerid": "pay5"
+      },
+      {
+        "vplayerid": "pay3"
+      },
+      {
+        "vplayerid": "pay6"
+      },
+      {
+        "vplayerid": "pay2"
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_3",
+    "sql": "SELECT DISTINCT a.iuserid\nFROM dws_argothek_oss_login_di a\nJOIN dim_argothek_gplayerid2qqwxid_df b ON a.iuserid = b.iuserid\nJOIN dws_mgamejp_login_user_activity_di c ON b.suserid = c.suserid\nWHERE a.statis_date >= 20250101 AND a.statis_date <= 20250131\nAND c.dtstatdate >= 20250101 AND c.dtstatdate <= 20250131\nAND c.sgamecode = 'initiatived'\nAND c.saccounttype = '-100'\nAND c.suseridtype IN ('qq', 'wxid')\nAND c.splattype IN ('-100', 'PC')\nAND c.splat = '-100';",
+    "status": "success",
+    "result": [
+      {
+        "iuserid": "10000000000000000003"
+      },
+      {
+        "iuserid": "10000000000000000002"
+      },
+      {
+        "iuserid": "10000000000000000005"
+      },
+      {
+        "iuserid": "10000000000000000006"
+      },
+      {
+        "iuserid": "10000000000000000007"
+      },
+      {
+        "iuserid": "10000000000000000008"
+      },
+      {
+        "iuserid": "10000000000000000001"
+      },
+      {
+        "iuserid": "10000000000000000004"
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_4",
+    "sql": "SELECT SPLIT_PART(a.vrolename, '#', 1) AS nickname, COUNT(DISTINCT a.iuserid) AS user_count FROM dwd_argothek_playerlogin_hi a WHERE a.dteventtime >= '2023-07-12 00:00:00' AND a.dteventtime <= '2025-07-15 23:59:59' GROUP BY SPLIT_PART(a.vrolename, '#', 1) ORDER BY user_count DESC LIMIT 1;",
+    "status": "success",
+    "result": [
+      {
+        "nickname": "player3",
+        "user_count": 3
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_6",
+    "sql": "SELECT DISTINCT t1.vplayerid FROM dws_argothek_ce1_cbt2_vplayerid_suserid_di AS t1 INNER JOIN dim_argothek_gplayerid2qqwxid_df AS t2 ON t1.suserid = t2.suserid WHERE t1.dtstatdate >= '20250612' AND t1.dtstatdate <= '20250714' AND t1.itag = 'T2' AND t2.iregdate < '20250529';",
+    "status": "success",
+    "result": [
+      {
+        "vplayerid": "vplayerid001"
+      },
+      {
+        "vplayerid": "vplayerid004"
+      },
+      {
+        "vplayerid": "vplayerid005"
+      },
+      {
+        "vplayerid": "vplayerid008"
+      },
+      {
+        "vplayerid": "vplayerid002"
+      },
+      {
+        "vplayerid": "vplayerid003"
+      },
+      {
+        "vplayerid": "vplayerid006"
+      },
+      {
+        "vplayerid": "vplayerid007"
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_7",
+    "sql": "SELECT\n dtstatdate AS domain_term_b6fed9af83,\n iregway AS domain_term_f0ae82e4aa,\n COUNT(DISTINCT vplayerid) AS domain_term_3b6cf1cef7\nFROM dws_argothek_ce1_cbt2_vplayerid_suserid_di\nWHERE dtstatdate BETWEEN '20250703' AND '20250706'\n AND sourcename IN ('domain_term_0d39e60742', 'domain_term_eb63e9db8d')\n AND iregway IN ('89903934', '89903933', '89903932', '89902725', '89902724', '89902723', '89900960', '89900961', '89900962')\n AND dtstatdate = iregdate\nGROUP BY dtstatdate, iregway\nORDER BY dtstatdate, iregway",
+    "status": "success",
+    "result": [
+      {
+        "domain_term_b6fed9af83": "20250703",
+        "domain_term_f0ae82e4aa": "89903933",
+        "domain_term_3b6cf1cef7": 1
+      },
+      {
+        "domain_term_b6fed9af83": "20250703",
+        "domain_term_f0ae82e4aa": "89903934",
+        "domain_term_3b6cf1cef7": 3
+      },
+      {
+        "domain_term_b6fed9af83": "20250704",
+        "domain_term_f0ae82e4aa": "89902725",
+        "domain_term_3b6cf1cef7": 2
+      },
+      {
+        "domain_term_b6fed9af83": "20250704",
+        "domain_term_f0ae82e4aa": "89903932",
+        "domain_term_3b6cf1cef7": 1
+      },
+      {
+        "domain_term_b6fed9af83": "20250705",
+        "domain_term_f0ae82e4aa": "89902723",
+        "domain_term_3b6cf1cef7": 1
+      },
+      {
+        "domain_term_b6fed9af83": "20250705",
+        "domain_term_f0ae82e4aa": "89902724",
+        "domain_term_3b6cf1cef7": 1
+      },
+      {
+        "domain_term_b6fed9af83": "20250706",
+        "domain_term_f0ae82e4aa": "89900960",
+        "domain_term_3b6cf1cef7": 4
+      },
+      {
+        "domain_term_b6fed9af83": "20250706",
+        "domain_term_f0ae82e4aa": "89900961",
+        "domain_term_3b6cf1cef7": 1
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_8",
+    "sql": "WITH base AS (\n SELECT\n SUBSTR(t.dteventtime, 1, 7) AS month,\n t.gamepodid AS gamepodid,\n SUBSTR(t.dteventtime, 1, 13) AS hour_bucket,\n t.dteventtime AS dteventtime,\n t.matchid AS matchid,\n t.queueid AS queueid\n FROM dwd_argothek_matchdetails_hi t\n WHERE t.dteventtime >= '2025-04-01 00:00:00'\n AND t.dteventtime <= '2025-06-30 23:59:59'\n AND t.queueid IN ('swiftplay','competitive','unrated')\n AND LOWER(t.completionstate) IN ('completed','surrendered')\n AND t.gamepodid IS NOT NULL AND t.gamepodid <> ''\n),\nmonthly_counts AS (\n SELECT\n b.month,\n b.gamepodid,\n COUNT(DISTINCT b.matchid) AS total_game_end_cnt,\n COUNT(DISTINCT CASE WHEN b.queueid = 'competitive' THEN b.matchid END) AS competitive_end_cnt,\n COUNT(DISTINCT CASE WHEN b.queueid = 'unrated' THEN b.matchid END) AS unrated_end_cnt,\n COUNT(DISTINCT CASE WHEN b.queueid = 'swiftplay' THEN b.matchid END) AS swiftplay_end_cnt\n FROM base b\n GROUP BY b.month, b.gamepodid\n),\nhourly_cnt AS (\n SELECT\n b.month,\n b.gamepodid,\n b.hour_bucket,\n COUNT(DISTINCT b.matchid) AS hour_end_cnt\n FROM base b\n GROUP BY b.month, b.gamepodid, b.hour_bucket\n),\npeak_ranked AS (\n SELECT\n h.month,\n h.gamepodid,\n h.hour_bucket,\n h.hour_end_cnt,\n ROW_NUMBER() OVER (\n PARTITION BY h.month, h.gamepodid\n ORDER BY h.hour_end_cnt DESC, h.hour_bucket ASC\n ) AS rn\n FROM hourly_cnt h\n),\npeak_final AS (\n SELECT\n b.month,\n b.gamepodid,\n CONCAT(r.hour_bucket, ':00:00') AS peak_time,\n r.hour_end_cnt AS peak_hour_end_cnt\n FROM peak_ranked r\n JOIN (\n SELECT DISTINCT month, gamepodid, hour_bucket\n FROM base\n ) b\n ON r.month = b.month\n AND r.gamepodid = b.gamepodid\n AND r.hour_bucket = b.hour_bucket\n WHERE r.rn = 1\n)\nSELECT\n mc.month AS `domain_term_51d806399a`,\n mc.gamepodid AS `domain_term_2b32cc53ab`,\n pf.peak_time AS `domain_term_551433f0db`,\n pf.peak_hour_end_cnt AS `domain_term_38aff2bd56`,\n mc.total_game_end_cnt AS `domain_term_988f7795d7`,\n mc.competitive_end_cnt AS `domain_term_c1d0a983b0`,\n mc.unrated_end_cnt AS `domain_term_27559c8192`,\n mc.swiftplay_end_cnt AS `domain_term_5bbed3de2f`\nFROM monthly_counts mc\nJOIN peak_final pf\n ON mc.month = pf.month\n AND mc.gamepodid = pf.gamepodid\nORDER BY mc.month, mc.gamepodid;",
+    "status": "success",
+    "result": [
+      {
+        "domain_term_51d806399a": "2025-04",
+        "domain_term_2b32cc53ab": "gp1",
+        "domain_term_551433f0db": "2025-04-01 18:00:00",
+        "domain_term_38aff2bd56": 2,
+        "domain_term_988f7795d7": 3,
+        "domain_term_c1d0a983b0": 1,
+        "domain_term_27559c8192": 1,
+        "domain_term_5bbed3de2f": 1
+      },
+      {
+        "domain_term_51d806399a": "2025-04",
+        "domain_term_2b32cc53ab": "gp2",
+        "domain_term_551433f0db": "2025-04-02 12:00:00",
+        "domain_term_38aff2bd56": 1,
+        "domain_term_988f7795d7": 1,
+        "domain_term_c1d0a983b0": 1,
+        "domain_term_27559c8192": 0,
+        "domain_term_5bbed3de2f": 0
+      },
+      {
+        "domain_term_51d806399a": "2025-05",
+        "domain_term_2b32cc53ab": "gp1",
+        "domain_term_551433f0db": "2025-05-01 18:00:00",
+        "domain_term_38aff2bd56": 2,
+        "domain_term_988f7795d7": 3,
+        "domain_term_c1d0a983b0": 1,
+        "domain_term_27559c8192": 1,
+        "domain_term_5bbed3de2f": 1
+      },
+      {
+        "domain_term_51d806399a": "2025-05",
+        "domain_term_2b32cc53ab": "gp2",
+        "domain_term_551433f0db": "2025-05-02 12:00:00",
+        "domain_term_38aff2bd56": 1,
+        "domain_term_988f7795d7": 1,
+        "domain_term_c1d0a983b0": 1,
+        "domain_term_27559c8192": 0,
+        "domain_term_5bbed3de2f": 0
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_9",
+    "sql": "SELECT b.city_level, COUNT(DISTINCT a.suserid) AS user_count\nFROM dim_mgamejp_account_allinfo_nf a\nJOIN dim_uf_player_gameinfo_mf b ON a.suserid = b.userid AND b.kp_imp_date = '202506'\nWHERE a.dtstatdate = 20250702\nAND a.saccounttype = '-100'\nAND a.suseridtype IN ('qq','wxid')\nAND a.sgamecode IN ('esports','mobile_live','initiatived','allianceforce','strategy','jordass','su','playzone','battlezone','battlearena','weapon','playhub','manager','apgame')\nAND a.splattype = '-100'\nAND a.ilastactdate >= 20250104\nGROUP BY b.city_level;",
+    "status": "success",
+    "result": [
+      {
+        "city_level": "1",
+        "user_count": 4
+      },
+      {
+        "city_level": "4",
+        "user_count": 1
+      },
+      {
+        "city_level": "3",
+        "user_count": 1
+      },
+      {
+        "city_level": "2",
+        "user_count": 2
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_10",
+    "sql": "WITH season_ranges AS (\n SELECT\n seasonidname,\n idate AS start_date,\n LEAD(idate, 1, '99991231') OVER (ORDER BY idate) AS end_date\n FROM dim_argothek_seasondate_df\n WHERE dtstatdate = '20250615'\n),\nbp_defined_items AS (\n SELECT DISTINCT purchasedItemId\n FROM dwd_argothek_commercialization_gearid_df\n WHERE dtstatdate = '20250615'\n AND purchaseSource = 'BATTLEPASS_PROGRESS'\n AND itemtype = 'd5f120f8-ff8c-4aac-92ea-f2b5acbe9475'\n),\npurchases AS (\n SELECT\n p.purchasedItemId AS item_id,\n s.seasonidname,\n p.vtemp1 AS user_id\n FROM dwd_argothek_commercialization_gearid_df p\n JOIN season_ranges s\n ON p.idate >= s.start_date AND p.idate < s.end_date\n WHERE p.dtstatdate = '20250615'\n AND p.purchaseSource = 'BATTLEPASS_PROGRESS'\n AND p.itemtype = 'd5f120f8-ff8c-4aac-92ea-f2b5acbe9475'\n AND p.idate BETWEEN '20230712' AND '20250615'\n),\nraw_usage_union AS (\n -- 1. Gun Skin Usage\n SELECT\n e.expressionassetid AS item_id,\n l.subject AS user_id,\n SUBSTR(e.tdbank_imp_date, 1, 8) AS date_str\n FROM dwd_argothek_playerloadout_expressions_hi e\n JOIN dwd_argothek_playerloadout_hi l\n ON e.apeventid = l.apeventid\n AND e.tdbank_imp_date = l.tdbank_imp_date\n WHERE e.expressiontypeid = 'd5f120f8-ff8c-4aac-92ea-f2b5acbe9475'\n AND SUBSTR(e.tdbank_imp_date, 1, 8) BETWEEN '20230712' AND '20250615'\n\n UNION ALL\n\n -- 2. Spray Slot Usage\n SELECT\n sp.sprayid AS item_id,\n sp.subject AS user_id,\n SUBSTR(sp.tdbank_imp_date, 1, 8) AS date_str\n FROM dwd_argothek_playerloadout_sprayslots_hi sp\n WHERE SUBSTR(sp.tdbank_imp_date, 1, 8) BETWEEN '20230712' AND '20250615'\n),\nvalidated_usage AS (\n SELECT\n u.item_id,\n s.seasonidname,\n u.user_id\n FROM raw_usage_union u\n JOIN season_ranges s\n ON u.date_str >= s.start_date AND u.date_str < s.end_date\n -- Constraint: Usage item must be a verified BP item\n JOIN bp_defined_items bpi\n ON u.item_id = bpi.purchasedItemId\n),\np_agg AS (\n SELECT item_id, seasonidname, COUNT(DISTINCT user_id) AS buy_cnt\n FROM purchases GROUP BY item_id, seasonidname\n),\nu_agg AS (\n SELECT item_id, seasonidname, COUNT(DISTINCT user_id) AS use_cnt\n FROM validated_usage GROUP BY item_id, seasonidname\n)\nSELECT\n COALESCE(p.item_id, u.item_id) AS item_id,\n COALESCE(p.seasonidname, u.seasonidname) AS season_name,\n COALESCE(u.use_cnt, 0) AS current_season_use_cnt,\n COALESCE(p.buy_cnt, 0) AS current_season_buy_cnt\nFROM p_agg p\nFULL OUTER JOIN u_agg u\n ON p.item_id = u.item_id AND p.seasonidname = u.seasonidname\nORDER BY item_id, season_name",
+    "status": "success",
+    "result": [
+      {
+        "item_id": "item1",
+        "season_name": "S1",
+        "current_season_use_cnt": 5,
+        "current_season_buy_cnt": 6
+      },
+      {
+        "item_id": "item2",
+        "season_name": "S2",
+        "current_season_use_cnt": 4,
+        "current_season_buy_cnt": 9
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_11",
+    "sql": "WITH active_users AS ( SELECT DISTINCT iuserid FROM dws_argothek_oss_useractivity_df WHERE statis_date = 20250617 AND iworldid = 255 AND INSTR(SUBSTRING(iactivity, 71, 30), '1') > 0 ), all_items_owners AS ( SELECT iuserid FROM dwd_argothek_gearrecord_df WHERE dtstatdate = '20250617' AND iGoodsId IN ( '71d260ca-4bad-81f2-0298-44860341a7a6', '48601754-442d-98cb-2109-3fb2075500ec', 'a9126263-439c-7be6-d668-52a6c0c0a36f', '34ecc788-4034-71d2-a0ac-c398b8ecb2ae', '56f98991-43f8-dcc8-189e-08b7ae6c42ad', '8453f8ef-4c0b-46e2-8768-3e9e45c67a2c', '06d90274-435f-3e32-9d57-26bc228ae2e5', '8196dea4-4229-c951-13a9-088fb13b3512', '3abc330f-444a-6dfd-5863-81856ba62624', '041a43a4-46fe-dab7-c974-36bf91eab33d', '5b863cb9-4e41-ec89-69ee-49a223d05ff1' ) GROUP BY iuserid HAVING COUNT(DISTINCT iGoodsId) = 11 ) SELECT COUNT(DISTINCT T1.iuserid) AS `domain_term_d8c84172ac30domain_term_bdfec5a82c`, COUNT(DISTINCT T2.iuserid) AS `domain_term_d8c84172ac30domain_term_dee95c3fb3` FROM active_users AS T1 LEFT JOIN all_items_owners AS T2 ON T1.iuserid = T2.iuserid;",
+    "status": "success",
+    "result": [
+      {
+        "domain_term_d8c84172ac30domain_term_bdfec5a82c": 8,
+        "domain_term_d8c84172ac30domain_term_dee95c3fb3": 3
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_13",
+    "sql": "WITH active_users AS (\n -- domain_term_ac75b0221320230712domain_term_43401e739e20250612domain_term_24cd18eefa，domain_term_d03e144984>30domain_term_c3304d1e49，domain_term_67252358f920250312domain_term_909350a7cf\n SELECT\n iuserid\n FROM dws_argothek_oss_login_di\n WHERE statis_date BETWEEN '20230712' AND '20250612'\n GROUP BY iuserid\n HAVING COUNT(DISTINCT statis_date) > 30\n AND MAX(statis_date) < '20250312'\n),\nhigh_value_users AS (\n -- domain_term_74e5194e331500domain_term_622f3c5acb(150000domain_term_0d7416e2e2)domain_term_f07f0f7bd4QQ/WXdomain_term_9ba763ea34，domain_term_935d48533c\n SELECT\n iuserid\n FROM dws_argothek_oss_portaltransaction_di\n WHERE vusertype IN ('qq', 'wx')\n GROUP BY iuserid\n HAVING SUM(ftranamt) > 150000\n),\ndim_direct_wx AS (\n -- domain_term_9132e087f11：domain_term_f2d79e3fc4 (PlayerID -> WXID)，domain_term_a92e1496b1\n SELECT DISTINCT\n splayerid,\n swxid\n FROM dim_mgamejp_tbplayerid2wxid_nf\n WHERE sappid IN ('qq', 'wx')\n),\ndim_bridge_qq AS (\n -- domain_term_9132e087f12domain_term_d13bfa13caA：domain_term_d43dd2a176QQdomain_term_1f7802650e (PlayerID -> QQ)\n SELECT DISTINCT\n splayerid,\n iqq\n FROM dim_mgamejp_tbplayerid2qq_nf\n WHERE sappid IN ('qq', 'wx')\n),\ndim_bridge_qq2wx AS (\n -- domain_term_9132e087f12domain_term_d13bfa13caB：domain_term_d43dd2a176QQdomain_term_b60418e5e4 (QQ -> WXID)\n SELECT DISTINCT\n iqq,\n swxid\n FROM dim_mgamejp_idconversion_wxid_qq_nf\n)\nSELECT DISTINCT\n COALESCE(d1.swxid, d3.swxid) AS wxid\nFROM active_users u\nLEFT JOIN high_value_users h\n ON u.iuserid = h.iuserid\nLEFT JOIN dim_direct_wx d1\n ON u.iuserid = d1.splayerid\nLEFT JOIN dim_bridge_qq d2\n ON u.iuserid = d2.splayerid\nLEFT JOIN dim_bridge_qq2wx d3\n ON d2.iqq = d3.iqq\nWHERE h.iuserid IS NULL -- domain_term_fceb7f7917\n AND COALESCE(d1.swxid, d3.swxid) IS NOT NULL; -- domain_term_2c328fa710wxid",
+    "status": "success",
+    "result": [
+      {
+        "wxid": "wxidD1"
+      },
+      {
+        "wxid": "wxidC1"
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_14",
+    "sql": "SELECT DISTINCT d.suserid\nFROM dws_argothek_oss_login_di l\nJOIN dim_argothek_gplayerid2qqwxid_df d ON l.iuserid = d.iuserid\nWHERE l.statis_date >= 20250501 AND l.statis_date <= 20250531\nAND d.dtstatdate = '20250610'\nAND d.swxid_type = 'qq'\nAND l.iuserid NOT IN (\n SELECT DISTINCT l2.iuserid\n FROM dws_argothek_oss_login_di l2\n WHERE l2.statis_date >= 20250601 AND l2.statis_date <= 20250630\n);",
+    "status": "success",
+    "result": [
+      {
+        "suserid": "10007"
+      },
+      {
+        "suserid": "10003"
+      },
+      {
+        "suserid": "10004"
+      },
+      {
+        "suserid": "10001"
+      },
+      {
+        "suserid": "10006"
+      },
+      {
+        "suserid": "10008"
+      },
+      {
+        "suserid": "10002"
+      },
+      {
+        "suserid": "10005"
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_15",
+    "sql": "SELECT DISTINCT t1.iuserid AS gplayerid FROM dws_argothek_oss_useractivity_df AS t1 JOIN dim_argothek_gplayerid2qqwxid_df AS t2 ON t1.iuserid = t2.iuserid JOIN dws_mgamejp_login_user_activity_di AS t3 ON t2.suserid = t3.suserid AND t2.swxid_type = t3.suseridtype WHERE t1.statis_date = 20250531 AND INSTR(SUBSTR(REVERSE(RPAD(t1.iactivity, 128, '0')), 1, 31), '1') = 0 AND INSTR(SUBSTR(REVERSE(RPAD(t1.iactivity, 128, '0')), 32, 31), '1') > 0 AND t2.dtstatdate = '20250608' AND t3.dtstatdate BETWEEN 20250501 AND 20250531 AND t3.sgamecode = 'initiatived' AND t3.itimes >= 1 AND t3.saccounttype = '-100' AND t3.suseridtype IN ('qq', 'wxid') AND t3.splattype = 'PC' AND t3.splat = '-100';",
+    "status": "success",
+    "result": [
+      {
+        "gplayerid": "playerid6"
+      },
+      {
+        "gplayerid": "playerid1"
+      },
+      {
+        "gplayerid": "playerid3"
+      },
+      {
+        "gplayerid": "playerid8"
+      },
+      {
+        "gplayerid": "playerid4"
+      },
+      {
+        "gplayerid": "playerid2"
+      },
+      {
+        "gplayerid": "playerid5"
+      },
+      {
+        "gplayerid": "playerid7"
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_16",
+    "sql": "SELECT\n SUBSTR(tdbank_imp_date, 1, 8) AS date_str,\n CASE\n WHEN competitivetier IN (3, 4, 5) THEN 'domain_term_9429eba2f6'\n WHEN competitivetier IN (6, 7, 8) THEN 'domain_term_8fe8875283'\n WHEN competitivetier IN (9, 10, 11) THEN 'domain_term_bc916383f6'\n WHEN competitivetier IN (12, 13, 14) THEN 'domain_term_3713947f42'\n WHEN competitivetier IN (15, 16, 17) THEN 'domain_term_e506cf878f'\n WHEN competitivetier IN (18, 19, 20) THEN 'domain_term_a768735ad5'\n WHEN competitivetier IN (21, 22, 23) THEN 'domain_term_ed5a47708f'\n WHEN competitivetier >= 24 THEN 'domain_term_329000b58d'\n ELSE 'domain_term_4117d4fbcd'\n END AS tier,\n COUNT(DISTINCT CASE WHEN completionstate != 'Surrendered' THEN matchid END) AS normal_match_cnt,\n COUNT(DISTINCT CASE WHEN completionstate = 'Surrendered' THEN matchid END) AS surrender_match_cnt,\n COUNT(DISTINCT CASE WHEN completionstate != 'Surrendered' AND ABS(2 * roundswon - roundsplayed) >= 6 THEN matchid END) AS diff_6_cnt,\n COUNT(DISTINCT CASE WHEN completionstate != 'Surrendered' AND ABS(2 * roundswon - roundsplayed) >= 8 THEN matchid END) AS diff_8_cnt\nFROM\n dwd_argothek_playermatchstats_hi\nWHERE\n tdbank_imp_date BETWEEN '2023071200' AND '2025053123'\n AND queueid = 'competitive'\nGROUP BY\n SUBSTR(tdbank_imp_date, 1, 8),\n CASE\n WHEN competitivetier IN (3, 4, 5) THEN 'domain_term_9429eba2f6'\n WHEN competitivetier IN (6, 7, 8) THEN 'domain_term_8fe8875283'\n WHEN competitivetier IN (9, 10, 11) THEN 'domain_term_bc916383f6'\n WHEN competitivetier IN (12, 13, 14) THEN 'domain_term_3713947f42'\n WHEN competitivetier IN (15, 16, 17) THEN 'domain_term_e506cf878f'\n WHEN competitivetier IN (18, 19, 20) THEN 'domain_term_a768735ad5'\n WHEN competitivetier IN (21, 22, 23) THEN 'domain_term_ed5a47708f'\n WHEN competitivetier >= 24 THEN 'domain_term_329000b58d'\n ELSE 'domain_term_4117d4fbcd'\n END\n\nUNION ALL\n\n-- domain_term_b2c57d92ca\nSELECT\n SUBSTR(tdbank_imp_date, 1, 8) AS date_str,\n 'domain_term_3fbcb17d04' AS tier,\n COUNT(DISTINCT CASE WHEN completionstate != 'Surrendered' THEN matchid END) AS normal_match_cnt,\n COUNT(DISTINCT CASE WHEN completionstate = 'Surrendered' THEN matchid END) AS surrender_match_cnt,\n COUNT(DISTINCT CASE WHEN completionstate != 'Surrendered' AND ABS(2 * roundswon - roundsplayed) >= 6 THEN matchid END) AS diff_6_cnt,\n COUNT(DISTINCT CASE WHEN completionstate != 'Surrendered' AND ABS(2 * roundswon - roundsplayed) >= 8 THEN matchid END) AS diff_8_cnt\nFROM\n dwd_argothek_playermatchstats_hi\nWHERE\n tdbank_imp_date BETWEEN '2023071200' AND '2025053123'\n AND queueid = 'competitive'\nGROUP BY\n SUBSTR(tdbank_imp_date, 1, 8);",
+    "status": "success",
+    "result": [
+      {
+        "date_str": "20240602",
+        "tier": "domain_term_8fe8875283",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 1,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240110",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240225",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240424",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240602",
+        "tier": "domain_term_9429eba2f6",
+        "normal_match_cnt": 1,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240422",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240310",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240414",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240108",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240601",
+        "tier": "domain_term_bc916383f6",
+        "normal_match_cnt": 1,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 1,
+        "diff_8_cnt": 1
+      },
+      {
+        "date_str": "20240115",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240422",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240105",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240117",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240601",
+        "tier": "domain_term_3713947f42",
+        "normal_match_cnt": 1,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 1,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240117",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240309",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240427",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240602",
+        "tier": "domain_term_ed5a47708f",
+        "normal_match_cnt": 1,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 1,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240119",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240103",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240320",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240214",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240424",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240103",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240225",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240222",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240309",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240427",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240324",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240302",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240310",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240115",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240602",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 3,
+        "surrender_match_cnt": 1,
+        "diff_6_cnt": 2,
+        "diff_8_cnt": 1
+      },
+      {
+        "date_str": "20240211",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240108",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240414",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240119",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240214",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240302",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240320",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240222",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240601",
+        "tier": "domain_term_e506cf878f",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 1,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240602",
+        "tier": "domain_term_a768735ad5",
+        "normal_match_cnt": 1,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 1,
+        "diff_8_cnt": 1
+      },
+      {
+        "date_str": "20240105",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240601",
+        "tier": "domain_term_329000b58d",
+        "normal_match_cnt": 1,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 1,
+        "diff_8_cnt": 1
+      },
+      {
+        "date_str": "20240203",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240324",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240211",
+        "tier": "domain_term_4117d4fbcd",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240110",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      },
+      {
+        "date_str": "20240601",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 3,
+        "surrender_match_cnt": 1,
+        "diff_6_cnt": 3,
+        "diff_8_cnt": 2
+      },
+      {
+        "date_str": "20240203",
+        "tier": "domain_term_3fbcb17d04",
+        "normal_match_cnt": 0,
+        "surrender_match_cnt": 0,
+        "diff_6_cnt": 0,
+        "diff_8_cnt": 0
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_18",
+    "sql": "SELECT t1.statis_date, t1.iloginway, COUNT(DISTINCT t1.iuserid)\nFROM dws_argothek_oss_login_di t1\nWHERE t1.statis_date >= 20250506 AND t1.statis_date <= 20250512\nAND t1.iloginway IN (1,10,11,12,35,20,28,29,30,31,32,33,34,36)\nGROUP BY t1.statis_date, t1.iloginway\nORDER BY t1.statis_date, t1.iloginway;",
+    "status": "success",
+    "result": [
+      {
+        "statis_date": 20250506,
+        "iloginway": 1,
+        "count(DISTINCT t1.iuserid)": 2
+      },
+      {
+        "statis_date": 20250506,
+        "iloginway": 10,
+        "count(DISTINCT t1.iuserid)": 1
+      },
+      {
+        "statis_date": 20250507,
+        "iloginway": 11,
+        "count(DISTINCT t1.iuserid)": 1
+      },
+      {
+        "statis_date": 20250508,
+        "iloginway": 12,
+        "count(DISTINCT t1.iuserid)": 1
+      },
+      {
+        "statis_date": 20250509,
+        "iloginway": 35,
+        "count(DISTINCT t1.iuserid)": 1
+      },
+      {
+        "statis_date": 20250510,
+        "iloginway": 20,
+        "count(DISTINCT t1.iuserid)": 1
+      },
+      {
+        "statis_date": 20250511,
+        "iloginway": 28,
+        "count(DISTINCT t1.iuserid)": 1
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_22",
+    "sql": "SELECT DISTINCT\n t2.suserid AS qq\nFROM (\n SELECT\n iuserid\n FROM\n dws_argothek_oss_login_di\n WHERE\n statis_date BETWEEN 20250330 AND 20250428\n AND iloginway = 3\n GROUP BY\n iuserid\n HAVING\n COUNT(DISTINCT statis_date) BETWEEN 5 AND 8\n) t1\nJOIN\n dim_argothek_gplayerid2qqwxid_df t2 ON t1.iuserid = t2.iuserid\nWHERE\n t2.dtstatdate = '20250428'\n AND t2.swxid_type = 'qq';",
+    "status": "success",
+    "result": [
+      {
+        "qq": "12345680"
+      },
+      {
+        "qq": "12345679"
+      },
+      {
+        "qq": "12345678"
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_23",
+    "sql": "SELECT DISTINCT t2.suserid AS qq\nFROM dws_argothek_oss_login_di t1\nJOIN dim_argothek_gplayerid2qqwxid_df t2 ON t1.iuserid = t2.iuserid\nJOIN dim_argothek_gplayerid_vroleid_df t3 ON t1.iuserid = t3.iuserid\nJOIN dwd_argothek_playermatchstats_hi t4 ON t3.vRoleID = t4.vroleid\nWHERE t1.statis_date BETWEEN 20250324 AND 20250330\nAND t1.iloginway = 3\nAND t2.swxid_type = 'qq'\nAND t4.ismatchcompleted = 1\nAND t2.dtstatdate = '20250330'\nAND t3.dtstatdate = '20250330'\nAND SUBSTR(t4.dteventtime, 1, 10) BETWEEN '2025-03-24' AND '2025-03-30';",
+    "status": "success",
+    "result": [
+      {
+        "qq": "1000000002"
+      },
+      {
+        "qq": "1000000003"
+      },
+      {
+        "qq": "1000000007"
+      },
+      {
+        "qq": "1000000008"
+      },
+      {
+        "qq": "1000000004"
+      },
+      {
+        "qq": "1000000001"
+      },
+      {
+        "qq": "1000000005"
+      },
+      {
+        "qq": "1000000006"
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_24",
+    "sql": "WITH player_counts AS (SELECT 'e370fa57-4757-3604-3648-499e1f642d3f' AS hero_id, subject AS player_id, COUNT(*) AS play_count FROM dwd_argothek_playermatchdetail_hi WHERE provisioningflowid = 'Matchmaking' AND characterid IN ('e370fa57-4757-3604-3648-499e1f642d3f', 'cc8b64c8-4b25-4ff9-6e7f-37b4da43d235') AND dteventtime >= '2023-07-26 00:00:00' AND dteventtime <= '2023-08-01 23:59:59' AND tdbank_imp_date >= '2023072600' AND tdbank_imp_date <= '2023080123' GROUP BY subject UNION ALL SELECT '0e38b510-41a8-5780-5e8f-568b2a4f2d6c' AS hero_id, subject AS player_id, COUNT(*) AS play_count FROM dwd_argothek_playermatchdetail_hi WHERE provisioningflowid = 'Matchmaking' AND characterid = '0e38b510-41a8-5780-5e8f-568b2a4f2d6c' AND dteventtime >= '2023-11-01 00:00:00' AND dteventtime <= '2023-11-07 23:59:59' AND tdbank_imp_date >= '2023110100' AND tdbank_imp_date <= '2023110723' GROUP BY subject UNION ALL SELECT '1dbf2edd-4729-0984-3115-daa5eed44993' AS hero_id, subject AS player_id, COUNT(*) AS play_count FROM dwd_argothek_playermatchdetail_hi WHERE provisioningflowid = 'Matchmaking' AND characterid = '1dbf2edd-4729-0984-3115-daa5eed44993' AND dteventtime >= '2024-03-27 00:00:00' AND dteventtime <= '2024-04-02 23:59:59' AND tdbank_imp_date >= '2024032700' AND tdbank_imp_date <= '2024040223' GROUP BY subject UNION ALL SELECT 'efba5359-4016-a1e5-7626-b1ae76895940' AS hero_id, subject AS player_id, COUNT(*) AS play_count FROM dwd_argothek_playermatchdetail_hi WHERE provisioningflowid = 'Matchmaking' AND characterid = 'efba5359-4016-a1e5-7626-b1ae76895940' AND dteventtime >= '2024-08-29 00:00:00' AND dteventtime <= '2024-09-04 23:59:59' AND tdbank_imp_date >= '2024082900' AND tdbank_imp_date <= '2024090423' GROUP BY subject UNION ALL SELECT 'b444168c-4e35-8076-db47-ef9bf368f384' AS hero_id, subject AS player_id, COUNT(*) AS play_count FROM dwd_argothek_playermatchdetail_hi WHERE provisioningflowid = 'Matchmaking' AND characterid = 'b444168c-4e35-8076-db47-ef9bf368f384' AND dteventtime >= '2025-01-09 00:00:00' AND dteventtime <= '2025-01-15 23:59:59' AND tdbank_imp_date >= '2025010900' AND tdbank_imp_date <= '2025011523' GROUP BY subject UNION ALL SELECT 'df1cb487-4902-002e-5c17-d28e83e78588' AS hero_id, subject AS player_id, COUNT(*) AS play_count FROM dwd_argothek_playermatchdetail_hi WHERE provisioningflowid = 'Matchmaking' AND characterid = 'df1cb487-4902-002e-5c17-d28e83e78588' AND dteventtime >= '2025-03-06 00:00:00' AND dteventtime <= '2025-03-12 23:59:59' AND tdbank_imp_date >= '2025030600' AND tdbank_imp_date <= '2025031223' GROUP BY subject) SELECT hero_id, COUNT(CASE WHEN play_count > 3 THEN player_id ELSE NULL END) AS players_gt_3, COUNT(CASE WHEN play_count > 10 THEN player_id ELSE NULL END) AS players_gt_10, COUNT(player_id) AS total_players, COUNT(CASE WHEN play_count > 3 THEN player_id ELSE NULL END) / COUNT(player_id) AS ratio_gt_3, COUNT(CASE WHEN play_count > 10 THEN player_id ELSE NULL END) / COUNT(player_id) AS ratio_gt_10 FROM player_counts GROUP BY hero_id;",
+    "status": "success",
+    "result": [
+      {
+        "hero_id": "e370fa57-4757-3604-3648-499e1f642d3f",
+        "players_gt_3": 1,
+        "players_gt_10": 0,
+        "total_players": 2,
+        "ratio_gt_3": 0.5,
+        "ratio_gt_10": 0
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_26",
+    "sql": "SELECT\n SUM(CASE WHEN e.tag = 'EnemiesBlinded' THEN e.amount ELSE 0 END) AS domain_term_5960d51f4bxdomain_term_5e5b8169ee,\n SUM(CASE WHEN e.tag = 'AlliesBlinded' THEN e.amount ELSE 0 END) AS domain_term_3b2589a0cdxdomain_term_5e5b8169ee\nFROM dwd_argothek_abilityinfo_effects_hi e\nINNER JOIN dwd_argothek_matchdetails_hi m\nON e.matchinfomatchid = m.matchid\nWHERE\n m.provisioningflowid = 'Matchmaking'\n AND e.dteventtime BETWEEN '2024-01-01 00:00:00' AND '2024-12-16 23:59:59'\n AND m.dteventtime BETWEEN '2024-01-01 00:00:00' AND '2024-12-16 23:59:59'\n AND e.tag IN ('EnemiesBlinded', 'AlliesBlinded');",
+    "status": "success",
+    "result": [
+      {
+        "domain_term_5960d51f4bxdomain_term_5e5b8169ee": 9,
+        "domain_term_3b2589a0cdxdomain_term_5e5b8169ee": 6
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_27",
+    "sql": "SELECT COUNT(*)\nFROM dwd_argothek_apinventorymovementlog_hi t1\nLEFT JOIN dwd_argothek_matchdetails_hi t2 ON t1.matchinfomatchid = t2.matchid\nWHERE SUBSTR(t1.dteventtime, 1, 10) BETWEEN '2024-01-01' AND '2024-12-16'\n AND t1.transactiontype = 'FulfillRequest'\n AND t2.provisioningflowid = 'Matchmaking';",
+    "status": "success",
+    "result": [
+      {
+        "count(*)": 8
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_31",
+    "sql": "SELECT t3.modename AS main_play_mode, COUNT(DISTINCT t3.vplayerid) AS user_count\nFROM (\n SELECT t1.vplayerid, t2.modename, SUM(t2.roundtime) AS total_play_time,\n ROW_NUMBER() OVER (PARTITION BY t1.vplayerid ORDER BY SUM(t2.roundtime) DESC) AS rn\n FROM (\n SELECT DISTINCT a.vplayerid\n FROM dwd_jordass_buttonpress_pre_di a\n WHERE a.dtstatdate >= 20250217 AND a.dtstatdate <= 20250318\n AND a.vplayerid NOT IN (\n SELECT DISTINCT b.vplayerid\n FROM dws_jordass_matchlog_stat_di b\n WHERE b.dtstatdate >= 20250217 AND b.dtstatdate <= 20250318\n AND b.vtemp1 = 'domain_term_de1af83a46'\n )\n ) t1\n JOIN dws_jordass_mode_roundrecord_di t2 ON t1.vplayerid = t2.vplayerid\n WHERE t2.dtstatdate >= 20250217 AND t2.dtstatdate <= 20250318\n AND t2.modename IN ('domain_term_3b87e170bd','domain_term_68f20c1125','domain_term_8a6c6ccf17','domain_term_aa6a118e23','domain_term_372cbd9462','domain_term_4e5ccfc9be','domain_term_685408e56a','domain_term_41ca2be751')\n GROUP BY t1.vplayerid, t2.modename\n) t3\nWHERE t3.rn = 1\nGROUP BY t3.modename\nORDER BY user_count DESC;",
+    "status": "success",
+    "result": [
+      {
+        "main_play_mode": "domain_term_3b87e170bd",
+        "user_count": 5
+      },
+      {
+        "main_play_mode": "domain_term_68f20c1125",
+        "user_count": 4
+      },
+      {
+        "main_play_mode": "domain_term_aa6a118e23",
+        "user_count": 4
+      },
+      {
+        "main_play_mode": "domain_term_4e5ccfc9be",
+        "user_count": 4
+      },
+      {
+        "main_play_mode": "domain_term_8a6c6ccf17",
+        "user_count": 1
+      },
+      {
+        "main_play_mode": "domain_term_41ca2be751",
+        "user_count": 1
+      },
+      {
+        "main_play_mode": "domain_term_685408e56a",
+        "user_count": 1
+      },
+      {
+        "main_play_mode": "domain_term_372cbd9462",
+        "user_count": 1
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_32",
+    "sql": "SELECT t1.dtstatdate, COUNT(DISTINCT t1.vplayerid) AS participant_count, SUM(t1.roundtime) / 60 AS total_duration_minutes FROM dws_jordass_mode_roundrecord_di t1 WHERE (t1.dtstatdate >= '20230114' AND t1.dtstatdate <= '20230128') OR (t1.dtstatdate >= '20240202' AND t1.dtstatdate <= '20240216') OR (t1.dtstatdate >= '20250121' AND t1.dtstatdate <= '20250204') GROUP BY t1.dtstatdate ORDER BY t1.dtstatdate;",
+    "status": "success",
+    "result": [
+      {
+        "dtstatdate": "20230114",
+        "participant_count": 4,
+        "total_duration_minutes": 150
+      },
+      {
+        "dtstatdate": "20230116",
+        "participant_count": 5,
+        "total_duration_minutes": 210
+      },
+      {
+        "dtstatdate": "20230117",
+        "participant_count": 5,
+        "total_duration_minutes": 203.33
+      },
+      {
+        "dtstatdate": "20230118",
+        "participant_count": 4,
+        "total_duration_minutes": 160
+      },
+      {
+        "dtstatdate": "20230119",
+        "participant_count": 1,
+        "total_duration_minutes": 25
+      },
+      {
+        "dtstatdate": "20230120",
+        "participant_count": 5,
+        "total_duration_minutes": 195
+      },
+      {
+        "dtstatdate": "20230122",
+        "participant_count": 4,
+        "total_duration_minutes": 160
+      },
+      {
+        "dtstatdate": "20230124",
+        "participant_count": 5,
+        "total_duration_minutes": 205
+      },
+      {
+        "dtstatdate": "20230125",
+        "participant_count": 5,
+        "total_duration_minutes": 190
+      },
+      {
+        "dtstatdate": "20230126",
+        "participant_count": 1,
+        "total_duration_minutes": 30
+      },
+      {
+        "dtstatdate": "20230128",
+        "participant_count": 5,
+        "total_duration_minutes": 205
+      },
+      {
+        "dtstatdate": "20240202",
+        "participant_count": 4,
+        "total_duration_minutes": 150
+      },
+      {
+        "dtstatdate": "20240204",
+        "participant_count": 4,
+        "total_duration_minutes": 250
+      },
+      {
+        "dtstatdate": "20240205",
+        "participant_count": 4,
+        "total_duration_minutes": 170
+      },
+      {
+        "dtstatdate": "20240206",
+        "participant_count": 1,
+        "total_duration_minutes": 50
+      },
+      {
+        "dtstatdate": "20240208",
+        "participant_count": 5,
+        "total_duration_minutes": 255
+      },
+      {
+        "dtstatdate": "20240209",
+        "participant_count": 5,
+        "total_duration_minutes": 220
+      },
+      {
+        "dtstatdate": "20240210",
+        "participant_count": 5,
+        "total_duration_minutes": 175
+      },
+      {
+        "dtstatdate": "20240211",
+        "participant_count": 5,
+        "total_duration_minutes": 205
+      },
+      {
+        "dtstatdate": "20240212",
+        "participant_count": 1,
+        "total_duration_minutes": 30
+      },
+      {
+        "dtstatdate": "20240213",
+        "participant_count": 1,
+        "total_duration_minutes": 40
+      },
+      {
+        "dtstatdate": "20240214",
+        "participant_count": 4,
+        "total_duration_minutes": 180
+      },
+      {
+        "dtstatdate": "20250121",
+        "participant_count": 4,
+        "total_duration_minutes": 150
+      },
+      {
+        "dtstatdate": "20250122",
+        "participant_count": 5,
+        "total_duration_minutes": 170
+      },
+      {
+        "dtstatdate": "20250124",
+        "participant_count": 1,
+        "total_duration_minutes": 30
+      },
+      {
+        "dtstatdate": "20250126",
+        "participant_count": 4,
+        "total_duration_minutes": 150
+      },
+      {
+        "dtstatdate": "20250127",
+        "participant_count": 7,
+        "total_duration_minutes": 257.5
+      },
+      {
+        "dtstatdate": "20250128",
+        "participant_count": 5,
+        "total_duration_minutes": 260
+      },
+      {
+        "dtstatdate": "20250129",
+        "participant_count": 4,
+        "total_duration_minutes": 160
+      },
+      {
+        "dtstatdate": "20250131",
+        "participant_count": 1,
+        "total_duration_minutes": 30
+      },
+      {
+        "dtstatdate": "20250201",
+        "participant_count": 5,
+        "total_duration_minutes": 240
+      },
+      {
+        "dtstatdate": "20250204",
+        "participant_count": 1,
+        "total_duration_minutes": 45
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_40",
+    "sql": "WITH monthly_data AS (SELECT substr(dtstatdate,1,6) as month, vplayerid, dregdate, CASE substr(dtstatdate,1,6) WHEN '202403' THEN length(replace(substr(cbitmap,1,31),'0','')) WHEN '202404' THEN length(replace(substr(cbitmap,1,30),'0','')) WHEN '202405' THEN length(replace(substr(cbitmap,1,31),'0','')) WHEN '202406' THEN length(replace(substr(cbitmap,1,30),'0','')) END as current_days, CASE substr(dtstatdate,1,6) WHEN '202403' THEN length(replace(substr(cbitmap,32,29),'0','')) WHEN '202404' THEN length(replace(substr(cbitmap,31,31),'0','')) WHEN '202405' THEN length(replace(substr(cbitmap,32,30),'0','')) WHEN '202406' THEN length(replace(substr(cbitmap,31,31),'0','')) END as prev_days FROM dws_jordass_login_df WHERE dtstatdate IN ('20240331','20240430','20240531','20240630') AND platid = 255), classified AS (SELECT month, vplayerid, CASE WHEN substr(dregdate,1,6) = month THEN 'new' WHEN prev_days = 0 AND current_days > 0 THEN 'return' WHEN prev_days > 0 AND current_days BETWEEN 1 AND 4 THEN 'light_retain' WHEN prev_days > 0 AND current_days BETWEEN 5 AND 15 THEN 'medium_retain' WHEN prev_days > 0 AND current_days >= 16 THEN 'heavy_retain' END as user_type FROM monthly_data WHERE current_days > 0) SELECT month, count(distinct CASE WHEN user_type = 'new' THEN vplayerid END) as new_users, count(distinct CASE WHEN user_type = 'return' THEN vplayerid END) as return_users, count(distinct CASE WHEN user_type = 'light_retain' THEN vplayerid END) as light_retain, count(distinct CASE WHEN user_type = 'medium_retain' THEN vplayerid END) as medium_retain, count(distinct CASE WHEN user_type = 'heavy_retain' THEN vplayerid END) as heavy_retain FROM classified GROUP BY month ORDER BY month;",
+    "status": "success",
+    "result": [
+      {
+        "month": "202403",
+        "new_users": 1,
+        "return_users": 12,
+        "light_retain": 12,
+        "medium_retain": 13,
+        "heavy_retain": 10
+      },
+      {
+        "month": "202404",
+        "new_users": 2,
+        "return_users": 10,
+        "light_retain": 13,
+        "medium_retain": 10,
+        "heavy_retain": 5
+      },
+      {
+        "month": "202405",
+        "new_users": 0,
+        "return_users": 11,
+        "light_retain": 12,
+        "medium_retain": 14,
+        "heavy_retain": 8
+      },
+      {
+        "month": "202406",
+        "new_users": 0,
+        "return_users": 15,
+        "light_retain": 16,
+        "medium_retain": 13,
+        "heavy_retain": 6
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_41",
+    "sql": "SELECT dtstatdate, COUNT(DISTINCT vplayerid) FROM dws_jordass_login_di WHERE dtstatdate BETWEEN '20240101' AND '20240103' AND platid = 255 GROUP BY dtstatdate ORDER BY dtstatdate;",
+    "status": "success",
+    "result": [
+      {
+        "dtstatdate": "20240101",
+        "count(DISTINCT vplayerid)": 89
+      },
+      {
+        "dtstatdate": "20240102",
+        "count(DISTINCT vplayerid)": 72
+      },
+      {
+        "dtstatdate": "20240103",
+        "count(DISTINCT vplayerid)": 68
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_42",
+    "sql": "SELECT t1.dtstatdate, SPLIT_PART(t1.extarg2, '_', 2) AS extarg2_part, COUNT(DISTINCT t1.vplayerid) AS user_count, COUNT(*) AS click_count FROM dws_jordass_buttonpress_pre_di t1 WHERE t1.dtstatdate >= 20211101 AND t1.dtstatdate <= 20211130 AND SPLIT_PART(t1.extarg2, '_', 2) IN ('8', '16', '17') GROUP BY t1.dtstatdate, SPLIT_PART(t1.extarg2, '_', 2) ORDER BY t1.dtstatdate, extarg2_part;",
+    "status": "success",
+    "result": [
+      {
+        "dtstatdate": "20211101",
+        "extarg2_part": "16",
+        "user_count": 8,
+        "click_count": 8
+      },
+      {
+        "dtstatdate": "20211101",
+        "extarg2_part": "17",
+        "user_count": 8,
+        "click_count": 8
+      },
+      {
+        "dtstatdate": "20211101",
+        "extarg2_part": "8",
+        "user_count": 10,
+        "click_count": 13
+      },
+      {
+        "dtstatdate": "20211102",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211102",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211102",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211103",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211103",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211103",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211104",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211104",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211104",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211105",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211105",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211105",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211106",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211106",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211106",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211107",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211107",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211107",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211108",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211108",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211108",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211109",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211109",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211109",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211110",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211110",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211110",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211111",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211111",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211111",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211112",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211112",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211112",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211113",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211113",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211113",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211114",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211114",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211114",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211115",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211115",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211115",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211116",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211116",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211116",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211117",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211117",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211117",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211118",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211118",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211118",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211119",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211119",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211119",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211120",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211120",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211120",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211121",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211121",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211121",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211122",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211122",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211122",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211123",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211123",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211123",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211124",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211124",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211124",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211125",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211125",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211125",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211126",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211126",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211126",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211127",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211127",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211127",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211128",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211128",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211128",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211129",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211129",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211129",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211130",
+        "extarg2_part": "16",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211130",
+        "extarg2_part": "17",
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "dtstatdate": "20211130",
+        "extarg2_part": "8",
+        "user_count": 2,
+        "click_count": 2
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_43",
+    "sql": "SELECT CASE WHEN t1.login_days >= 16 THEN 'domain_term_5eb9e016e0' WHEN t1.login_days >= 6 THEN 'domain_term_3b2e3b88bb' ELSE 'domain_term_c34638dd57' END AS active_level, COUNT(DISTINCT t1.vplayerid) AS player_count FROM (SELECT vplayerid, COUNT(DISTINCT dtstatdate) AS login_days FROM dws_jordass_login_di t1 WHERE t1.dtstatdate >= 20250101 AND t1.dtstatdate <= 20250131 AND t1.platid = 255 GROUP BY t1.vplayerid) t1 GROUP BY CASE WHEN t1.login_days >= 16 THEN 'domain_term_5eb9e016e0' WHEN t1.login_days >= 6 THEN 'domain_term_3b2e3b88bb' ELSE 'domain_term_c34638dd57' END;",
+    "status": "success",
+    "result": [
+      {
+        "active_level": "domain_term_5eb9e016e0",
+        "player_count": 6
+      },
+      {
+        "active_level": "domain_term_3b2e3b88bb",
+        "player_count": 7
+      },
+      {
+        "active_level": "domain_term_c34638dd57",
+        "player_count": 20
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_47",
+    "sql": "SELECT COUNT(DISTINCT t1.vplayerid)\nFROM dws_jordass_login_di t1\nJOIN dws_jordass_water_di t2 ON t1.vplayerid = t2.vplayerid\nWHERE t1.dtstatdate BETWEEN 20230701 AND 20230831\nAND t1.vgameappid = 'wx'\nAND t2.dtstatdate BETWEEN 20230701 AND 20230831\nAND t2.vgameappid = 'wx'\nAND t1.vplayerid NOT IN (\n SELECT t3.vplayerid\n FROM dws_jordass_login_di t3\n WHERE t3.dtstatdate BETWEEN 20230901 AND 20230921\n AND t3.vgameappid = 'wx'\n);",
+    "status": "success",
+    "result": [
+      {
+        "count(DISTINCT t1.vplayerid)": 74
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_50",
+    "sql": "WITH button_users AS (\n SELECT\n a.vplayerid,\n CASE\n WHEN COUNT(DISTINCT CASE WHEN a.buttontype = '400211' THEN 1 END) > 0\n AND COUNT(DISTINCT CASE WHEN a.buttontype = '400212' THEN 1 END) > 0 THEN '400211&400212'\n WHEN COUNT(DISTINCT CASE WHEN a.buttontype = '400211' THEN 1 END) > 0 THEN '400211'\n WHEN COUNT(DISTINCT CASE WHEN a.buttontype = '400212' THEN 1 END) > 0 THEN '400212'\n ELSE 'other'\n END AS user_type\n FROM dws_jordass_buttonpress_pre_di a\n WHERE a.dtstatdate >= 20241001 AND a.dtstatdate <= 20241031\n AND a.buttontype IN ('400211', '400212')\n GROUP BY a.vplayerid\n),\ngender_latest AS (\n SELECT\n b.vplayerid,\n CASE\n WHEN b.gender = 1 THEN 'male'\n WHEN b.gender = 2 THEN 'female'\n ELSE 'other'\n END AS game_gender\n FROM (\n SELECT\n c.vplayerid,\n c.gender,\n ROW_NUMBER() OVER (PARTITION BY c.vplayerid ORDER BY c.dteventtime DESC) as rn\n FROM dwd_jordass_playerlogin_hi c\n WHERE SUBSTR(c.dteventtime, 1, 10) >= '2024-10-01'\n AND SUBSTR(c.dteventtime, 1, 10) <= '2024-10-31'\n ) b\n WHERE b.rn = 1\n),\nparadise_activity AS (\n SELECT\n d.vplayerid,\n CASE\n WHEN COUNT(DISTINCT d.dtstatdate) BETWEEN 1 AND 4 THEN 'light'\n WHEN COUNT(DISTINCT d.dtstatdate) BETWEEN 5 AND 15 THEN 'medium'\n WHEN COUNT(DISTINCT d.dtstatdate) >= 16 THEN 'heavy'\n ELSE 'other'\n END AS paradise_activity_level\n FROM dws_jordass_matchlog_stat_di d\n WHERE d.dtstatdate >= 20241001 AND d.dtstatdate <= 20241031\n GROUP BY d.vplayerid\n),\njordass_activity AS (\n SELECT\n e.vplayerid,\n CASE\n WHEN COUNT(DISTINCT e.dtstatdate) BETWEEN 1 AND 4 THEN 'light'\n WHEN COUNT(DISTINCT e.dtstatdate) BETWEEN 5 AND 15 THEN 'medium'\n WHEN COUNT(DISTINCT e.dtstatdate) >= 16 THEN 'heavy'\n ELSE 'other'\n END AS jordass_activity_level\n FROM dws_jordass_login_di e\n WHERE e.dtstatdate >= 20241001 AND e.dtstatdate <= 20241031\n GROUP BY e.vplayerid\n)\nSELECT\n COALESCE(f.user_type, 'other') AS user_type,\n COALESCE(g.game_gender, 'other') AS game_gender,\n COALESCE(h.paradise_activity_level, 'other') AS paradise_activity_level,\n COALESCE(i.jordass_activity_level, 'other') AS jordass_activity_level,\n COUNT(DISTINCT f.vplayerid) AS user_count\nFROM button_users f\nLEFT JOIN gender_latest g ON f.vplayerid = g.vplayerid\nLEFT JOIN paradise_activity h ON f.vplayerid = h.vplayerid\nLEFT JOIN jordass_activity i ON f.vplayerid = i.vplayerid\nGROUP BY\n COALESCE(f.user_type, 'other'),\n COALESCE(g.game_gender, 'other'),\n COALESCE(h.paradise_activity_level, 'other'),\n COALESCE(i.jordass_activity_level, 'other');",
+    "status": "success",
+    "result": [
+      {
+        "user_type": "400212",
+        "game_gender": "female",
+        "paradise_activity_level": "other",
+        "jordass_activity_level": "other",
+        "user_count": 1
+      },
+      {
+        "user_type": "400211",
+        "game_gender": "female",
+        "paradise_activity_level": "heavy",
+        "jordass_activity_level": "heavy",
+        "user_count": 1
+      },
+      {
+        "user_type": "400211",
+        "game_gender": "male",
+        "paradise_activity_level": "light",
+        "jordass_activity_level": "medium",
+        "user_count": 1
+      },
+      {
+        "user_type": "400212",
+        "game_gender": "male",
+        "paradise_activity_level": "other",
+        "jordass_activity_level": "other",
+        "user_count": 6
+      },
+      {
+        "user_type": "400211",
+        "game_gender": "female",
+        "paradise_activity_level": "other",
+        "jordass_activity_level": "other",
+        "user_count": 5
+      },
+      {
+        "user_type": "400211&400212",
+        "game_gender": "male",
+        "paradise_activity_level": "other",
+        "jordass_activity_level": "other",
+        "user_count": 1
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_51",
+    "sql": "WITH base_users AS ( SELECT DISTINCT t1.dtstatdate, t1.vplayerid FROM dws_jordass_buttonpress_pre_di AS t1 JOIN dim_jordass_submodeonlinedate_conf AS t2 ON t1.ireason = CAST(t2.matchsubmodegroup AS STRING) WHERE t1.dtstatdate >= '20241108' AND t1.dtstatdate <= '20241204' ), user_periods AS ( SELECT vplayerid, MAX(IF(dtstatdate >= '20241108' AND dtstatdate <= '20241121', 1, 0)) AS p1_c1, MAX(IF(dtstatdate >= '20241122' AND dtstatdate <= '20241204', 1, 0)) AS p1_c2, MAX(IF(dtstatdate >= '20241110' AND dtstatdate <= '20241123', 1, 0)) AS p2_c1, MAX(IF(dtstatdate >= '20241124' AND dtstatdate <= '20241204', 1, 0)) AS p2_c2, MAX(IF(dtstatdate >= '20241115' AND dtstatdate <= '20241128', 1, 0)) AS p3_c1, MAX(IF(dtstatdate >= '20241129' AND dtstatdate <= '20241204', 1, 0)) AS p3_c2, MAX(IF(dtstatdate >= '20241117' AND dtstatdate <= '20241130', 1, 0)) AS p4_c1, MAX(IF(dtstatdate >= '20241201' AND dtstatdate <= '20241204', 1, 0)) AS p4_c2 FROM base_users GROUP BY vplayerid ) SELECT 'domain_term_7f344627081' AS 'domain_term_7f34462708', COUNT(DISTINCT IF(p1_c1 = 1, vplayerid, NULL)) AS 'domain_term_dae828fe4f1domain_term_b81b6a08ba', COUNT(DISTINCT IF(p1_c1 = 1 AND p1_c2 = 1, vplayerid, NULL)) AS 'domain_term_b42aaf390e' FROM user_periods UNION ALL SELECT 'domain_term_7f344627082' AS 'domain_term_7f34462708', COUNT(DISTINCT IF(p2_c1 = 1, vplayerid, NULL)) AS 'domain_term_dae828fe4f1domain_term_b81b6a08ba', COUNT(DISTINCT IF(p2_c1 = 1 AND p2_c2 = 1, vplayerid, NULL)) AS 'domain_term_b42aaf390e' FROM user_periods UNION ALL SELECT 'domain_term_7f344627083' AS 'domain_term_7f34462708', COUNT(DISTINCT IF(p3_c1 = 1, vplayerid, NULL)) AS 'domain_term_dae828fe4f1domain_term_b81b6a08ba', COUNT(DISTINCT IF(p3_c1 = 1 AND p3_c2 = 1, vplayerid, NULL)) AS 'domain_term_b42aaf390e' FROM user_periods UNION ALL SELECT 'domain_term_7f344627084' AS 'domain_term_7f34462708', COUNT(DISTINCT IF(p4_c1 = 1, vplayerid, NULL)) AS 'domain_term_dae828fe4f1domain_term_b81b6a08ba', COUNT(DISTINCT IF(p4_c1 = 1 AND p4_c2 = 1, vplayerid, NULL)) AS 'domain_term_b42aaf390e' FROM user_periods;",
+    "status": "success",
+    "result": [
+      {
+        "domain_term_7f34462708": "domain_term_7f344627082",
+        "domain_term_dae828fe4f1domain_term_b81b6a08ba": 72,
+        "domain_term_b42aaf390e": 43
+      },
+      {
+        "domain_term_7f34462708": "domain_term_7f344627084",
+        "domain_term_dae828fe4f1domain_term_b81b6a08ba": 79,
+        "domain_term_b42aaf390e": 20
+      },
+      {
+        "domain_term_7f34462708": "domain_term_7f344627081",
+        "domain_term_dae828fe4f1domain_term_b81b6a08ba": 66,
+        "domain_term_b42aaf390e": 47
+      },
+      {
+        "domain_term_7f34462708": "domain_term_7f344627083",
+        "domain_term_dae828fe4f1domain_term_b81b6a08ba": 78,
+        "domain_term_b42aaf390e": 28
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_60",
+    "sql": "WITH alliance_users AS (\n SELECT DISTINCT\n substr(a.tdbank_imp_date, 1, 8) AS stat_date,\n l.vplayerid AS player_id\n FROM dwd_jordass_player_allianceactive_hi a\n JOIN dws_jordass_uid_login_df l ON a.uid = l.uid\n WHERE a.tdbank_imp_date >= date_format(date_sub(str_to_date('20250226', '%Y%m%d'), INTERVAL 180 DAY), '%Y%m%d%H')\n AND a.tdbank_imp_date < '2025022600'\n),\npay_users AS (\n SELECT DISTINCT\n dtstatdate AS pay_date,\n vplayerid AS player_id\n FROM dws_jordass_water_di\n WHERE dtstatdate >= date_format(date_sub(str_to_date('20250226', '%Y%m%d'), INTERVAL 210 DAY), '%Y%m%d')\n AND dtstatdate < '20250226'\n AND platid = 255\n)\nSELECT\n au.stat_date AS domain_term_77282a67dd,\n COUNT(DISTINCT au.player_id) AS domain_term_cb7c6deac8\nFROM alliance_users au\nINNER JOIN pay_users pu\n ON au.player_id = pu.player_id\n AND pu.pay_date >= date_format(date_sub(str_to_date(au.stat_date, '%Y%m%d'), INTERVAL 30 DAY), '%Y%m%d')\n AND pu.pay_date <= au.stat_date\nGROUP BY au.stat_date\nORDER BY au.stat_date;",
+    "status": "success",
+    "result": [
+      {
+        "domain_term_77282a67dd": "20250101",
+        "domain_term_cb7c6deac8": 4
+      },
+      {
+        "domain_term_77282a67dd": "20250102",
+        "domain_term_cb7c6deac8": 4
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_62",
+    "sql": "select\n substr(a.tdbank_imp_date, 1, 8) as dt,\n count(distinct a.uid) as dau,\n count(distinct b.uid) as alliance_users,\n count(distinct c.memberuid) as task_users,\n count(d.uid) as exchange_count\nfrom\n (\n select\n tdbank_imp_date,\n uid\n from\n dwd_jordass_playerlogin_hi\n where\n tdbank_imp_date >= '2024083000'\n and tdbank_imp_date <= '2025022623'\n union all\n select\n tdbank_imp_date,\n uid\n from\n dwd_jordass_playerlogout_hi\n where\n tdbank_imp_date >= '2024083000'\n and tdbank_imp_date <= '2025022623'\n ) a\n left join dwd_jordass_player_allianceactive_hi b on a.uid = b.uid\n and substr(a.tdbank_imp_date, 1, 8) = substr(b.tdbank_imp_date, 1, 8)\n left join dwd_jordass_alliancebootcamprecord_hi c on a.uid = c.memberuid\n and substr(a.tdbank_imp_date, 1, 8) = substr(c.tdbank_imp_date, 1, 8)\n left join dwd_jordass_allianceshopbuy_hi d on a.uid = d.uid\n and substr(a.tdbank_imp_date, 1, 8) = substr(d.tdbank_imp_date, 1, 8)\ngroup by\n substr(a.tdbank_imp_date, 1, 8);",
+    "status": "success",
+    "result": [
+      {
+        "dt": "20240901",
+        "dau": 2,
+        "alliance_users": 1,
+        "task_users": 1,
+        "exchange_count": 1
+      },
+      {
+        "dt": "20241005",
+        "dau": 1,
+        "alliance_users": 0,
+        "task_users": 0,
+        "exchange_count": 0
+      },
+      {
+        "dt": "20241101",
+        "dau": 1,
+        "alliance_users": 0,
+        "task_users": 0,
+        "exchange_count": 0
+      },
+      {
+        "dt": "20241014",
+        "dau": 1,
+        "alliance_users": 0,
+        "task_users": 0,
+        "exchange_count": 0
+      },
+      {
+        "dt": "20241002",
+        "dau": 1,
+        "alliance_users": 0,
+        "task_users": 0,
+        "exchange_count": 0
+      },
+      {
+        "dt": "20240903",
+        "dau": 2,
+        "alliance_users": 1,
+        "task_users": 1,
+        "exchange_count": 1
+      },
+      {
+        "dt": "20241011",
+        "dau": 1,
+        "alliance_users": 0,
+        "task_users": 0,
+        "exchange_count": 0
+      },
+      {
+        "dt": "20240831",
+        "dau": 2,
+        "alliance_users": 1,
+        "task_users": 1,
+        "exchange_count": 1
+      },
+      {
+        "dt": "20241010",
+        "dau": 1,
+        "alliance_users": 0,
+        "task_users": 0,
+        "exchange_count": 0
+      },
+      {
+        "dt": "20241009",
+        "dau": 1,
+        "alliance_users": 0,
+        "task_users": 0,
+        "exchange_count": 0
+      },
+      {
+        "dt": "20241008",
+        "dau": 1,
+        "alliance_users": 0,
+        "task_users": 0,
+        "exchange_count": 0
+      },
+      {
+        "dt": "20240902",
+        "dau": 2,
+        "alliance_users": 1,
+        "task_users": 1,
+        "exchange_count": 1
+      },
+      {
+        "dt": "20241012",
+        "dau": 1,
+        "alliance_users": 0,
+        "task_users": 0,
+        "exchange_count": 0
+      },
+      {
+        "dt": "20241013",
+        "dau": 1,
+        "alliance_users": 0,
+        "task_users": 0,
+        "exchange_count": 0
+      },
+      {
+        "dt": "20241003",
+        "dau": 1,
+        "alliance_users": 0,
+        "task_users": 0,
+        "exchange_count": 0
+      },
+      {
+        "dt": "20241004",
+        "dau": 1,
+        "alliance_users": 0,
+        "task_users": 0,
+        "exchange_count": 0
+      },
+      {
+        "dt": "20240830",
+        "dau": 2,
+        "alliance_users": 1,
+        "task_users": 1,
+        "exchange_count": 2
+      },
+      {
+        "dt": "20241015",
+        "dau": 1,
+        "alliance_users": 0,
+        "task_users": 0,
+        "exchange_count": 0
+      },
+      {
+        "dt": "20241007",
+        "dau": 1,
+        "alliance_users": 0,
+        "task_users": 0,
+        "exchange_count": 0
+      },
+      {
+        "dt": "20241006",
+        "dau": 1,
+        "alliance_users": 0,
+        "task_users": 0,
+        "exchange_count": 0
+      },
+      {
+        "dt": "20241001",
+        "dau": 1,
+        "alliance_users": 0,
+        "task_users": 0,
+        "exchange_count": 0
+      },
+      {
+        "dt": "20240930",
+        "dau": 1,
+        "alliance_users": 0,
+        "task_users": 0,
+        "exchange_count": 0
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_65",
+    "sql": "WITH daily_data AS (\n SELECT\n substr(tdbank_imp_date, 1, 8) as domain_term_b6fed9af83,\n awardidx as domain_term_e4e46c7235,\n COUNT(DISTINCT vplayerid) as domain_term_ca62426403,\n COUNT(*) as domain_term_d4a97e7577\n FROM dwd_jordass_activity_rewardrecord_hi\n WHERE tdbank_imp_date BETWEEN '2024112900' AND '2024121923'\n AND actid = 2411291018\n AND acttype = 10045\n AND awardidx IN (1, 2, 3)\n AND reissueflag = 0\n GROUP BY substr(tdbank_imp_date, 1, 8), awardidx\n),\nsummary_by_type AS (\n SELECT\n 'domain_term_3824d4e12a' as domain_term_b6fed9af83,\n \bdomain_term_e4e46c7235,\n SUM(domain_term_ca62426403) as domain_term_ca62426403,\n SUM(domain_term_d4a97e7577) as domain_term_d4a97e7577\n FROM daily_data\n GROUP BY domain_term_e4e46c7235\n),\ntotal_summary AS (\n SELECT\n 'domain_term_3824d4e12a' as domain_term_b6fed9af83,\n 'domain_term_3af1ac5b4e' as domain_term_e4e46c7235,\n COUNT(DISTINCT vplayerid) as domain_term_ca62426403,\n COUNT(*) as domain_term_d4a97e7577\n FROM dwd_jordass_activity_rewardrecord_hi\n WHERE tdbank_imp_date BETWEEN '2024112900' AND '2024121923'\n AND actid = 2411291018\n AND acttype = 10045\n AND awardidx IN (1, 2, 3)\n AND reissueflag = 0\n)\n\nSELECT * FROM daily_data\nUNION ALL\nSELECT * FROM summary_by_type\nUNION ALL\nSELECT * FROM total_summary\nORDER BY\n CASE WHEN domain_term_b6fed9af83 = 'domain_term_3824d4e12a' THEN 1 ELSE 0 END,\n domain_term_b6fed9af83,\n CASE WHEN domain_term_e4e46c7235 = 'domain_term_3af1ac5b4e' THEN 1 ELSE 0 END,\n domain_term_e4e46c7235",
+    "status": "success",
+    "result": [
+      {
+        "domain_term_b6fed9af83": "20241129",
+        "domain_term_e4e46c7235": 1,
+        "domain_term_ca62426403": 1,
+        "domain_term_d4a97e7577": 2
+      },
+      {
+        "domain_term_b6fed9af83": "20241130",
+        "domain_term_e4e46c7235": 2,
+        "domain_term_ca62426403": 1,
+        "domain_term_d4a97e7577": 1
+      },
+      {
+        "domain_term_b6fed9af83": "20241201",
+        "domain_term_e4e46c7235": 3,
+        "domain_term_ca62426403": 1,
+        "domain_term_d4a97e7577": 1
+      },
+      {
+        "domain_term_b6fed9af83": "20241205",
+        "domain_term_e4e46c7235": 1,
+        "domain_term_ca62426403": 1,
+        "domain_term_d4a97e7577": 1
+      },
+      {
+        "domain_term_b6fed9af83": "20241210",
+        "domain_term_e4e46c7235": 2,
+        "domain_term_ca62426403": 1,
+        "domain_term_d4a97e7577": 1
+      },
+      {
+        "domain_term_b6fed9af83": "20241215",
+        "domain_term_e4e46c7235": 3,
+        "domain_term_ca62426403": 1,
+        "domain_term_d4a97e7577": 1
+      },
+      {
+        "domain_term_b6fed9af83": "20241219",
+        "domain_term_e4e46c7235": 1,
+        "domain_term_ca62426403": 1,
+        "domain_term_d4a97e7577": 1
+      },
+      {
+        "domain_term_b6fed9af83": "domain_term_3824d4e12a",
+        "domain_term_e4e46c7235": 1,
+        "domain_term_ca62426403": 3,
+        "domain_term_d4a97e7577": 4
+      },
+      {
+        "domain_term_b6fed9af83": "domain_term_3824d4e12a",
+        "domain_term_e4e46c7235": 2,
+        "domain_term_ca62426403": 2,
+        "domain_term_d4a97e7577": 2
+      },
+      {
+        "domain_term_b6fed9af83": "domain_term_3824d4e12a",
+        "domain_term_e4e46c7235": 3,
+        "domain_term_ca62426403": 2,
+        "domain_term_d4a97e7577": 2
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_67",
+    "sql": "SELECT t1.igoodsid, COUNT(*) AS output_count FROM dwd_jordass_gearlog_hi t1 WHERE t1.tdbank_imp_date >= 2025012400 AND t1.tdbank_imp_date <= 2025020623 AND t1.igoodsid IN (430487, 430485, 602004025, 602002011) AND t1.addorreduce = 0 GROUP BY t1.igoodsid;",
+    "status": "success",
+    "result": [
+      {
+        "igoodsid": 602004025,
+        "output_count": 2
+      },
+      {
+        "igoodsid": 602002011,
+        "output_count": 1
+      },
+      {
+        "igoodsid": 430485,
+        "output_count": 2
+      },
+      {
+        "igoodsid": 430487,
+        "output_count": 1
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_68",
+    "sql": "SELECT\n substr(tdbank_imp_date, 1, 8) AS dt,\n count(distinct vplayerid) AS user_cnt\nFROM dwd_jordass_lotteryrecord_hi\nWHERE tdbank_imp_date >= '2025012800'\n AND tdbank_imp_date <= '2025021023'\n AND activitytype IN (848, 841)\nGROUP BY\n substr(tdbank_imp_date, 1, 8)\nORDER BY\n dt;",
+    "status": "success",
+    "result": [
+      {
+        "dt": "20250128",
+        "user_cnt": 2
+      },
+      {
+        "dt": "20250129",
+        "user_cnt": 2
+      },
+      {
+        "dt": "20250130",
+        "user_cnt": 1
+      },
+      {
+        "dt": "20250208",
+        "user_cnt": 1
+      },
+      {
+        "dt": "20250210",
+        "user_cnt": 2
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_69",
+    "sql": "select\n substr(tdbank_imp_date, 1, 8) as dt,\n chattype,\n count(distinct playerid) as user_num,\n count(*) as msg_num\nfrom\n dwd_jordass_msgchatrecord_hi\nwhere\n tdbank_imp_date >= '2024122500'\n and tdbank_imp_date <= '2025010523'\n and chattype in (20, 25, 26, 16, 27, 8)\ngroup by\n substr(tdbank_imp_date, 1, 8),\n chattype;",
+    "status": "success",
+    "result": [
+      {
+        "dt": "20250105",
+        "chattype": 25,
+        "user_num": 1,
+        "msg_num": 1
+      },
+      {
+        "dt": "20250101",
+        "chattype": 27,
+        "user_num": 1,
+        "msg_num": 1
+      },
+      {
+        "dt": "20241226",
+        "chattype": 26,
+        "user_num": 1,
+        "msg_num": 1
+      },
+      {
+        "dt": "20250101",
+        "chattype": 16,
+        "user_num": 1,
+        "msg_num": 1
+      },
+      {
+        "dt": "20250102",
+        "chattype": 16,
+        "user_num": 1,
+        "msg_num": 1
+      },
+      {
+        "dt": "20241225",
+        "chattype": 20,
+        "user_num": 1,
+        "msg_num": 1
+      },
+      {
+        "dt": "20241225",
+        "chattype": 25,
+        "user_num": 1,
+        "msg_num": 1
+      },
+      {
+        "dt": "20241226",
+        "chattype": 16,
+        "user_num": 1,
+        "msg_num": 1
+      },
+      {
+        "dt": "20250101",
+        "chattype": 8,
+        "user_num": 1,
+        "msg_num": 1
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_70",
+    "sql": "SELECT COALESCE(CAST(awardidx AS STRING), 'domain_term_3824d4e12a') AS `domain_term_6489deaf08`, COUNT(DISTINCT uid) AS `domain_term_ca62426403` FROM dwd_jordass_activity_rewardrecord_hi WHERE tdbank_imp_date >= '2024112900' AND tdbank_imp_date <= '2024121923' AND dteventtime >= '2024-11-29 00:00:00' AND dteventtime <= '2024-12-19 23:59:59' AND actid = 2411291018 GROUP BY GROUPING SETS ((awardidx), ())",
+    "status": "success",
+    "result": [
+      {
+        "domain_term_6489deaf08": "5",
+        "domain_term_ca62426403": 1
+      },
+      {
+        "domain_term_6489deaf08": "2",
+        "domain_term_ca62426403": 4
+      },
+      {
+        "domain_term_6489deaf08": "domain_term_3824d4e12a",
+        "domain_term_ca62426403": 14
+      },
+      {
+        "domain_term_6489deaf08": "3",
+        "domain_term_ca62426403": 4
+      },
+      {
+        "domain_term_6489deaf08": "1",
+        "domain_term_ca62426403": 5
+      },
+      {
+        "domain_term_6489deaf08": "4",
+        "domain_term_ca62426403": 1
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_71",
+    "sql": "SELECT\n CASE\n WHEN t1.tdbank_imp_date BETWEEN '2024112900' AND '2024120523' THEN '20241129-20241205'\n WHEN t1.tdbank_imp_date BETWEEN '2024120600' AND '2024121223' THEN '20241206-20241212'\n WHEN t1.tdbank_imp_date BETWEEN '2024121300' AND '2024121923' THEN '20241213-20241219'\n END AS date_range,\n t1.extarg1 AS extarg1_type,\n COUNT(DISTINCT t1.uid) AS user_count,\n COUNT(*) AS click_count\nFROM dwd_jordass_activitypress_hi t1\nWHERE t1.tdbank_imp_date BETWEEN '2024112900' AND '2024121923'\n AND t1.ireason = 2411291018\n AND t1.buttontype = 10045\n AND t1.extarg1 IN (101, 109, 110)\nGROUP BY\n CASE\n WHEN t1.tdbank_imp_date BETWEEN '2024112900' AND '2024120523' THEN '20241129-20241205'\n WHEN t1.tdbank_imp_date BETWEEN '2024120600' AND '2024121223' THEN '20241206-20241212'\n WHEN t1.tdbank_imp_date BETWEEN '2024121300' AND '2024121923' THEN '20241213-20241219'\n END,\n t1.extarg1\nORDER BY date_range, t1.extarg1;",
+    "status": "success",
+    "result": [
+      {
+        "date_range": "20241129-20241205",
+        "extarg1_type": 101,
+        "user_count": 1,
+        "click_count": 2
+      },
+      {
+        "date_range": "20241129-20241205",
+        "extarg1_type": 109,
+        "user_count": 1,
+        "click_count": 1
+      },
+      {
+        "date_range": "20241206-20241212",
+        "extarg1_type": 109,
+        "user_count": 1,
+        "click_count": 1
+      },
+      {
+        "date_range": "20241206-20241212",
+        "extarg1_type": 110,
+        "user_count": 2,
+        "click_count": 2
+      },
+      {
+        "date_range": "20241213-20241219",
+        "extarg1_type": 101,
+        "user_count": 1,
+        "click_count": 1
+      },
+      {
+        "date_range": "20241213-20241219",
+        "extarg1_type": 110,
+        "user_count": 1,
+        "click_count": 1
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_73",
+    "sql": "SELECT\n COUNT(DISTINCT CASE WHEN t1.matchmode = 1003 THEN t1.vplayerid END) AS park_total_players,\n COUNT(DISTINCT CASE WHEN t1.matchmode = 1003 THEN t1.gameid END) AS park_total_games,\n COUNT(DISTINCT CASE WHEN t1.matchmode = 1003 AND t1.teamnum > 1 THEN t1.vplayerid END) AS park_team_players,\n COUNT(DISTINCT CASE WHEN t1.matchmode = 1003 AND t1.teamnum > 1 THEN t1.gameid END) AS park_team_games,\n COUNT(DISTINCT CASE WHEN t1.matchmode = 1003 AND t1.matchsubmodegroup = 1345785623905087744 THEN t1.vplayerid END) AS champion_total_players,\n COUNT(DISTINCT CASE WHEN t1.matchmode = 1003 AND t1.matchsubmodegroup = 1345785623905087744 THEN t1.gameid END) AS champion_total_games,\n COUNT(DISTINCT CASE WHEN t1.matchmode = 1003 AND t1.matchsubmodegroup = 1345785623905087744 AND t1.teamnum > 1 THEN t1.vplayerid END) AS champion_team_players,\n COUNT(DISTINCT CASE WHEN t1.matchmode = 1003 AND t1.matchsubmodegroup = 1345785623905087744 AND t1.teamnum > 1 THEN t1.gameid END) AS champion_team_games,\n COUNT(DISTINCT CASE WHEN t1.matchmode = 1003 AND t1.matchsubmodegroup <> 1345785623905087744 THEN t1.vplayerid END) AS other_total_players,\n COUNT(DISTINCT CASE WHEN t1.matchmode = 1003 AND t1.matchsubmodegroup <> 1345785623905087744 THEN t1.gameid END) AS other_total_games,\n COUNT(DISTINCT CASE WHEN t1.matchmode = 1003 AND t1.matchsubmodegroup <> 1345785623905087744 AND t1.teamnum > 1 THEN t1.vplayerid END) AS other_team_players,\n COUNT(DISTINCT CASE WHEN t1.matchmode = 1003 AND t1.matchsubmodegroup <> 1345785623905087744 AND t1.teamnum > 1 THEN t1.gameid END) AS other_team_games\nFROM dwd_jordass_player_matchrecord_hi t1\nWHERE t1.tdbank_imp_date >= 2024112300 AND t1.tdbank_imp_date <= 2024122223\nAND t1.matchresult = 'ok'\nAND t1.matchmode = 1003;",
+    "status": "success",
+    "result": [
+      {
+        "park_total_players": 7,
+        "park_total_games": 12,
+        "park_team_players": 5,
+        "park_team_games": 6,
+        "champion_total_players": 4,
+        "champion_total_games": 6,
+        "champion_team_players": 3,
+        "champion_team_games": 3,
+        "other_total_players": 4,
+        "other_total_games": 6,
+        "other_team_players": 3,
+        "other_team_games": 3
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_74",
+    "sql": "select\n button_type,\n sum(case when season = 'SS30' then user_count else 0 end) as ss30_user_count,\n sum(case when season = 'SS29' then user_count else 0 end) as ss29_user_count\nfrom (\n -- SS30domain_term_61d0470d03\n select\n '411130' as button_type,\n 'SS30' as season,\n count(distinct vplayerid) as user_count\n from dwd_jordass_pressbutton_hi\n where tdbank_imp_date between '2024112305' and '2024112616'\n and buttontypes like '%411130%'\n\n union all\n\n select\n '411200' as button_type,\n 'SS30' as season,\n count(distinct vplayerid) as user_count\n from dwd_jordass_pressbutton_hi\n where tdbank_imp_date between '2024112305' and '2024112616'\n and buttontypes like '%411200%'\n\n union all\n\n -- SS29domain_term_61d0470d03\n select\n '411130' as button_type,\n 'SS29' as season,\n count(distinct vplayerid) as user_count\n from dwd_jordass_pressbutton_hi\n where tdbank_imp_date between '2024092405' and '2024092716'\n and buttontypes like '%411130%'\n\n union all\n\n select\n '411200' as button_type,\n 'SS29' as season,\n count(distinct vplayerid) as user_count\n from dwd_jordass_pressbutton_hi\n where tdbank_imp_date between '2024092405' and '2024092716'\n and buttontypes like '%411200%'\n) t\ngroup by button_type;",
+    "status": "success",
+    "result": [
+      {
+        "button_type": "411200",
+        "ss30_user_count": 2,
+        "ss29_user_count": 5
+      },
+      {
+        "button_type": "411130",
+        "ss30_user_count": 4,
+        "ss29_user_count": 3
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_75",
+    "sql": "SELECT t1.baseid, COUNT(*) AS unlock_count FROM dwd_jordass_voicethemelog_hi t1 WHERE t1.dteventtime >= '2022-08-04 00:00:00' AND t1.dteventtime <= '2024-11-24 00:00:00' AND t1.baseid IN (3336008, 3304024, 3336012, 3306028, 3304030, 3336016, 3336018, 3304038, 3336023, 3306033, 3349004, 3308014, 3336032, 3304043, 3306039, 3336041, 3301024, 3336045, 3306042) GROUP BY t1.baseid;",
+    "status": "success",
+    "result": [
+      {
+        "baseid": 3304024,
+        "unlock_count": 5
+      },
+      {
+        "baseid": 3306028,
+        "unlock_count": 1
+      },
+      {
+        "baseid": 3304030,
+        "unlock_count": 1
+      },
+      {
+        "baseid": 3336012,
+        "unlock_count": 1
+      },
+      {
+        "baseid": 3336008,
+        "unlock_count": 4
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_77",
+    "sql": "SELECT t1.dteventtime AS date, COUNT(DISTINCT t1.vplayerid) AS user_count, SUM(t1.imoney) AS element_payment_amount FROM dwd_jordass_currencylog_hi t1 WHERE t1.dteventtime >= 20230123 AND t1.dteventtime <= 20230129 AND t1.reason IN (189, 190) AND t1.imoneytype = 1027 GROUP BY t1.dteventtime ORDER BY t1.dteventtime;",
+    "status": "success",
+    "result": [
+      {
+        "date": "20230123",
+        "user_count": 2,
+        "element_payment_amount": 3500
+      },
+      {
+        "date": "20230124",
+        "user_count": 1,
+        "element_payment_amount": 1500
+      },
+      {
+        "date": "20230125",
+        "user_count": 1,
+        "element_payment_amount": 3000
+      },
+      {
+        "date": "20230126",
+        "user_count": 1,
+        "element_payment_amount": 2500
+      },
+      {
+        "date": "20230127",
+        "user_count": 1,
+        "element_payment_amount": 1000
+      },
+      {
+        "date": "20230129",
+        "user_count": 1,
+        "element_payment_amount": 3500
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_78",
+    "sql": "SELECT\n COUNT(DISTINCT CASE WHEN a.activitytype = 815 AND b.activitytype = 690 THEN a.vplayerid END) AS churihua_fanhui_and_shamo_choujiang,\n COUNT(DISTINCT CASE WHEN a.activitytype = 815 AND b.activitytype = 748 THEN a.vplayerid END) AS churihua_fanhui_and_jingyu_shuanghua_choujiang,\n COUNT(DISTINCT CASE WHEN a.activitytype = 815 AND b.activitytype = 750 THEN a.vplayerid END) AS churihua_fanhui_and_xuanlong_lingxiao_choujiang,\n COUNT(DISTINCT CASE WHEN a.activitytype = 815 AND b.activitytype = 690 AND NOT EXISTS (SELECT 1 FROM dwd_jordass_gearlog_hi c WHERE c.vplayerid = a.vplayerid AND c.igoodsid = 430179 AND c.addorreduce = 0) THEN a.vplayerid END) AS churihua_fanhui_and_shamo_choujiang_but_no_zhutao,\n COUNT(DISTINCT CASE WHEN a.activitytype = 815 AND b.activitytype = 748 AND NOT EXISTS (SELECT 1 FROM dwd_jordass_gearlog_hi c WHERE c.vplayerid = a.vplayerid AND c.igoodsid = 430265 AND c.addorreduce = 0) THEN a.vplayerid END) AS churihua_fanhui_and_jingyu_shuanghua_choujiang_but_no_zhutao,\n COUNT(DISTINCT CASE WHEN a.activitytype = 815 AND b.activitytype = 750 AND NOT EXISTS (SELECT 1 FROM dwd_jordass_gearlog_hi c WHERE c.vplayerid = a.vplayerid AND c.igoodsid = 430225 AND c.addorreduce = 0) THEN a.vplayerid END) AS churihua_fanhui_and_xuanlong_lingxiao_choujiang_but_no_zhutao,\n COUNT(DISTINCT CASE WHEN a.activitytype = 815 AND EXISTS (SELECT 1 FROM dwd_jordass_gearlog_hi d WHERE d.vplayerid = a.vplayerid AND d.igoodsid = 430179 AND d.addorreduce = 0) AND EXISTS (SELECT 1 FROM dwd_jordass_gearlog_hi e WHERE e.vplayerid = a.vplayerid AND e.igoodsid = 430265 AND e.addorreduce = 0) THEN a.vplayerid END) AS churihua_fanhui_and_shamo_jingyu_zhutao,\n COUNT(DISTINCT CASE WHEN a.activitytype = 815 AND EXISTS (SELECT 1 FROM dwd_jordass_gearlog_hi f WHERE f.vplayerid = a.vplayerid AND f.igoodsid = 430179 AND f.addorreduce = 0) AND EXISTS (SELECT 1 FROM dwd_jordass_gearlog_hi g WHERE g.vplayerid = a.vplayerid AND g.igoodsid = 430225 AND g.addorreduce = 0) THEN a.vplayerid END) AS churihua_fanhui_and_shamo_xuanlong_zhutao,\n COUNT(DISTINCT CASE WHEN a.activitytype = 815 AND EXISTS (SELECT 1 FROM dwd_jordass_gearlog_hi h WHERE h.vplayerid = a.vplayerid AND h.igoodsid = 430265 AND h.addorreduce = 0) AND EXISTS (SELECT 1 FROM dwd_jordass_gearlog_hi i WHERE i.vplayerid = a.vplayerid AND i.igoodsid = 430225 AND i.addorreduce = 0) THEN a.vplayerid END) AS churihua_fanhui_and_jingyu_xuanlong_zhutao,\n COUNT(DISTINCT CASE WHEN a.activitytype = 815 AND NOT EXISTS (SELECT 1 FROM dwd_jordass_lotteryrecord_hi j WHERE j.vplayerid = a.vplayerid AND j.activitytype IN (690, 748, 750)) THEN a.vplayerid END) AS churihua_fanhui_but_no_other_choujiang\nFROM dwd_jordass_lotteryrecord_hi a\nLEFT JOIN dwd_jordass_lotteryrecord_hi b ON a.vplayerid = b.vplayerid\nWHERE a.tdbank_imp_date >= '2025011900' AND a.tdbank_imp_date <= '2025011923'\nAND a.activitytype = 815\nAND ((b.activitytype = 690 AND b.tdbank_imp_date >= '2024042600' AND b.tdbank_imp_date <= '2024060623')\n OR (b.activitytype = 748 AND b.tdbank_imp_date >= '2024060700' AND b.tdbank_imp_date <= '2024072523')\n OR (b.activitytype = 750 AND b.tdbank_imp_date >= '2024072600' AND b.tdbank_imp_date <= '2024082223'));",
+    "status": "success",
+    "result": [
+      {
+        "churihua_fanhui_and_shamo_choujiang": 2,
+        "churihua_fanhui_and_jingyu_shuanghua_choujiang": 2,
+        "churihua_fanhui_and_xuanlong_lingxiao_choujiang": 2,
+        "churihua_fanhui_and_shamo_choujiang_but_no_zhutao": 1,
+        "churihua_fanhui_and_jingyu_shuanghua_choujiang_but_no_zhutao": 1,
+        "churihua_fanhui_and_xuanlong_lingxiao_choujiang_but_no_zhutao": 1,
+        "churihua_fanhui_and_shamo_jingyu_zhutao": 1,
+        "churihua_fanhui_and_shamo_xuanlong_zhutao": 1,
+        "churihua_fanhui_and_jingyu_xuanlong_zhutao": 1,
+        "churihua_fanhui_but_no_other_choujiang": 0
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_82",
+    "sql": "WITH user_total_scores AS (\n SELECT\n vplayerid,\n oldsegmentlevel,\n CASE\n WHEN submode IN (1001, 1002, 1003, 1064, 1065, 1066, 1076, 1077, 1078, 1091, 1092, 1093, 1137, 1138, 1139, 1143, 1144, 1145, 1152, 1153, 1154, 1158, 1159, 1160, 2029, 2030, 2031, 2044, 2045, 2046, 2122, 2123, 2124, 2129, 2130, 2131, 2166, 2167, 2168, 2169, 2170, 2171, 2172, 2173, 2174, 2203, 2216, 2217, 2218, 2219, 2220, 2221, 2297, 2298, 2299, 2300, 2301, 2302, 2304, 2305, 2306, 2322, 2323, 2324, 2325, 2326, 2327, 2359, 2360, 2361, 2368, 2367, 2366, 2419, 2420, 2421, 2422, 2423, 2424, 2425, 2426, 2427, 2453, 2454, 2455, 2460, 2461, 2462, 2472, 2473, 2474, 2463, 2464, 2465, 2466, 2467, 2468) THEN 'domain_term_3d39b3c319'\n WHEN submode IN (2160, 2161, 2162, 2163, 2164, 2165, 2334, 2335, 2336, 2337, 2338, 2339) THEN 'domain_term_dd9a88a9b7'\n WHEN submode IN (2396, 2397, 2398, 2399, 2400, 2401) THEN 'domain_term_7fd6c807a2'\n END AS play_type,\n -- domain_term_f4469184d8，domain_term_8805bfe0ee\n CASE\n WHEN submode IN (1001, 1002, 1003, 1064, 1065, 1066, 1076, 1077, 1078, 1091, 1092, 1093, 1137, 1138, 1139, 1143, 1144, 1145, 1152, 1153, 1154, 1158, 1159, 1160, 2029, 2030, 2031, 2044, 2045, 2046, 2122, 2123, 2124, 2129, 2130, 2131, 2166, 2167, 2168, 2169, 2170, 2171, 2172, 2173, 2174, 2203, 2216, 2217, 2218, 2219, 2220, 2221, 2297, 2298, 2299, 2300, 2301, 2302, 2304, 2305, 2306, 2322, 2323, 2324, 2325, 2326, 2327, 2359, 2360, 2361, 2368, 2367, 2366, 2419, 2420, 2421, 2422, 2423, 2424, 2425, 2426, 2427, 2453, 2454, 2455, 2460, 2461, 2462, 2472, 2473, 2474, 2463, 2464, 2465, 2466, 2467, 2468)\n THEN (changedratingvalue / (survivaltime / 60)) * 1.2\n ELSE changedratingvalue / (survivaltime / 60)\n END AS round_score\n FROM dwd_jordass_roundflow_hi\n WHERE LEFT(tdbank_imp_date, 8) BETWEEN '20220408' AND '20220410'\n AND mode = 103\n AND (\n submode IN (1001, 1002, 1003, 1064, 1065, 1066, 1076, 1077, 1078, 1091, 1092, 1093, 1137, 1138, 1139, 1143, 1144, 1145, 1152, 1153, 1154, 1158, 1159, 1160, 2029, 2030, 2031, 2044, 2045, 2046, 2122, 2123, 2124, 2129, 2130, 2131, 2166, 2167, 2168, 2169, 2170, 2171, 2172, 2173, 2174, 2203, 2216, 2217, 2218, 2219, 2220, 2221, 2297, 2298, 2299, 2300, 2301, 2302, 2304, 2305, 2306, 2322, 2323, 2324, 2325, 2326, 2327, 2359, 2360, 2361, 2368, 2367, 2366, 2419, 2420, 2421, 2422, 2423, 2424, 2425, 2426, 2427, 2453, 2454, 2455, 2460, 2461, 2462, 2472, 2473, 2474, 2463, 2464, 2465, 2466, 2467, 2468)\n OR submode IN (2160, 2161, 2162, 2163, 2164, 2165, 2334, 2335, 2336, 2337, 2338, 2339)\n OR submode IN (2396, 2397, 2398, 2399, 2400, 2401)\n )\n AND changedratingvalue IS NOT NULL\n AND survivaltime > 0\n),\nuser_aggregated AS (\n SELECT\n vplayerid,\n oldsegmentlevel,\n play_type,\n SUM(round_score) AS total_score -- domain_term_30cfd1ae88SUMdomain_term_d1c90e139d\n FROM user_total_scores\n WHERE play_type IS NOT NULL\n GROUP BY vplayerid, oldsegmentlevel, play_type\n),\nscore_ranges AS (\n SELECT\n play_type,\n oldsegmentlevel,\n CASE\n WHEN total_score < 1 THEN '[0,1)'\n WHEN total_score >= 1 AND total_score < 2 THEN '[1,2)'\n WHEN total_score >= 2 AND total_score < 3 THEN '[2,3)'\n WHEN total_score >= 3 AND total_score < 4 THEN '[3,4)'\n WHEN total_score >= 4 AND total_score < 5 THEN '[4,5)'\n WHEN total_score >= 5 AND total_score < 6 THEN '[5,6)'\n WHEN total_score >= 6 AND total_score < 7 THEN '[6,7)'\n WHEN total_score >= 7 AND total_score < 8 THEN '[7,8)'\n WHEN total_score >= 8 AND total_score < 9 THEN '[8,9)'\n WHEN total_score >= 9 AND total_score < 10 THEN '[9,10)'\n ELSE '[10,∞)'\n END AS score_range,\n COUNT(DISTINCT vplayerid) AS user_count\n FROM user_aggregated\n GROUP BY play_type, oldsegmentlevel,\n CASE\n WHEN total_score < 1 THEN '[0,1)'\n WHEN total_score >= 1 AND total_score < 2 THEN '[1,2)'\n WHEN total_score >= 2 AND total_score < 3 THEN '[2,3)'\n WHEN total_score >= 3 AND total_score < 4 THEN '[3,4)'\n WHEN total_score >= 4 AND total_score < 5 THEN '[4,5)'\n WHEN total_score >= 5 AND total_score < 6 THEN '[5,6)'\n WHEN total_score >= 6 AND total_score < 7 THEN '[6,7)'\n WHEN total_score >= 7 AND total_score < 8 THEN '[7,8)'\n WHEN total_score >= 8 AND total_score < 9 THEN '[8,9)'\n WHEN total_score >= 9 AND total_score < 10 THEN '[9,10)'\n ELSE '[10,∞)'\n END\n)\nSELECT\n play_type AS domain_term_2273a6597b,\n oldsegmentlevel AS domain_term_cdf3855f5a,\n score_range AS domain_term_a1cd19aabb,\n user_count AS domain_term_ca62426403\nFROM score_ranges\nORDER BY play_type, oldsegmentlevel, score_range;",
+    "status": "success",
+    "result": [
+      {
+        "domain_term_2273a6597b": "domain_term_7fd6c807a2",
+        "domain_term_cdf3855f5a": 1,
+        "domain_term_a1cd19aabb": "[1,2)",
+        "domain_term_ca62426403": 1
+      },
+      {
+        "domain_term_2273a6597b": "domain_term_7fd6c807a2",
+        "domain_term_cdf3855f5a": 2,
+        "domain_term_a1cd19aabb": "[3,4)",
+        "domain_term_ca62426403": 1
+      },
+      {
+        "domain_term_2273a6597b": "domain_term_7fd6c807a2",
+        "domain_term_cdf3855f5a": 3,
+        "domain_term_a1cd19aabb": "[6,7)",
+        "domain_term_ca62426403": 1
+      },
+      {
+        "domain_term_2273a6597b": "domain_term_dd9a88a9b7",
+        "domain_term_cdf3855f5a": 1,
+        "domain_term_a1cd19aabb": "[1,2)",
+        "domain_term_ca62426403": 1
+      },
+      {
+        "domain_term_2273a6597b": "domain_term_dd9a88a9b7",
+        "domain_term_cdf3855f5a": 2,
+        "domain_term_a1cd19aabb": "[3,4)",
+        "domain_term_ca62426403": 1
+      },
+      {
+        "domain_term_2273a6597b": "domain_term_dd9a88a9b7",
+        "domain_term_cdf3855f5a": 3,
+        "domain_term_a1cd19aabb": "[6,7)",
+        "domain_term_ca62426403": 1
+      },
+      {
+        "domain_term_2273a6597b": "domain_term_3d39b3c319",
+        "domain_term_cdf3855f5a": 1,
+        "domain_term_a1cd19aabb": "[1,2)",
+        "domain_term_ca62426403": 1
+      },
+      {
+        "domain_term_2273a6597b": "domain_term_3d39b3c319",
+        "domain_term_cdf3855f5a": 1,
+        "domain_term_a1cd19aabb": "[2,3)",
+        "domain_term_ca62426403": 1
+      },
+      {
+        "domain_term_2273a6597b": "domain_term_3d39b3c319",
+        "domain_term_cdf3855f5a": 2,
+        "domain_term_a1cd19aabb": "[2,3)",
+        "domain_term_ca62426403": 1
+      },
+      {
+        "domain_term_2273a6597b": "domain_term_3d39b3c319",
+        "domain_term_cdf3855f5a": 2,
+        "domain_term_a1cd19aabb": "[3,4)",
+        "domain_term_ca62426403": 1
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_83",
+    "sql": "SELECT\n t1.dtstatdate AS domain_term_1ddc5f9129,\n 'domain_term_d510ebb4fd14domain_term_6736aa6c3d' AS domain_term_31ab92d142,\n COUNT(DISTINCT t1.vplayerid) AS domain_term_b725036692,\n COUNT(DISTINCT t2.vplayerid) AS domain_term_b8a34aefa9,\n COUNT(DISTINCT t3.vplayerid) AS domain_term_e88a98fefb,\n COUNT(DISTINCT t4.vplayerid) AS domain_term_a731b70108\nFROM (\n SELECT DISTINCT dtstatdate, vplayerid\n FROM dws_jordass_login_df\n WHERE dtstatdate IN (20240102, 20231219, 20231212, 20231205, 20231010, 20230919, 20230103, 20221220)\n AND platid = 255\n AND SUBSTR(cbitmap, 1, 1) = '1'\n) t1\nLEFT JOIN (\n SELECT DISTINCT dtstatdate, vplayerid\n FROM dws_jordass_buttonpress_pre_di\n WHERE buttontype = '10370'\n) t2 ON t1.dtstatdate = t2.dtstatdate AND t1.vplayerid = t2.vplayerid\nLEFT JOIN (\n SELECT DISTINCT dtstatdate, vplayerid\n FROM dws_jordass_buttonpress_pre_di\n WHERE buttontype IN ('10373', '10374')\n) t3 ON t1.dtstatdate = t3.dtstatdate AND t1.vplayerid = t3.vplayerid\nLEFT JOIN (\n SELECT DISTINCT dtstatdate, vplayerid\n FROM dws_jordass_matchlog_stat_di\n WHERE imode = 255\n AND icnt > 0\n) t4 ON t1.dtstatdate = t4.dtstatdate AND t1.vplayerid = t4.vplayerid\nGROUP BY t1.dtstatdate;",
+    "status": "success",
+    "result": [
+      {
+        "domain_term_1ddc5f9129": "20221220",
+        "domain_term_31ab92d142": "domain_term_d510ebb4fd14domain_term_6736aa6c3d",
+        "domain_term_b725036692": 1,
+        "domain_term_b8a34aefa9": 1,
+        "domain_term_e88a98fefb": 0,
+        "domain_term_a731b70108": 1
+      },
+      {
+        "domain_term_1ddc5f9129": "20230919",
+        "domain_term_31ab92d142": "domain_term_d510ebb4fd14domain_term_6736aa6c3d",
+        "domain_term_b725036692": 1,
+        "domain_term_b8a34aefa9": 0,
+        "domain_term_e88a98fefb": 1,
+        "domain_term_a731b70108": 1
+      },
+      {
+        "domain_term_1ddc5f9129": "20231219",
+        "domain_term_31ab92d142": "domain_term_d510ebb4fd14domain_term_6736aa6c3d",
+        "domain_term_b725036692": 1,
+        "domain_term_b8a34aefa9": 1,
+        "domain_term_e88a98fefb": 0,
+        "domain_term_a731b70108": 1
+      },
+      {
+        "domain_term_1ddc5f9129": "20230103",
+        "domain_term_31ab92d142": "domain_term_d510ebb4fd14domain_term_6736aa6c3d",
+        "domain_term_b725036692": 1,
+        "domain_term_b8a34aefa9": 0,
+        "domain_term_e88a98fefb": 1,
+        "domain_term_a731b70108": 1
+      },
+      {
+        "domain_term_1ddc5f9129": "20231205",
+        "domain_term_31ab92d142": "domain_term_d510ebb4fd14domain_term_6736aa6c3d",
+        "domain_term_b725036692": 1,
+        "domain_term_b8a34aefa9": 0,
+        "domain_term_e88a98fefb": 1,
+        "domain_term_a731b70108": 1
+      },
+      {
+        "domain_term_1ddc5f9129": "20231010",
+        "domain_term_31ab92d142": "domain_term_d510ebb4fd14domain_term_6736aa6c3d",
+        "domain_term_b725036692": 1,
+        "domain_term_b8a34aefa9": 1,
+        "domain_term_e88a98fefb": 0,
+        "domain_term_a731b70108": 1
+      },
+      {
+        "domain_term_1ddc5f9129": "20240102",
+        "domain_term_31ab92d142": "domain_term_d510ebb4fd14domain_term_6736aa6c3d",
+        "domain_term_b725036692": 3,
+        "domain_term_b8a34aefa9": 1,
+        "domain_term_e88a98fefb": 2,
+        "domain_term_a731b70108": 2
+      },
+      {
+        "domain_term_1ddc5f9129": "20231212",
+        "domain_term_31ab92d142": "domain_term_d510ebb4fd14domain_term_6736aa6c3d",
+        "domain_term_b725036692": 1,
+        "domain_term_b8a34aefa9": 0,
+        "domain_term_e88a98fefb": 1,
+        "domain_term_a731b70108": 1
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_87",
+    "sql": "SELECT a.dtstatdate, b.matchsubmodegroup,\n CASE WHEN DATEDIFF(a.dtstatdate, a.dregdate) <= 6 THEN 'domain_term_4e22acf47f'\n WHEN INSTR(SUBSTR(a.cbitmap, 8, 7), '1') > 0 THEN 'domain_term_08fa3138d4'\n WHEN INSTR(SUBSTR(a.cbitmap, 8, 7), '1') = 0 THEN 'domain_term_1816af9ef5'\n END AS user_type,\n COUNT(DISTINCT a.vplayerid) AS user_count\nFROM dws_jordass_login_df a\nJOIN dim_jordass_leyuan_participate_cdf_nf b ON a.vplayerid = b.vplayerid\nWHERE a.dtstatdate IN (20230702, 20230709)\n AND a.platid = 255\n AND INSTR(SUBSTR(b.cbitmap, 1, 7), '1') > 0\nGROUP BY a.dtstatdate, b.matchsubmodegroup,\n CASE WHEN DATEDIFF(a.dtstatdate, a.dregdate) <= 6 THEN 'domain_term_4e22acf47f'\n WHEN INSTR(SUBSTR(a.cbitmap, 8, 7), '1') > 0 THEN 'domain_term_08fa3138d4'\n WHEN INSTR(SUBSTR(a.cbitmap, 8, 7), '1') = 0 THEN 'domain_term_1816af9ef5'\n END;",
+    "status": "success",
+    "result": [
+      {
+        "dtstatdate": "20230709",
+        "matchsubmodegroup": 1001,
+        "user_type": "domain_term_4e22acf47f",
+        "user_count": 1
+      },
+      {
+        "dtstatdate": "20230709",
+        "matchsubmodegroup": 1001,
+        "user_type": "domain_term_08fa3138d4",
+        "user_count": 1
+      },
+      {
+        "dtstatdate": "20230709",
+        "matchsubmodegroup": 1002,
+        "user_type": "domain_term_1816af9ef5",
+        "user_count": 1
+      },
+      {
+        "dtstatdate": "20230702",
+        "matchsubmodegroup": 1001,
+        "user_type": "domain_term_4e22acf47f",
+        "user_count": 1
+      },
+      {
+        "dtstatdate": "20230702",
+        "matchsubmodegroup": 1001,
+        "user_type": "domain_term_08fa3138d4",
+        "user_count": 2
+      },
+      {
+        "dtstatdate": "20230702",
+        "matchsubmodegroup": 1002,
+        "user_type": "domain_term_1816af9ef5",
+        "user_count": 2
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_92",
+    "sql": "WITH backflow_users AS (\n SELECT\n t1.vplayerid,\n MAX(CASE WHEN instr(substr(t1.cbitmap,1,1),'1')>0 AND instr(substr(t1.cbitmap,2,7),'1')=0 AND t1.dregdate <> t1.dtstatdate THEN 1 ELSE 0 END) AS is_backflow_7,\n MAX(CASE WHEN instr(substr(t1.cbitmap,1,1),'1')>0 AND instr(substr(t1.cbitmap,2,30),'1')=0 AND t1.dregdate <> t1.dtstatdate THEN 1 ELSE 0 END) AS is_backflow_30\n FROM dws_jordass_login_df t1\n WHERE t1.dtstatdate BETWEEN 20230705 AND 20230711\n AND t1.platid = 255\n GROUP BY t1.vplayerid\n),\ncurrent_week_active AS (\n SELECT\n t2.vplayerid,\n COUNT(DISTINCT t2.dtstatdate) AS active_days\n FROM dws_jordass_login_di t2\n WHERE t2.dtstatdate BETWEEN 20230712 AND 20230718\n AND t2.platid = 255\n GROUP BY t2.vplayerid\n)\nSELECT\n domain_term_56db792ea9,\n domain_term_9ab9bcfc83,\n COUNT(DISTINCT vplayerid) AS domain_term_ca62426403\nFROM (\n SELECT\n bu.vplayerid,\n '7domain_term_804568fa7f' AS domain_term_56db792ea9,\n CASE\n WHEN cwa.active_days BETWEEN 1 AND 2 THEN 'domain_term_c34638dd57'\n WHEN cwa.active_days BETWEEN 3 AND 5 THEN 'domain_term_3b2e3b88bb'\n WHEN cwa.active_days BETWEEN 6 AND 7 THEN 'domain_term_5eb9e016e0'\n ELSE 'domain_term_d510ebb4fd'\n END AS domain_term_9ab9bcfc83\n FROM backflow_users bu\n LEFT JOIN current_week_active cwa ON bu.vplayerid = cwa.vplayerid\n WHERE bu.is_backflow_7 = 1\n UNION ALL\n SELECT\n bu.vplayerid,\n '30domain_term_804568fa7f' AS domain_term_56db792ea9,\n CASE\n WHEN cwa.active_days BETWEEN 1 AND 2 THEN 'domain_term_c34638dd57'\n WHEN cwa.active_days BETWEEN 3 AND 5 THEN 'domain_term_3b2e3b88bb'\n WHEN cwa.active_days BETWEEN 6 AND 7 THEN 'domain_term_5eb9e016e0'\n ELSE 'domain_term_d510ebb4fd'\n END AS domain_term_9ab9bcfc83\n FROM backflow_users bu\n LEFT JOIN current_week_active cwa ON bu.vplayerid = cwa.vplayerid\n WHERE bu.is_backflow_30 = 1\n) t\nGROUP BY domain_term_56db792ea9, domain_term_9ab9bcfc83\nORDER BY domain_term_56db792ea9, domain_term_9ab9bcfc83;",
+    "status": "success",
+    "result": [
+      {
+        "domain_term_56db792ea9": "30domain_term_804568fa7f",
+        "domain_term_9ab9bcfc83": "domain_term_3b2e3b88bb",
+        "domain_term_ca62426403": 1
+      },
+      {
+        "domain_term_56db792ea9": "30domain_term_804568fa7f",
+        "domain_term_9ab9bcfc83": "domain_term_d510ebb4fd",
+        "domain_term_ca62426403": 2
+      },
+      {
+        "domain_term_56db792ea9": "30domain_term_804568fa7f",
+        "domain_term_9ab9bcfc83": "domain_term_c34638dd57",
+        "domain_term_ca62426403": 2
+      },
+      {
+        "domain_term_56db792ea9": "7domain_term_804568fa7f",
+        "domain_term_9ab9bcfc83": "domain_term_3b2e3b88bb",
+        "domain_term_ca62426403": 1
+      },
+      {
+        "domain_term_56db792ea9": "7domain_term_804568fa7f",
+        "domain_term_9ab9bcfc83": "domain_term_d510ebb4fd",
+        "domain_term_ca62426403": 2
+      },
+      {
+        "domain_term_56db792ea9": "7domain_term_804568fa7f",
+        "domain_term_9ab9bcfc83": "domain_term_c34638dd57",
+        "domain_term_ca62426403": 2
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_94",
+    "sql": "WITH date_range AS (\n SELECT 20241123 AS dtstatdate\n UNION ALL SELECT 20241124\n UNION ALL SELECT 20241125\n UNION ALL SELECT 20241126\n UNION ALL SELECT 20241127\n UNION ALL SELECT 20241128\n),\ndevice_users AS (\n SELECT\n t1.dtstatdate,\n t1.vplayerid,\n CASE\n WHEN t1.device_type = 0 THEN 'domain_term_9c01ad0911'\n WHEN t1.device_type IN (1, 5) THEN 'domain_term_4b90f29fa5'\n ELSE 'domain_term_1a26edf94a'\n END AS device_type_name\n FROM dws_jordass_device_login_di t1\n WHERE t1.dtstatdate BETWEEN 20241123 AND 20241128\n AND t1.device_type IN (0, 1, 5)\n GROUP BY t1.dtstatdate, t1.vplayerid, t1.device_type\n),\nsurvival_users AS (\n SELECT\n t2.dtstatdate,\n t2.vplayerid,\n CASE\n WHEN t2.device_type = 0 THEN 'domain_term_9c01ad0911'\n WHEN t2.device_type IN (1, 5) THEN 'domain_term_4b90f29fa5'\n ELSE 'domain_term_1a26edf94a'\n END AS device_type_name\n FROM dws_jordass_mode_roundrecord_di t2\n WHERE t2.dtstatdate BETWEEN 20241123 AND 20241128\n AND t2.modename = 'domain_term_41ca2be751'\n AND t2.device_type IN (0, 1, 5)\n GROUP BY t2.dtstatdate, t2.vplayerid, t2.device_type\n),\nnext_day_survival AS (\n SELECT\n t2.dtstatdate,\n t2.vplayerid,\n CASE\n WHEN t2.device_type = 0 THEN 'domain_term_9c01ad0911'\n WHEN t2.device_type IN (1, 5) THEN 'domain_term_4b90f29fa5'\n ELSE 'domain_term_1a26edf94a'\n END AS device_type_name\n FROM dws_jordass_mode_roundrecord_di t2\n WHERE t2.dtstatdate BETWEEN 20241124 AND 20241129\n AND t2.modename = 'domain_term_41ca2be751'\n AND t2.device_type IN (0, 1, 5)\n GROUP BY t2.dtstatdate, t2.vplayerid, t2.device_type\n),\nuser_reg_year AS (\n SELECT\n t3.vplayerid,\n SUBSTR(t3.dregdate, 1, 4) AS reg_year\n FROM dws_jordass_login_df t3\n WHERE t3.dtstatdate = 20241128\n AND t3.platid = 255\n AND t3.dregdate IS NOT NULL\n AND LENGTH(t3.dregdate) = 8\n GROUP BY t3.vplayerid, SUBSTR(t3.dregdate, 1, 4)\n)\nSELECT\n dr.dtstatdate AS `domain_term_77282a67dd`,\n du.device_type_name AS `domain_term_47a991d18c`,\n ury.reg_year AS `domain_term_6892b159ce`,\n COUNT(DISTINCT du.vplayerid) AS `domain_term_e1ff86bfe8`,\n COUNT(DISTINCT CASE WHEN su.vplayerid IS NOT NULL THEN du.vplayerid END) AS `domain_term_9d3f470174`,\n COUNT(DISTINCT CASE WHEN su.vplayerid IS NOT NULL THEN du.vplayerid END) * 1.0 / NULLIF(COUNT(DISTINCT du.vplayerid), 0) AS `domain_term_600dda6790`,\n COUNT(DISTINCT CASE WHEN nds.vplayerid IS NOT NULL THEN su.vplayerid END) * 1.0 / NULLIF(COUNT(DISTINCT su.vplayerid), 0) AS `domain_term_b538aead7a`\nFROM date_range dr\nLEFT JOIN device_users du ON dr.dtstatdate = du.dtstatdate\nLEFT JOIN user_reg_year ury ON du.vplayerid = ury.vplayerid\nLEFT JOIN survival_users su ON du.dtstatdate = su.dtstatdate\n AND du.vplayerid = su.vplayerid\n AND du.device_type_name = su.device_type_name\nLEFT JOIN next_day_survival nds ON du.dtstatdate + 1 = nds.dtstatdate\n AND su.vplayerid = nds.vplayerid\n AND su.device_type_name = nds.device_type_name\nWHERE ury.reg_year IS NOT NULL\nGROUP BY dr.dtstatdate, du.device_type_name, ury.reg_year\nORDER BY dr.dtstatdate, du.device_type_name, ury.reg_year;",
+    "status": "success",
+    "result": [
+      {
+        "domain_term_77282a67dd": 20241123,
+        "domain_term_47a991d18c": "domain_term_9c01ad0911",
+        "domain_term_6892b159ce": "2023",
+        "domain_term_e1ff86bfe8": 1,
+        "domain_term_9d3f470174": 1,
+        "domain_term_600dda6790": 1,
+        "domain_term_b538aead7a": 1
+      },
+      {
+        "domain_term_77282a67dd": 20241124,
+        "domain_term_47a991d18c": "domain_term_4b90f29fa5",
+        "domain_term_6892b159ce": "2024",
+        "domain_term_e1ff86bfe8": 1,
+        "domain_term_9d3f470174": 1,
+        "domain_term_600dda6790": 1,
+        "domain_term_b538aead7a": 0
+      },
+      {
+        "domain_term_77282a67dd": 20241125,
+        "domain_term_47a991d18c": "domain_term_9c01ad0911",
+        "domain_term_6892b159ce": "2024",
+        "domain_term_e1ff86bfe8": 1,
+        "domain_term_9d3f470174": 1,
+        "domain_term_600dda6790": 1,
+        "domain_term_b538aead7a": 0
+      },
+      {
+        "domain_term_77282a67dd": 20241125,
+        "domain_term_47a991d18c": "domain_term_4b90f29fa5",
+        "domain_term_6892b159ce": "2024",
+        "domain_term_e1ff86bfe8": 1,
+        "domain_term_9d3f470174": 1,
+        "domain_term_600dda6790": 1,
+        "domain_term_b538aead7a": 1
+      },
+      {
+        "domain_term_77282a67dd": 20241126,
+        "domain_term_47a991d18c": "domain_term_9c01ad0911",
+        "domain_term_6892b159ce": "2023",
+        "domain_term_e1ff86bfe8": 1,
+        "domain_term_9d3f470174": 1,
+        "domain_term_600dda6790": 1,
+        "domain_term_b538aead7a": 0
+      },
+      {
+        "domain_term_77282a67dd": 20241126,
+        "domain_term_47a991d18c": "domain_term_4b90f29fa5",
+        "domain_term_6892b159ce": "2024",
+        "domain_term_e1ff86bfe8": 1,
+        "domain_term_9d3f470174": 1,
+        "domain_term_600dda6790": 1,
+        "domain_term_b538aead7a": 0
+      },
+      {
+        "domain_term_77282a67dd": 20241127,
+        "domain_term_47a991d18c": "domain_term_4b90f29fa5",
+        "domain_term_6892b159ce": "2024",
+        "domain_term_e1ff86bfe8": 1,
+        "domain_term_9d3f470174": 1,
+        "domain_term_600dda6790": 1,
+        "domain_term_b538aead7a": 1
+      },
+      {
+        "domain_term_77282a67dd": 20241128,
+        "domain_term_47a991d18c": "domain_term_4b90f29fa5",
+        "domain_term_6892b159ce": "2024",
+        "domain_term_e1ff86bfe8": 1,
+        "domain_term_9d3f470174": 1,
+        "domain_term_600dda6790": 1,
+        "domain_term_b538aead7a": 0
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_97",
+    "sql": "SELECT COUNT(DISTINCT CASE WHEN t1.imode = 1307095884553538304 AND t1.platid <> 255 THEN t1.vplayerid END) AS yinni_users, COUNT(DISTINCT CASE WHEN t1.imode = 1307095884553538304 AND t1.platid <> 255 AND t2.imode = 1310822585431254784 AND t2.platid <> 255 THEN t1.vplayerid END) AS yinni_qiaoliang_users, COUNT(DISTINCT CASE WHEN t1.imode = 1307095884553538304 AND t1.platid <> 255 AND t3.mode = 2370 THEN t1.vplayerid END) AS yinni_yinnimode_users FROM dws_jordass_matchlog_stat_di t1 LEFT JOIN dws_jordass_matchlog_stat_di t2 ON t1.vplayerid = t2.vplayerid AND t2.dtstatdate BETWEEN 20230719 AND 20230725 AND t2.imode = 1310822585431254784 AND t2.platid <> 255 LEFT JOIN dws_jordass_mode_roundrecord_di t3 ON t1.vplayerid = t3.vplayerid AND t3.dtstatdate BETWEEN 20230719 AND 20230725 AND t3.mode = 2370 WHERE t1.dtstatdate BETWEEN 20230719 AND 20230725 AND t1.imode = 1307095884553538304 AND t1.platid <> 255;",
+    "status": "success",
+    "result": [
+      {
+        "yinni_users": 8,
+        "yinni_qiaoliang_users": 4,
+        "yinni_yinnimode_users": 5
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_101",
+    "sql": "SELECT t1.dtstatdate AS `domain_term_1ddc5f9129`, CASE WHEN substr(COALESCE(t2.seasonmaxsegment, '0'), 1, 1) = '1' THEN 'domain_term_6dae199fa1' WHEN substr(COALESCE(t2.seasonmaxsegment, '0'), 1, 1) = '2' THEN 'domain_term_bc916383f6' WHEN substr(COALESCE(t2.seasonmaxsegment, '0'), 1, 1) = '3' THEN 'domain_term_3713947f42' WHEN substr(COALESCE(t2.seasonmaxsegment, '0'), 1, 1) = '4' THEN 'domain_term_868b6db912' WHEN substr(COALESCE(t2.seasonmaxsegment, '0'), 1, 1) = '5' THEN 'domain_term_c69716199f' WHEN substr(COALESCE(t2.seasonmaxsegment, '0'), 1, 1) = '6' THEN 'domain_term_2602f9e563' WHEN substr(COALESCE(t2.seasonmaxsegment, '0'), 1, 1) >= '7' THEN 'domain_term_51b4f9b2b3' ELSE 'domain_term_4117d4fbcd' END AS `domain_term_a4fa483d91`, COUNT(DISTINCT t1.vplayerid) AS `domain_term_fef566845d`, COUNT(DISTINCT t3.vplayerid) AS `domain_term_2515d26f54`, COUNT(DISTINCT t3.vplayerid) / COUNT(DISTINCT t1.vplayerid) AS `domain_term_8a0ce9ab48` FROM (SELECT dtstatdate, vplayerid FROM dws_jordass_login_di WHERE dtstatdate IN ('20240902', '20240903', '20250908', '20250909') AND platid = 255) t1 LEFT JOIN (SELECT substr(tdbank_imp_date, 1, 8) as dtstatdate, vplayerid, MAX(seasonmaxsegment) as seasonmaxsegment FROM dwd_jordass_playerlogin_hi WHERE substr(tdbank_imp_date, 1, 8) IN ('20240902', '20240903', '20250908', '20250909') GROUP BY 1, 2) t2 ON t1.dtstatdate = t2.dtstatdate AND t1.vplayerid = t2.vplayerid LEFT JOIN (SELECT DISTINCT dtstatdate, vplayerid FROM dws_jordass_mode_roundrecord_di WHERE dtstatdate IN ('20240902', '20240903', '20250908', '20250909') AND modename = 'domain_term_3b87e170bd' AND submodename LIKE 'CG%') t3 ON t1.dtstatdate = t3.dtstatdate AND t1.vplayerid = t3.vplayerid GROUP BY t1.dtstatdate, `domain_term_a4fa483d91`;",
+    "status": "success",
+    "result": [
+      {
+        "domain_term_1ddc5f9129": "20240903",
+        "domain_term_a4fa483d91": "domain_term_868b6db912",
+        "domain_term_fef566845d": 2,
+        "domain_term_2515d26f54": 1,
+        "domain_term_8a0ce9ab48": 0.5
+      },
+      {
+        "domain_term_1ddc5f9129": "20240903",
+        "domain_term_a4fa483d91": "domain_term_c69716199f",
+        "domain_term_fef566845d": 2,
+        "domain_term_2515d26f54": 1,
+        "domain_term_8a0ce9ab48": 0.5
+      },
+      {
+        "domain_term_1ddc5f9129": "20240903",
+        "domain_term_a4fa483d91": "domain_term_2602f9e563",
+        "domain_term_fef566845d": 2,
+        "domain_term_2515d26f54": 1,
+        "domain_term_8a0ce9ab48": 0.5
+      },
+      {
+        "domain_term_1ddc5f9129": "20240903",
+        "domain_term_a4fa483d91": "domain_term_51b4f9b2b3",
+        "domain_term_fef566845d": 3,
+        "domain_term_2515d26f54": 1,
+        "domain_term_8a0ce9ab48": 0.33
+      },
+      {
+        "domain_term_1ddc5f9129": "20240903",
+        "domain_term_a4fa483d91": "domain_term_6dae199fa1",
+        "domain_term_fef566845d": 1,
+        "domain_term_2515d26f54": 1,
+        "domain_term_8a0ce9ab48": 1
+      },
+      {
+        "domain_term_1ddc5f9129": "20240903",
+        "domain_term_a4fa483d91": "domain_term_bc916383f6",
+        "domain_term_fef566845d": 1,
+        "domain_term_2515d26f54": 0,
+        "domain_term_8a0ce9ab48": 0
+      },
+      {
+        "domain_term_1ddc5f9129": "20240903",
+        "domain_term_a4fa483d91": "domain_term_3713947f42",
+        "domain_term_fef566845d": 1,
+        "domain_term_2515d26f54": 1,
+        "domain_term_8a0ce9ab48": 1
+      },
+      {
+        "domain_term_1ddc5f9129": "20250909",
+        "domain_term_a4fa483d91": "domain_term_6dae199fa1",
+        "domain_term_fef566845d": 2,
+        "domain_term_2515d26f54": 1,
+        "domain_term_8a0ce9ab48": 0.5
+      },
+      {
+        "domain_term_1ddc5f9129": "20250909",
+        "domain_term_a4fa483d91": "domain_term_bc916383f6",
+        "domain_term_fef566845d": 2,
+        "domain_term_2515d26f54": 1,
+        "domain_term_8a0ce9ab48": 0.5
+      },
+      {
+        "domain_term_1ddc5f9129": "20250909",
+        "domain_term_a4fa483d91": "domain_term_3713947f42",
+        "domain_term_fef566845d": 2,
+        "domain_term_2515d26f54": 2,
+        "domain_term_8a0ce9ab48": 1
+      },
+      {
+        "domain_term_1ddc5f9129": "20250909",
+        "domain_term_a4fa483d91": "domain_term_868b6db912",
+        "domain_term_fef566845d": 2,
+        "domain_term_2515d26f54": 1,
+        "domain_term_8a0ce9ab48": 0.5
+      },
+      {
+        "domain_term_1ddc5f9129": "20250909",
+        "domain_term_a4fa483d91": "domain_term_c69716199f",
+        "domain_term_fef566845d": 2,
+        "domain_term_2515d26f54": 1,
+        "domain_term_8a0ce9ab48": 0.5
+      },
+      {
+        "domain_term_1ddc5f9129": "20250909",
+        "domain_term_a4fa483d91": "domain_term_51b4f9b2b3",
+        "domain_term_fef566845d": 2,
+        "domain_term_2515d26f54": 1,
+        "domain_term_8a0ce9ab48": 0.5
+      },
+      {
+        "domain_term_1ddc5f9129": "20240902",
+        "domain_term_a4fa483d91": "domain_term_6dae199fa1",
+        "domain_term_fef566845d": 2,
+        "domain_term_2515d26f54": 1,
+        "domain_term_8a0ce9ab48": 0.5
+      },
+      {
+        "domain_term_1ddc5f9129": "20240902",
+        "domain_term_a4fa483d91": "domain_term_bc916383f6",
+        "domain_term_fef566845d": 2,
+        "domain_term_2515d26f54": 1,
+        "domain_term_8a0ce9ab48": 0.5
+      },
+      {
+        "domain_term_1ddc5f9129": "20240902",
+        "domain_term_a4fa483d91": "domain_term_3713947f42",
+        "domain_term_fef566845d": 2,
+        "domain_term_2515d26f54": 1,
+        "domain_term_8a0ce9ab48": 0.5
+      },
+      {
+        "domain_term_1ddc5f9129": "20240902",
+        "domain_term_a4fa483d91": "domain_term_868b6db912",
+        "domain_term_fef566845d": 1,
+        "domain_term_2515d26f54": 0,
+        "domain_term_8a0ce9ab48": 0
+      },
+      {
+        "domain_term_1ddc5f9129": "20240902",
+        "domain_term_a4fa483d91": "domain_term_c69716199f",
+        "domain_term_fef566845d": 1,
+        "domain_term_2515d26f54": 1,
+        "domain_term_8a0ce9ab48": 1
+      },
+      {
+        "domain_term_1ddc5f9129": "20240902",
+        "domain_term_a4fa483d91": "domain_term_2602f9e563",
+        "domain_term_fef566845d": 1,
+        "domain_term_2515d26f54": 0,
+        "domain_term_8a0ce9ab48": 0
+      },
+      {
+        "domain_term_1ddc5f9129": "20240902",
+        "domain_term_a4fa483d91": "domain_term_51b4f9b2b3",
+        "domain_term_fef566845d": 3,
+        "domain_term_2515d26f54": 2,
+        "domain_term_8a0ce9ab48": 0.67
+      },
+      {
+        "domain_term_1ddc5f9129": "20250908",
+        "domain_term_a4fa483d91": "domain_term_51b4f9b2b3",
+        "domain_term_fef566845d": 6,
+        "domain_term_2515d26f54": 3,
+        "domain_term_8a0ce9ab48": 0.5
+      },
+      {
+        "domain_term_1ddc5f9129": "20250908",
+        "domain_term_a4fa483d91": "domain_term_6dae199fa1",
+        "domain_term_fef566845d": 1,
+        "domain_term_2515d26f54": 0,
+        "domain_term_8a0ce9ab48": 0
+      },
+      {
+        "domain_term_1ddc5f9129": "20250908",
+        "domain_term_a4fa483d91": "domain_term_bc916383f6",
+        "domain_term_fef566845d": 1,
+        "domain_term_2515d26f54": 1,
+        "domain_term_8a0ce9ab48": 1
+      },
+      {
+        "domain_term_1ddc5f9129": "20250908",
+        "domain_term_a4fa483d91": "domain_term_3713947f42",
+        "domain_term_fef566845d": 1,
+        "domain_term_2515d26f54": 0,
+        "domain_term_8a0ce9ab48": 0
+      },
+      {
+        "domain_term_1ddc5f9129": "20250908",
+        "domain_term_a4fa483d91": "domain_term_868b6db912",
+        "domain_term_fef566845d": 1,
+        "domain_term_2515d26f54": 1,
+        "domain_term_8a0ce9ab48": 1
+      },
+      {
+        "domain_term_1ddc5f9129": "20250908",
+        "domain_term_a4fa483d91": "domain_term_c69716199f",
+        "domain_term_fef566845d": 1,
+        "domain_term_2515d26f54": 0,
+        "domain_term_8a0ce9ab48": 0
+      },
+      {
+        "domain_term_1ddc5f9129": "20250908",
+        "domain_term_a4fa483d91": "domain_term_2602f9e563",
+        "domain_term_fef566845d": 1,
+        "domain_term_2515d26f54": 1,
+        "domain_term_8a0ce9ab48": 1
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_103",
+    "sql": "SELECT\n SUBSTR(tdbank_imp_date, 1, 8) AS domain_term_77282a67dd,\n productid,\n COUNT(DISTINCT vplayerid) AS domain_term_7e633fb364,\n SUM(money) AS domain_term_149e03ae07,\n SUM(goodsnum) AS domain_term_f27bacd85e\nFROM dwd_jordass_directpaycommflow_hi\nWHERE\n op = 'take'\n AND opres = 'ok'\n AND productid IN ('package_6', 'package_18', 'outfit_pack', 'weapon_pack')\n AND SUBSTR(tdbank_imp_date, 1, 8) BETWEEN '20250901' AND '20250910'\nGROUP BY SUBSTR(tdbank_imp_date,1,8), productid\nORDER BY domain_term_77282a67dd, productid;",
+    "status": "success",
+    "result": [
+      {
+        "domain_term_77282a67dd": "20250901",
+        "productid": "package_18",
+        "domain_term_7e633fb364": 1,
+        "domain_term_149e03ae07": 150,
+        "domain_term_f27bacd85e": 1
+      },
+      {
+        "domain_term_77282a67dd": "20250901",
+        "productid": "package_6",
+        "domain_term_7e633fb364": 2,
+        "domain_term_149e03ae07": 300,
+        "domain_term_f27bacd85e": 3
+      },
+      {
+        "domain_term_77282a67dd": "20250902",
+        "productid": "outfit_pack",
+        "domain_term_7e633fb364": 1,
+        "domain_term_149e03ae07": 300,
+        "domain_term_f27bacd85e": 1
+      },
+      {
+        "domain_term_77282a67dd": "20250902",
+        "productid": "weapon_pack",
+        "domain_term_7e633fb364": 1,
+        "domain_term_149e03ae07": 250,
+        "domain_term_f27bacd85e": 2
+      },
+      {
+        "domain_term_77282a67dd": "20250903",
+        "productid": "package_6",
+        "domain_term_7e633fb364": 1,
+        "domain_term_149e03ae07": 120,
+        "domain_term_f27bacd85e": 1
+      },
+      {
+        "domain_term_77282a67dd": "20250904",
+        "productid": "package_18",
+        "domain_term_7e633fb364": 1,
+        "domain_term_149e03ae07": 180,
+        "domain_term_f27bacd85e": 3
+      },
+      {
+        "domain_term_77282a67dd": "20250905",
+        "productid": "outfit_pack",
+        "domain_term_7e633fb364": 1,
+        "domain_term_149e03ae07": 220,
+        "domain_term_f27bacd85e": 1
+      },
+      {
+        "domain_term_77282a67dd": "20250906",
+        "productid": "weapon_pack",
+        "domain_term_7e633fb364": 1,
+        "domain_term_149e03ae07": 280,
+        "domain_term_f27bacd85e": 2
+      },
+      {
+        "domain_term_77282a67dd": "20250910",
+        "productid": "package_6",
+        "domain_term_7e633fb364": 1,
+        "domain_term_149e03ae07": 90,
+        "domain_term_f27bacd85e": 1
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_105",
+    "sql": "SELECT\n date as `domain_term_77282a67dd`,\n cast(sum(recharge_amt) as bigint) as `domain_term_85becfe6c6`,\n cast(sum(consume_amt) as bigint) as `domain_term_080d439ce4`\nFROM (\n -- Recharge from DWS Water (Filter platid=255 for all-platform summary)\n SELECT\n dtstatdate as date,\n sum(imoney) as recharge_amt,\n 0 as consume_amt\n FROM dws_jordass_water_di\n WHERE dtstatdate BETWEEN '20240101' AND '20250601'\n AND platid = 255\n GROUP BY dtstatdate\n\n UNION ALL\n\n -- Consumed Gold from DWD Currency Log (AddOrReduce=1, imoneytype=1)\n SELECT\n substring(tdbank_imp_date, 1, 8) as date,\n 0 as recharge_amt,\n sum(imoney) as consume_amt\n FROM dwd_jordass_currencylog_hi\n WHERE tdbank_imp_date >= '2024010100' AND tdbank_imp_date <= '2025060123'\n AND AddOrReduce = 1\n AND imoneytype = 1\n GROUP BY substring(tdbank_imp_date, 1, 8)\n) t\nGROUP BY date\nORDER BY date",
+    "status": "success",
+    "result": [
+      {
+        "domain_term_77282a67dd": "20240101",
+        "domain_term_85becfe6c6": 122930,
+        "domain_term_080d439ce4": 450
+      },
+      {
+        "domain_term_77282a67dd": "20240102",
+        "domain_term_85becfe6c6": 24730,
+        "domain_term_080d439ce4": 950
+      },
+      {
+        "domain_term_77282a67dd": "20240103",
+        "domain_term_85becfe6c6": 1430,
+        "domain_term_080d439ce4": 850
+      },
+      {
+        "domain_term_77282a67dd": "20240104",
+        "domain_term_85becfe6c6": 29730,
+        "domain_term_080d439ce4": 450
+      },
+      {
+        "domain_term_77282a67dd": "20240105",
+        "domain_term_85becfe6c6": 28330,
+        "domain_term_080d439ce4": 550
+      },
+      {
+        "domain_term_77282a67dd": "20240106",
+        "domain_term_85becfe6c6": 135280,
+        "domain_term_080d439ce4": 650
+      },
+      {
+        "domain_term_77282a67dd": "20240107",
+        "domain_term_85becfe6c6": 85280,
+        "domain_term_080d439ce4": 750
+      },
+      {
+        "domain_term_77282a67dd": "20240108",
+        "domain_term_85becfe6c6": 15780,
+        "domain_term_080d439ce4": 850
+      },
+      {
+        "domain_term_77282a67dd": "20240109",
+        "domain_term_85becfe6c6": 188580,
+        "domain_term_080d439ce4": 1450
+      },
+      {
+        "domain_term_77282a67dd": "20240110",
+        "domain_term_85becfe6c6": 18430,
+        "domain_term_080d439ce4": 1850
+      },
+      {
+        "domain_term_77282a67dd": "20240111",
+        "domain_term_85becfe6c6": 17630,
+        "domain_term_080d439ce4": 3050
+      },
+      {
+        "domain_term_77282a67dd": "20240112",
+        "domain_term_85becfe6c6": 28180,
+        "domain_term_080d439ce4": 1250
+      },
+      {
+        "domain_term_77282a67dd": "20240113",
+        "domain_term_85becfe6c6": 72280,
+        "domain_term_080d439ce4": 1350
+      },
+      {
+        "domain_term_77282a67dd": "20240114",
+        "domain_term_85becfe6c6": 4580,
+        "domain_term_080d439ce4": 1450
+      },
+      {
+        "domain_term_77282a67dd": "20240115",
+        "domain_term_85becfe6c6": 6580,
+        "domain_term_080d439ce4": 1550
+      },
+      {
+        "domain_term_77282a67dd": "20240116",
+        "domain_term_85becfe6c6": 19480,
+        "domain_term_080d439ce4": 1650
+      },
+      {
+        "domain_term_77282a67dd": "20240117",
+        "domain_term_85becfe6c6": 111980,
+        "domain_term_080d439ce4": 1750
+      },
+      {
+        "domain_term_77282a67dd": "20240118",
+        "domain_term_85becfe6c6": 511880,
+        "domain_term_080d439ce4": 1850
+      },
+      {
+        "domain_term_77282a67dd": "20240119",
+        "domain_term_85becfe6c6": 417280,
+        "domain_term_080d439ce4": 1950
+      },
+      {
+        "domain_term_77282a67dd": "20240120",
+        "domain_term_85becfe6c6": 68680,
+        "domain_term_080d439ce4": 2050
+      },
+      {
+        "domain_term_77282a67dd": "20240121",
+        "domain_term_85becfe6c6": 48000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240122",
+        "domain_term_85becfe6c6": 34200,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240123",
+        "domain_term_85becfe6c6": 29500,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240124",
+        "domain_term_85becfe6c6": 44400,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240125",
+        "domain_term_85becfe6c6": 31600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240126",
+        "domain_term_85becfe6c6": 38200,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240127",
+        "domain_term_85becfe6c6": 27700,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240128",
+        "domain_term_85becfe6c6": 23100,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240129",
+        "domain_term_85becfe6c6": 9300,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240130",
+        "domain_term_85becfe6c6": 22300,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240131",
+        "domain_term_85becfe6c6": 28400,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240201",
+        "domain_term_85becfe6c6": 12900,
+        "domain_term_080d439ce4": 900
+      },
+      {
+        "domain_term_77282a67dd": "20240202",
+        "domain_term_85becfe6c6": 151800,
+        "domain_term_080d439ce4": 1000
+      },
+      {
+        "domain_term_77282a67dd": "20240203",
+        "domain_term_85becfe6c6": 16100,
+        "domain_term_080d439ce4": 1000
+      },
+      {
+        "domain_term_77282a67dd": "20240204",
+        "domain_term_85becfe6c6": 14500,
+        "domain_term_080d439ce4": 4000
+      },
+      {
+        "domain_term_77282a67dd": "20240205",
+        "domain_term_85becfe6c6": 12800,
+        "domain_term_080d439ce4": 4000
+      },
+      {
+        "domain_term_77282a67dd": "20240206",
+        "domain_term_85becfe6c6": 23700,
+        "domain_term_080d439ce4": 4000
+      },
+      {
+        "domain_term_77282a67dd": "20240207",
+        "domain_term_85becfe6c6": 63700,
+        "domain_term_080d439ce4": 7500
+      },
+      {
+        "domain_term_77282a67dd": "20240208",
+        "domain_term_85becfe6c6": 45200,
+        "domain_term_080d439ce4": 7500
+      },
+      {
+        "domain_term_77282a67dd": "20240209",
+        "domain_term_85becfe6c6": 508600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240210",
+        "domain_term_85becfe6c6": 215600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240211",
+        "domain_term_85becfe6c6": 669200,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240212",
+        "domain_term_85becfe6c6": 113700,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240213",
+        "domain_term_85becfe6c6": 186100,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240214",
+        "domain_term_85becfe6c6": 63000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240215",
+        "domain_term_85becfe6c6": 182800,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240216",
+        "domain_term_85becfe6c6": 235100,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240217",
+        "domain_term_85becfe6c6": 89500,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240218",
+        "domain_term_85becfe6c6": 40000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240219",
+        "domain_term_85becfe6c6": 149400,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240220",
+        "domain_term_85becfe6c6": 29600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240221",
+        "domain_term_85becfe6c6": 154400,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240222",
+        "domain_term_85becfe6c6": 328300,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240223",
+        "domain_term_85becfe6c6": 217100,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240224",
+        "domain_term_85becfe6c6": 66000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240225",
+        "domain_term_85becfe6c6": 53400,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240226",
+        "domain_term_85becfe6c6": 96300,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240227",
+        "domain_term_85becfe6c6": 67400,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240228",
+        "domain_term_85becfe6c6": 76700,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240229",
+        "domain_term_85becfe6c6": 36600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240301",
+        "domain_term_85becfe6c6": 225750,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240302",
+        "domain_term_85becfe6c6": 224300,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240303",
+        "domain_term_85becfe6c6": 139200,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240304",
+        "domain_term_85becfe6c6": 51300,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240305",
+        "domain_term_85becfe6c6": 216500,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240306",
+        "domain_term_85becfe6c6": 61900,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240307",
+        "domain_term_85becfe6c6": 151600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240308",
+        "domain_term_85becfe6c6": 154600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240309",
+        "domain_term_85becfe6c6": 76780,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240310",
+        "domain_term_85becfe6c6": 250700,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240311",
+        "domain_term_85becfe6c6": 64380,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240312",
+        "domain_term_85becfe6c6": 54100,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240313",
+        "domain_term_85becfe6c6": 79600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240314",
+        "domain_term_85becfe6c6": 43200,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240315",
+        "domain_term_85becfe6c6": 44600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240316",
+        "domain_term_85becfe6c6": 448600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240317",
+        "domain_term_85becfe6c6": 105500,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240318",
+        "domain_term_85becfe6c6": 146900,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240319",
+        "domain_term_85becfe6c6": 20200,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240320",
+        "domain_term_85becfe6c6": 31000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240321",
+        "domain_term_85becfe6c6": 81100,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240322",
+        "domain_term_85becfe6c6": 179000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240323",
+        "domain_term_85becfe6c6": 209700,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240324",
+        "domain_term_85becfe6c6": 91500,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240325",
+        "domain_term_85becfe6c6": 51000,
+        "domain_term_080d439ce4": 200
+      },
+      {
+        "domain_term_77282a67dd": "20240326",
+        "domain_term_85becfe6c6": 307200,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240327",
+        "domain_term_85becfe6c6": 174100,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240328",
+        "domain_term_85becfe6c6": 13500,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240329",
+        "domain_term_85becfe6c6": 497600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240330",
+        "domain_term_85becfe6c6": 226500,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240331",
+        "domain_term_85becfe6c6": 171600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240401",
+        "domain_term_85becfe6c6": 28350,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240402",
+        "domain_term_85becfe6c6": 56900,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240403",
+        "domain_term_85becfe6c6": 289400,
+        "domain_term_080d439ce4": 70
+      },
+      {
+        "domain_term_77282a67dd": "20240404",
+        "domain_term_85becfe6c6": 53600,
+        "domain_term_080d439ce4": 80
+      },
+      {
+        "domain_term_77282a67dd": "20240405",
+        "domain_term_85becfe6c6": 100300,
+        "domain_term_080d439ce4": 90
+      },
+      {
+        "domain_term_77282a67dd": "20240406",
+        "domain_term_85becfe6c6": 61200,
+        "domain_term_080d439ce4": 100
+      },
+      {
+        "domain_term_77282a67dd": "20240407",
+        "domain_term_85becfe6c6": 28200,
+        "domain_term_080d439ce4": 110
+      },
+      {
+        "domain_term_77282a67dd": "20240408",
+        "domain_term_85becfe6c6": 27900,
+        "domain_term_080d439ce4": 120
+      },
+      {
+        "domain_term_77282a67dd": "20240409",
+        "domain_term_85becfe6c6": 29600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240410",
+        "domain_term_85becfe6c6": 101000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240411",
+        "domain_term_85becfe6c6": 64000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240412",
+        "domain_term_85becfe6c6": 35300,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240413",
+        "domain_term_85becfe6c6": 11900,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240414",
+        "domain_term_85becfe6c6": 37600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240415",
+        "domain_term_85becfe6c6": 267550,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240416",
+        "domain_term_85becfe6c6": 214700,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240417",
+        "domain_term_85becfe6c6": 47300,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240418",
+        "domain_term_85becfe6c6": 61200,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240419",
+        "domain_term_85becfe6c6": 40900,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240420",
+        "domain_term_85becfe6c6": 61800,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240422",
+        "domain_term_85becfe6c6": 37300,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240424",
+        "domain_term_85becfe6c6": 24700,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240425",
+        "domain_term_85becfe6c6": 39300,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240426",
+        "domain_term_85becfe6c6": 319000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240427",
+        "domain_term_85becfe6c6": 94900,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240428",
+        "domain_term_85becfe6c6": 42400,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240429",
+        "domain_term_85becfe6c6": 37400,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240430",
+        "domain_term_85becfe6c6": 281600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240501",
+        "domain_term_85becfe6c6": 170000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240502",
+        "domain_term_85becfe6c6": 129900,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240503",
+        "domain_term_85becfe6c6": 232300,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240504",
+        "domain_term_85becfe6c6": 42900,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240505",
+        "domain_term_85becfe6c6": 36100,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240506",
+        "domain_term_85becfe6c6": 146700,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240507",
+        "domain_term_85becfe6c6": 29000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240508",
+        "domain_term_85becfe6c6": 87100,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240509",
+        "domain_term_85becfe6c6": 149000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240510",
+        "domain_term_85becfe6c6": 48800,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240511",
+        "domain_term_85becfe6c6": 71500,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240512",
+        "domain_term_85becfe6c6": 42100,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240513",
+        "domain_term_85becfe6c6": 58600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240514",
+        "domain_term_85becfe6c6": 96000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240515",
+        "domain_term_85becfe6c6": 5000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240516",
+        "domain_term_85becfe6c6": 316800,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240517",
+        "domain_term_85becfe6c6": 157800,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240518",
+        "domain_term_85becfe6c6": 128900,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240519",
+        "domain_term_85becfe6c6": 88800,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240520",
+        "domain_term_85becfe6c6": 65800,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240521",
+        "domain_term_85becfe6c6": 73000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240522",
+        "domain_term_85becfe6c6": 131300,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240523",
+        "domain_term_85becfe6c6": 31400,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240524",
+        "domain_term_85becfe6c6": 67700,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240525",
+        "domain_term_85becfe6c6": 37500,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240526",
+        "domain_term_85becfe6c6": 27800,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240527",
+        "domain_term_85becfe6c6": 14800,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240528",
+        "domain_term_85becfe6c6": 83000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240529",
+        "domain_term_85becfe6c6": 116400,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240530",
+        "domain_term_85becfe6c6": 20850,
+        "domain_term_080d439ce4": 600
+      },
+      {
+        "domain_term_77282a67dd": "20240531",
+        "domain_term_85becfe6c6": 31250,
+        "domain_term_080d439ce4": 700
+      },
+      {
+        "domain_term_77282a67dd": "20240601",
+        "domain_term_85becfe6c6": 109250,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240602",
+        "domain_term_85becfe6c6": 22500,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240603",
+        "domain_term_85becfe6c6": 124700,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240604",
+        "domain_term_85becfe6c6": 88000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240605",
+        "domain_term_85becfe6c6": 38600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240606",
+        "domain_term_85becfe6c6": 127600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240607",
+        "domain_term_85becfe6c6": 373700,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240608",
+        "domain_term_85becfe6c6": 86800,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240609",
+        "domain_term_85becfe6c6": 49800,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240611",
+        "domain_term_85becfe6c6": 53100,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240612",
+        "domain_term_85becfe6c6": 13800,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240613",
+        "domain_term_85becfe6c6": 223800,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240614",
+        "domain_term_85becfe6c6": 49900,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240615",
+        "domain_term_85becfe6c6": 249000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240616",
+        "domain_term_85becfe6c6": 114300,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240617",
+        "domain_term_85becfe6c6": 62000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240618",
+        "domain_term_85becfe6c6": 47900,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240619",
+        "domain_term_85becfe6c6": 67200,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240620",
+        "domain_term_85becfe6c6": 118500,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240621",
+        "domain_term_85becfe6c6": 262100,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240622",
+        "domain_term_85becfe6c6": 78200,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240623",
+        "domain_term_85becfe6c6": 206000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240626",
+        "domain_term_85becfe6c6": 190700,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240627",
+        "domain_term_85becfe6c6": 49300,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240628",
+        "domain_term_85becfe6c6": 48600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240629",
+        "domain_term_85becfe6c6": 135000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240630",
+        "domain_term_85becfe6c6": 117300,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240701",
+        "domain_term_85becfe6c6": 457400,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240702",
+        "domain_term_85becfe6c6": 52400,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240703",
+        "domain_term_85becfe6c6": 12400,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240704",
+        "domain_term_85becfe6c6": 23200,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240705",
+        "domain_term_85becfe6c6": 62800,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240708",
+        "domain_term_85becfe6c6": 46200,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240709",
+        "domain_term_85becfe6c6": 31600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240710",
+        "domain_term_85becfe6c6": 12300,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240711",
+        "domain_term_85becfe6c6": 228100,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240712",
+        "domain_term_85becfe6c6": 223600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240713",
+        "domain_term_85becfe6c6": 78900,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240714",
+        "domain_term_85becfe6c6": 13200,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240715",
+        "domain_term_85becfe6c6": 1237600,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240716",
+        "domain_term_85becfe6c6": 49900,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240717",
+        "domain_term_85becfe6c6": 7900,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240718",
+        "domain_term_85becfe6c6": 5300,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240719",
+        "domain_term_85becfe6c6": 362370,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240720",
+        "domain_term_85becfe6c6": 228800,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240721",
+        "domain_term_85becfe6c6": 48000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240722",
+        "domain_term_85becfe6c6": 1251700,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240723",
+        "domain_term_85becfe6c6": 143300,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240725",
+        "domain_term_85becfe6c6": 84100,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240726",
+        "domain_term_85becfe6c6": 178800,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240728",
+        "domain_term_85becfe6c6": 100200,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240731",
+        "domain_term_85becfe6c6": 100,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240801",
+        "domain_term_85becfe6c6": 5000000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240815",
+        "domain_term_85becfe6c6": 20000000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240901",
+        "domain_term_85becfe6c6": 80000000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20240915",
+        "domain_term_85becfe6c6": 350000000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20241001",
+        "domain_term_85becfe6c6": 1200000000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20241015",
+        "domain_term_85becfe6c6": 5000000000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20241101",
+        "domain_term_85becfe6c6": 20000000000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20241115",
+        "domain_term_85becfe6c6": 80000000000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20241201",
+        "domain_term_85becfe6c6": 350000120000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20241205",
+        "domain_term_85becfe6c6": 60,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20241210",
+        "domain_term_85becfe6c6": 80,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20241215",
+        "domain_term_85becfe6c6": 1200000000100,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20241220",
+        "domain_term_85becfe6c6": 30,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20241225",
+        "domain_term_85becfe6c6": 40,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20241230",
+        "domain_term_85becfe6c6": 50,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20241231",
+        "domain_term_85becfe6c6": 5000000000000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20250115",
+        "domain_term_85becfe6c6": 600000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20250220",
+        "domain_term_85becfe6c6": 1000000,
+        "domain_term_080d439ce4": 0
+      },
+      {
+        "domain_term_77282a67dd": "20250225",
+        "domain_term_85becfe6c6": 2000000,
+        "domain_term_080d439ce4": 0
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_107",
+    "sql": "SELECT COUNT(DISTINCT CASE WHEN t1.dteventtime >= '2022-01-18' AND t1.dteventtime <= '2022-01-24' THEN t1.vplayerid END) AS period1_count, COUNT(DISTINCT CASE WHEN t1.dteventtime >= '2021-10-19' AND t1.dteventtime <= '2021-12-20' THEN t1.vplayerid END) AS period2_count, COUNT(DISTINCT CASE WHEN t1.dteventtime >= '2022-01-18' AND t1.dteventtime <= '2022-01-24' AND t1.vplayerid IN (SELECT t2.vplayerid FROM dwd_jordass_activitypress_hi t2 WHERE t2.dteventtime >= '2021-10-19' AND t2.dteventtime <= '2021-12-20' AND t2.buttontype = 99123 AND t2.ireason = 3) THEN t1.vplayerid END) AS overlap_count FROM dwd_jordass_activitypress_hi t1 WHERE t1.buttontype = 99123 AND t1.ireason = 3 AND ((t1.dteventtime >= '2022-01-18' AND t1.dteventtime <= '2022-01-24') OR (t1.dteventtime >= '2021-10-19' AND t1.dteventtime <= '2021-12-20'));",
+    "status": "success",
+    "result": [
+      {
+        "period1_count": 8,
+        "period2_count": 7,
+        "overlap_count": 3
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_109",
+    "sql": "SELECT\n CASE\n WHEN t.total_wins = 1 THEN '1'\n WHEN t.total_wins BETWEEN 2 AND 10 THEN '2-10'\n WHEN t.total_wins BETWEEN 11 AND 20 THEN '11-20'\n WHEN t.total_wins BETWEEN 21 AND 50 THEN '21-50'\n WHEN t.total_wins BETWEEN 51 AND 80 THEN '51-80'\n WHEN t.total_wins BETWEEN 81 AND 100 THEN '81-100'\n WHEN t.total_wins BETWEEN 101 AND 200 THEN '101-200'\n WHEN t.total_wins BETWEEN 201 AND 500 THEN '201-500'\n ELSE '501domain_term_496edef086'\n END AS win_range,\n COUNT(DISTINCT t.vplayerid) AS user_count\nFROM (\n SELECT t1.vplayerid, COUNT(*) AS total_wins\n FROM dwd_jordass_roundlog_funnymode_hi t1\n WHERE CAST(SUBSTR(t1.tdbank_imp_date, 1, 8) AS INT) BETWEEN 20250424 AND 20250508\n AND t1.mode IN (201,202,203,601,602,603)\n AND t1.teamrank = 1\n GROUP BY t1.vplayerid\n\n UNION ALL\n\n SELECT t2.vplayerid, COUNT(*) AS total_wins\n FROM dwd_jordass_roundflow_hi t2\n WHERE CAST(SUBSTR(t2.tdbank_imp_date, 1, 8) AS INT) BETWEEN 20250424 AND 20250508\n AND t2.mode IN (101,102,103,401,402,403)\n AND t2.teamrank = 1\n GROUP BY t2.vplayerid\n) t\nGROUP BY\n CASE\n WHEN t.total_wins = 1 THEN '1'\n WHEN t.total_wins BETWEEN 2 AND 10 THEN '2-10'\n WHEN t.total_wins BETWEEN 11 AND 20 THEN '11-20'\n WHEN t.total_wins BETWEEN 21 AND 50 THEN '21-50'\n WHEN t.total_wins BETWEEN 51 AND 80 THEN '51-80'\n WHEN t.total_wins BETWEEN 81 AND 100 THEN '81-100'\n WHEN t.total_wins BETWEEN 101 AND 200 THEN '101-200'\n WHEN t.total_wins BETWEEN 201 AND 500 THEN '201-500'\n ELSE '501domain_term_496edef086'\n END\nORDER BY MIN(t.total_wins);",
+    "status": "success",
+    "result": [
+      {
+        "win_range": "1",
+        "user_count": 5
+      },
+      {
+        "win_range": "2-10",
+        "user_count": 21
+      },
+      {
+        "win_range": "11-20",
+        "user_count": 7
+      },
+      {
+        "win_range": "21-50",
+        "user_count": 5
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_111",
+    "sql": "SELECT\n substr(tdbank_imp_date, 1, 8) AS stat_date,\n morph_type,\n x,\n y,\n z,\n COUNT(*) AS cnt\nFROM (\n SELECT\n tdbank_imp_date,\n 'domain_term_447c2e95cd' AS morph_type,\n split_part(SwiftMorphInfo, '+', 3) AS x,\n split_part(SwiftMorphInfo, '+', 4) AS y,\n split_part(SwiftMorphInfo, '+', 5) AS z\n FROM dwd_jordass_vsteaminfectlog_hi\n WHERE tdbank_imp_date >= '2022042500' AND tdbank_imp_date <= '2022042523'\n AND SwiftMorphInfo IS NOT NULL AND SwiftMorphInfo != ''\n\n UNION ALL\n\n SELECT\n tdbank_imp_date,\n 'domain_term_45af4bc6ea' AS morph_type,\n split_part(StealthMorphInfo, '+', 3) AS x,\n split_part(StealthMorphInfo, '+', 4) AS y,\n split_part(StealthMorphInfo, '+', 5) AS z\n FROM dwd_jordass_vsteaminfectlog_hi\n WHERE tdbank_imp_date >= '2022042500' AND tdbank_imp_date <= '2022042523'\n AND StealthMorphInfo IS NOT NULL AND StealthMorphInfo != ''\n\n UNION ALL\n\n SELECT\n tdbank_imp_date,\n 'domain_term_700a21894f' AS morph_type,\n split_part(GrappleMorphInfo, '+', 3) AS x,\n split_part(GrappleMorphInfo, '+', 4) AS y,\n split_part(GrappleMorphInfo, '+', 5) AS z\n FROM dwd_jordass_vsteaminfectlog_hi\n WHERE tdbank_imp_date >= '2022042500' AND tdbank_imp_date <= '2022042523'\n AND GrappleMorphInfo IS NOT NULL AND GrappleMorphInfo != ''\n\n UNION ALL\n\n SELECT\n tdbank_imp_date,\n 'domain_term_28fc023a76' AS morph_type,\n split_part(HeroMorphInfo, '+', 3) AS x,\n split_part(HeroMorphInfo, '+', 4) AS y,\n split_part(HeroMorphInfo, '+', 5) AS z\n FROM dwd_jordass_vsteaminfectlog_hi\n WHERE tdbank_imp_date >= '2022042500' AND tdbank_imp_date <= '2022042523'\n AND HeroMorphInfo IS NOT NULL AND HeroMorphInfo != ''\n\n UNION ALL\n\n SELECT\n tdbank_imp_date,\n 'domain_term_1788c54454' AS morph_type,\n split_part(IceAdvMorphInfo, '+', 3) AS x,\n split_part(IceAdvMorphInfo, '+', 4) AS y,\n split_part(IceAdvMorphInfo, '+', 5) AS z\n FROM dwd_jordass_vsteaminfectlog_hi\n WHERE tdbank_imp_date >= '2022042500' AND tdbank_imp_date <= '2022042523'\n AND IceAdvMorphInfo IS NOT NULL AND IceAdvMorphInfo != ''\n\n UNION ALL\n\n SELECT\n tdbank_imp_date,\n 'domain_term_e4e2cbf78a' AS morph_type,\n split_part(PowerAdvMorphInfo, '+', 3) AS x,\n split_part(PowerAdvMorphInfo, '+', 4) AS y,\n split_part(PowerAdvMorphInfo, '+', 5) AS z\n FROM dwd_jordass_vsteaminfectlog_hi\n WHERE tdbank_imp_date >= '2022042500' AND tdbank_imp_date <= '2022042523'\n AND PowerAdvMorphInfo IS NOT NULL AND PowerAdvMorphInfo != ''\n\n UNION ALL\n\n SELECT\n tdbank_imp_date,\n 'domain_term_a0a6edca89' AS morph_type,\n split_part(DragonHeroMorphInfo, '+', 3) AS x,\n split_part(DragonHeroMorphInfo, '+', 4) AS y,\n split_part(DragonHeroMorphInfo, '+', 5) AS z\n FROM dwd_jordass_vsteaminfectlog_hi\n WHERE tdbank_imp_date >= '2022042500' AND tdbank_imp_date <= '2022042523'\n AND DragonHeroMorphInfo IS NOT NULL AND DragonHeroMorphInfo != ''\n) t\nGROUP BY substr(tdbank_imp_date, 1, 8), morph_type, x, y, z",
+    "status": "success",
+    "result": [
+      {
+        "stat_date": "20220425",
+        "morph_type": "domain_term_45af4bc6ea",
+        "x": "110.0",
+        "y": "210.0",
+        "z": "60.0",
+        "cnt": 3
+      },
+      {
+        "stat_date": "20220425",
+        "morph_type": "domain_term_e4e2cbf78a",
+        "x": "130.0",
+        "y": "230.0",
+        "z": "80.0",
+        "cnt": 1
+      },
+      {
+        "stat_date": "20220425",
+        "morph_type": "domain_term_447c2e95cd",
+        "x": "170.0",
+        "y": "270.0",
+        "z": "120.0",
+        "cnt": 1
+      },
+      {
+        "stat_date": "20220425",
+        "morph_type": "domain_term_700a21894f",
+        "x": "120.0",
+        "y": "220.0",
+        "z": "70.0",
+        "cnt": 4
+      },
+      {
+        "stat_date": "20220425",
+        "morph_type": "domain_term_a0a6edca89",
+        "x": "160.0",
+        "y": "260.0",
+        "z": "110.0",
+        "cnt": 1
+      },
+      {
+        "stat_date": "20220425",
+        "morph_type": "domain_term_28fc023a76",
+        "x": "150.0",
+        "y": "250.0",
+        "z": "100.0",
+        "cnt": 2
+      },
+      {
+        "stat_date": "20220425",
+        "morph_type": "domain_term_447c2e95cd",
+        "x": "100.0",
+        "y": "200.0",
+        "z": "50.0",
+        "cnt": 2
+      },
+      {
+        "stat_date": "20220425",
+        "morph_type": "domain_term_1788c54454",
+        "x": "140.0",
+        "y": "240.0",
+        "z": "90.0",
+        "cnt": 1
+      },
+      {
+        "stat_date": "20220425",
+        "morph_type": "domain_term_447c2e95cd",
+        "x": "300.0",
+        "y": "400.0",
+        "z": "500.0",
+        "cnt": 1
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_112",
+    "sql": "WITH player_daily_total_survival AS (\n SELECT\n SUBSTR(tdbank_imp_date, 1, 8) AS stat_date,\n vplayerid,\n SUM(survivaltime) AS total_survival_time\n FROM dwd_jordass_roundflow_hi\n WHERE (\n (tdbank_imp_date BETWEEN '2022042300' AND '2022043023')\n OR\n (tdbank_imp_date BETWEEN '2022050100' AND '2022050823')\n )\n AND mode IN (101, 102, 103, 401, 402, 403)\n GROUP BY SUBSTR(tdbank_imp_date, 1, 8), vplayerid\n HAVING SUM(survivaltime) >= 5400\n)\nSELECT\n stat_date,\n COUNT(vplayerid) AS user_count\nFROM player_daily_total_survival\nGROUP BY stat_date\nORDER BY stat_date",
+    "status": "success",
+    "result": [
+      {
+        "stat_date": "20220423",
+        "user_count": 1
+      },
+      {
+        "stat_date": "20220424",
+        "user_count": 3
+      },
+      {
+        "stat_date": "20220425",
+        "user_count": 2
+      },
+      {
+        "stat_date": "20220426",
+        "user_count": 2
+      },
+      {
+        "stat_date": "20220501",
+        "user_count": 1
+      },
+      {
+        "stat_date": "20220502",
+        "user_count": 1
+      },
+      {
+        "stat_date": "20220503",
+        "user_count": 1
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_113",
+    "sql": "SELECT CAST(SUBSTR(a.dteventtime, 1, 10) AS bigint) AS stat_date, a.shopid, COUNT(DISTINCT a.vplayerid) AS user_count, SUM(a.count) AS total_count FROM dwd_jordass_vsteamshoplog_hi a WHERE CAST(SUBSTR(a.dteventtime, 1, 10) AS bigint) >= 20220425 AND CAST(SUBSTR(a.dteventtime, 1, 10) AS bigint) <= 20220508 GROUP BY CAST(SUBSTR(a.dteventtime, 1, 10) AS bigint), a.shopid ORDER BY stat_date, a.shopid;",
+    "status": "success",
+    "result": [
+      {
+        "stat_date": "20220425",
+        "shopid": 37,
+        "user_count": 2,
+        "purchase_count": 4
+      },
+      {
+        "stat_date": "20220508",
+        "shopid": 42,
+        "user_count": 1,
+        "purchase_count": 2
+      },
+      {
+        "stat_date": "20220502",
+        "shopid": 41,
+        "user_count": 1,
+        "purchase_count": 1
+      },
+      {
+        "stat_date": "20220426",
+        "shopid": 38,
+        "user_count": 2,
+        "purchase_count": 4
+      },
+      {
+        "stat_date": "20220427",
+        "shopid": 39,
+        "user_count": 1,
+        "purchase_count": 3
+      },
+      {
+        "stat_date": "20220501",
+        "shopid": 40,
+        "user_count": 1,
+        "purchase_count": 4
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_116",
+    "sql": "WITH\nbase_users AS (\n SELECT vplayerid\n FROM dws_jordass_login_df\n WHERE dtstatdate = '20250225' AND platid = 255\n),\nactive_status AS (\n SELECT\n vplayerid,\n CASE WHEN INSTR(SUBSTR(cbitmap, 1, 90), '1') > 0 THEN 1 ELSE 0 END AS is_active_last_3m\n FROM dws_jordass_login_df\n WHERE dtstatdate = '20250225' AND platid = 255\n),\nrecent_payment AS (\n SELECT DISTINCT vplayerid\n FROM dws_jordass_water_di\n WHERE dtstatdate BETWEEN '20241127' AND '20250225' AND platid =255\n),\nhistorical_segment AS (\n SELECT vplayerid, MAX(historymaxsegment) AS historical_segment\n FROM dws_jordass_uid_login_df\n WHERE dtstatdate = '20250225'\n GROUP BY vplayerid\n),\nhistorical_payment AS (\n SELECT vplayerid, imoney\n FROM dws_jordass_water_df\n WHERE dtstatdate = '20250225' AND platid =255\n)\nSELECT\n CASE\n WHEN a.is_active_last_3m =0 THEN 'domain_term_011d8e557f'\n ELSE CASE WHEN rp.vplayerid IS NOT NULL THEN 'domain_term_8fef16a10e' ELSE 'domain_term_1f334c2cdf' END\n END AS user_type,\n COALESCE(hs.historical_segment,0) AS historical_segment,\n CASE\n WHEN hp.imoney IS NULL THEN '0'\n ELSE CASE\n WHEN (hp.imoney /100) <=1200 THEN '(0-1200]'\n WHEN (hp.imoney /100) <=6000 THEN '(1200-6000]'\n WHEN (hp.imoney /100) <=18000 THEN '(6000-18000]'\n ELSE '(18000+]'\n END\n END AS historical_payment_tier,\n COUNT(DISTINCT bu.vplayerid) AS user_count\nFROM base_users bu\nLEFT JOIN active_status a ON bu.vplayerid = a.vplayerid\nLEFT JOIN recent_payment rp ON bu.vplayerid = rp.vplayerid\nLEFT JOIN historical_segment hs ON bu.vplayerid = hs.vplayerid\nLEFT JOIN historical_payment hp ON bu.vplayerid = hp.vplayerid\nGROUP BY\n CASE\n WHEN a.is_active_last_3m =0 THEN 'domain_term_011d8e557f'\n ELSE CASE WHEN rp.vplayerid IS NOT NULL THEN 'domain_term_8fef16a10e' ELSE 'domain_term_1f334c2cdf' END\n END,\n COALESCE(hs.historical_segment,0),\n CASE\n WHEN hp.imoney IS NULL THEN '0'\n ELSE CASE\n WHEN (hp.imoney /100) <=1200 THEN '(0-1200]'\n WHEN (hp.imoney /100) <=6000 THEN '(1200-6000]'\n WHEN (hp.imoney /100) <=18000 THEN '(6000-18000]'\n ELSE '(18000+]'\n END\n END\nORDER BY user_type, historical_segment, historical_payment_tier;",
+    "status": "success",
+    "result": [
+      {
+        "user_type": "domain_term_8fef16a10e",
+        "historical_segment": 100,
+        "historical_payment_tier": "(1200-6000]",
+        "user_count": 1
+      },
+      {
+        "user_type": "domain_term_8fef16a10e",
+        "historical_segment": 200,
+        "historical_payment_tier": "(6000-18000]",
+        "user_count": 1
+      },
+      {
+        "user_type": "domain_term_8fef16a10e",
+        "historical_segment": 300,
+        "historical_payment_tier": "(18000+]",
+        "user_count": 1
+      },
+      {
+        "user_type": "domain_term_8fef16a10e",
+        "historical_segment": 400,
+        "historical_payment_tier": "(0-1200]",
+        "user_count": 1
+      },
+      {
+        "user_type": "domain_term_8fef16a10e",
+        "historical_segment": 500,
+        "historical_payment_tier": "(0-1200]",
+        "user_count": 1
+      },
+      {
+        "user_type": "domain_term_8fef16a10e",
+        "historical_segment": 500,
+        "historical_payment_tier": "(1200-6000]",
+        "user_count": 1
+      },
+      {
+        "user_type": "domain_term_1f334c2cdf",
+        "historical_segment": 300,
+        "historical_payment_tier": "0",
+        "user_count": 1
+      },
+      {
+        "user_type": "domain_term_011d8e557f",
+        "historical_segment": 100,
+        "historical_payment_tier": "0",
+        "user_count": 1
+      },
+      {
+        "user_type": "domain_term_011d8e557f",
+        "historical_segment": 200,
+        "historical_payment_tier": "0",
+        "user_count": 1
+      },
+      {
+        "user_type": "domain_term_011d8e557f",
+        "historical_segment": 400,
+        "historical_payment_tier": "0",
+        "user_count": 1
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_118",
+    "sql": "WITH activity_user AS (\n SELECT\n suser AS vplayerid,\n MAX(CASE WHEN itype = '1' THEN 1 ELSE 0 END) AS is_exposed,\n MAX(CASE WHEN itype IN ('10','200','201','202','203','204','31','32','33','34','35','702','703') THEN 1 ELSE 0 END) AS is_participated\n FROM dwd_jordass_mysteryplaylog_hi\n WHERE iactid = '1193536'\n AND SUBSTR(tdbank_imp_date, 1, 8) BETWEEN '20240426' AND '20240505'\n GROUP BY suser\n),\nuser_status AS (\n SELECT\n vplayerid,\n CASE\n WHEN is_exposed = 1 AND is_participated = 0 THEN 'domain_term_c7b64cd031'\n WHEN is_exposed = 1 AND is_participated = 1 THEN 'domain_term_d440a94159'\n ELSE NULL\n END AS exposure_status\n FROM activity_user\n WHERE is_exposed = 1\n),\ntraditional_mode AS (\n SELECT\n vplayerid,\n SUM(roundcnt) AS total_rounds,\n SUM(roundtime) AS total_time\n FROM dws_jordass_mode_roundrecord_di\n WHERE modename = 'domain_term_3b87e170bd'\n AND dtstatdate BETWEEN '20240426' AND '20240505'\n GROUP BY vplayerid\n),\nactive_data AS (\n SELECT\n vplayerid,\n SUM(ionlinetime) AS active_time\n FROM dws_jordass_login_di\n WHERE dtstatdate BETWEEN '20240426' AND '20240505'\n AND platid = 255\n GROUP BY vplayerid\n),\nprofessional_match AS (\n SELECT\n vplayerid,\n COUNT(*) AS match_count\n FROM dwd_jordass_playerprofstagechange_hi\n WHERE tournamentid = 30002\n AND SUBSTR(tdbank_imp_date, 1, 8) BETWEEN '20240426' AND '20240505'\n GROUP BY vplayerid\n)\nSELECT\n us.exposure_status AS domain_term_2a0c6a9de0,\n COUNT(DISTINCT us.vplayerid) AS domain_term_ca62426403,\n COUNT(DISTINCT tm.vplayerid) AS domain_term_d15820c997,\n COALESCE(SUM(tm.total_rounds), 0) AS domain_term_e3c548248d,\n COALESCE(SUM(tm.total_time), 0) AS domain_term_67cd2e52d3,\n COUNT(DISTINCT ad.vplayerid) AS domain_term_d0e9de543d,\n COALESCE(SUM(ad.active_time), 0) AS domain_term_c4c9f57f0b,\n COUNT(DISTINCT pm.vplayerid) AS domain_term_8fb916d186,\n COALESCE(SUM(pm.match_count), 0) AS domain_term_4466c30ed0\nFROM user_status us\nLEFT JOIN traditional_mode tm ON us.vplayerid = tm.vplayerid\nLEFT JOIN active_data ad ON us.vplayerid = ad.vplayerid\nLEFT JOIN professional_match pm ON us.vplayerid = pm.vplayerid\nGROUP BY us.exposure_status;",
+    "status": "success",
+    "result": [
+      {
+        "domain_term_2a0c6a9de0": "domain_term_c7b64cd031",
+        "domain_term_ca62426403": 5,
+        "domain_term_d15820c997": 0,
+        "domain_term_e3c548248d": 0,
+        "domain_term_67cd2e52d3": 0,
+        "domain_term_d0e9de543d": 0,
+        "domain_term_c4c9f57f0b": 0,
+        "domain_term_8fb916d186": 0,
+        "domain_term_4466c30ed0": 0
+      },
+      {
+        "domain_term_2a0c6a9de0": "domain_term_d440a94159",
+        "domain_term_ca62426403": 5,
+        "domain_term_d15820c997": 5,
+        "domain_term_e3c548248d": 35,
+        "domain_term_67cd2e52d3": 21069,
+        "domain_term_d0e9de543d": 5,
+        "domain_term_c4c9f57f0b": 10500,
+        "domain_term_8fb916d186": 5,
+        "domain_term_4466c30ed0": 5
+      }
+    ]
+  },
+  {
+    "sql_id": "sql_119",
+    "sql": "WITH target_dates AS (\n SELECT 20250429 AS dtstatdate\n UNION ALL\n SELECT 20250601 AS dtstatdate\n),\nlogin_df_data AS (\n SELECT\n t1.dtstatdate,\n t1.vplayerid,\n t1.dregdate,\n t1.cbitmap,\n CASE\n WHEN t1.dregdate = t1.dtstatdate THEN 'domain_term_2cd9e6ce81'\n WHEN INSTR(SUBSTR(t1.cbitmap, 2, 7), '1') > 0 THEN '7domain_term_b7a40ed54a'\n WHEN INSTR(SUBSTR(t1.cbitmap, 2, 7), '1') = 0 AND INSTR(SUBSTR(t1.cbitmap, 8, 7), '1') > 0 THEN '7~14domain_term_a00a2c22cc'\n WHEN INSTR(SUBSTR(t1.cbitmap, 2, 14), '1') = 0 AND INSTR(SUBSTR(t1.cbitmap, 15, 16), '1') > 0 THEN '14~30domain_term_a00a2c22cc'\n WHEN INSTR(SUBSTR(t1.cbitmap, 2, 30), '1') = 0 AND INSTR(SUBSTR(t1.cbitmap, 31, 60), '1') > 0 THEN '30~90domain_term_a00a2c22cc'\n WHEN INSTR(SUBSTR(t1.cbitmap, 2, 90), '1') = 0 AND INSTR(SUBSTR(t1.cbitmap, 91), '1') > 0 THEN '90domain_term_ef4c784c10'\n ELSE 'domain_term_1a26edf94a'\n END AS user_type\n FROM dws_jordass_login_df t1\n INNER JOIN target_dates td ON t1.dtstatdate = td.dtstatdate\n WHERE t1.platid = 255\n),\nsubsequent_login AS (\n SELECT\n t2.vplayerid,\n t2.dtstatdate AS login_date\n FROM dws_jordass_login_di t2\n WHERE t2.platid = 255\n AND (\n (t2.dtstatdate BETWEEN 20250430 AND 20250514)\n OR (t2.dtstatdate BETWEEN 20250602 AND 20250616)\n )\n)\nSELECT\n lf.dtstatdate,\n CASE\n WHEN sl.vplayerid IS NULL THEN 'domain_term_02be4896f1'\n ELSE 'domain_term_b2bc50a390'\n END AS login_status,\n lf.user_type,\n COUNT(DISTINCT lf.vplayerid) AS user_count\nFROM login_df_data lf\nLEFT JOIN subsequent_login sl ON lf.vplayerid = sl.vplayerid\nGROUP BY lf.dtstatdate,\n CASE\n WHEN sl.vplayerid IS NULL THEN 'domain_term_02be4896f1'\n ELSE 'domain_term_b2bc50a390'\n END,\n lf.user_type\nORDER BY lf.dtstatdate, login_status, lf.user_type;",
+    "status": "success",
+    "result": [
+      {
+        "dtstatdate": "20250429",
+        "login_status": "domain_term_b2bc50a390",
+        "user_type": "14~30domain_term_a00a2c22cc",
+        "user_count": 1
+      },
+      {
+        "dtstatdate": "20250429",
+        "login_status": "domain_term_b2bc50a390",
+        "user_type": "7domain_term_b7a40ed54a",
+        "user_count": 1
+      },
+      {
+        "dtstatdate": "20250429",
+        "login_status": "domain_term_b2bc50a390",
+        "user_type": "90domain_term_ef4c784c10",
+        "user_count": 1
+      },
+      {
+        "dtstatdate": "20250429",
+        "login_status": "domain_term_02be4896f1",
+        "user_type": "30~90domain_term_a00a2c22cc",
+        "user_count": 1
+      },
+      {
+        "dtstatdate": "20250429",
+        "login_status": "domain_term_02be4896f1",
+        "user_type": "7~14domain_term_a00a2c22cc",
+        "user_count": 1
+      },
+      {
+        "dtstatdate": "20250429",
+        "login_status": "domain_term_02be4896f1",
+        "user_type": "domain_term_2cd9e6ce81",
+        "user_count": 1
+      },
+      {
+        "dtstatdate": "20250601",
+        "login_status": "domain_term_b2bc50a390",
+        "user_type": "14~30domain_term_a00a2c22cc",
+        "user_count": 1
+      },
+      {
+        "dtstatdate": "20250601",
+        "login_status": "domain_term_b2bc50a390",
+        "user_type": "7domain_term_b7a40ed54a",
+        "user_count": 1
+      },
+      {
+        "dtstatdate": "20250601",
+        "login_status": "domain_term_b2bc50a390",
+        "user_type": "90domain_term_ef4c784c10",
+        "user_count": 1
+      },
+      {
+        "dtstatdate": "20250601",
+        "login_status": "domain_term_02be4896f1",
+        "user_type": "30~90domain_term_a00a2c22cc",
+        "user_count": 1
+      },
+      {
+        "dtstatdate": "20250601",
+        "login_status": "domain_term_02be4896f1",
+        "user_type": "7~14domain_term_a00a2c22cc",
+        "user_count": 1
+      },
+      {
+        "dtstatdate": "20250601",
+        "login_status": "domain_term_02be4896f1",
+        "user_type": "domain_term_2cd9e6ce81",
+        "user_count": 1
+      }
+    ]
+  }
+]

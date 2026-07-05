@@ -1,0 +1,870 @@
+[
+  {
+    "sql_id": "sql_1",
+    "question": "domain_term_ca8ffc39902025.07.24domain_term_46b8ec90c1，domain_term_155a2864ee2025.05.30-2025.07.24domain_term_0aa3c84e9b。\ndomain_term_ded698ae1e：suserid、sgamecode、ionlinetime\n\n",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dws_mgamejp_login_user_activity_di",
+      "dim_vplayerid_vies_df"
+    ],
+    "knowledge": "domain_term_1a9722a044：\nsgamecode in (\"initiatived\",\"jordass\",\"esports\",\"allianceforce\",\"strategy\",\"playzone\",\"su\")\nsaccounttype = \"-100\" -- domain_term_0871491a52，domain_term_91a5212271-100domain_term_e39d88044d\nand suseridtype in (\"qq\",\"wxid\") -- domain_term_31ab92d142\nand splattype = \"-100\" -- domain_term_3b34749ba2\nand splat = \"-100\" -- domain_term_e4b9d69486，domain_term_2dd771658f-100\n"
+  },
+  {
+    "sql_id": "sql_2",
+    "question": "domain_term_6fe5c91f221domain_term_926e49cfb0，2025.7.17-2025.7.23domain_term_17af736a39721domain_term_4eb94354a3\ndomain_term_ded698ae1e:gplayerid。",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dim_extract_311381_conf",
+      "dws_argothek_ce1_login_di",
+      "dws_argothek_ce1_cbt2_vplayerid_suserid_di"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_3",
+    "question": "domain_term_ca8ffc39902025domain_term_6f14c2641c1domain_term_a262ddb5fe\ndomain_term_ded698ae1e：domain_term_e7c31937dbgplayerid",
+    "domain_term_8a53ded169": "domain_term_64ef687a16",
+    "table_list": [
+      "dws_argothek_oss_login_di",
+      "dim_argothek_gplayerid2qqwxid_df",
+      "dws_mgamejp_login_user_activity_di"
+    ],
+    "knowledge": "domain_term_db1537110d:\nsgamecode = \"initiatived\" -- domain_term_b9203e2c37\nand saccounttype = \"-100\" -- domain_term_0871491a52，domain_term_91a5212271-100domain_term_e39d88044d\nand suseridtype in (\"qq\", \"wxid\") -- domain_term_f63da5b695，domain_term_91a5212271qqdomain_term_30f4d7cfe8wxid\nand splattype in (\"-100\", \"PC\") -- domain_term_822865265cPCdomain_term_a2e1860824\nand splat = \"-100\" -- domain_term_2dd771658f-100"
+  },
+  {
+    "sql_id": "sql_4",
+    "question": "domain_term_0e5c34e8bd\n2023.07.1200 - 2025071523\ndomain_term_ded698ae1e：domain_term_25124ed74c（domain_term_e805014aa5）、domain_term_ca62426403",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dwd_argothek_playerlogin_hi"
+    ],
+    "knowledge": "domain_term_2cf2607ebb：\nnicknamedomain_term_c7617b77a3#domain_term_2222ced8f8，domain_term_91a5212271#domain_term_b4f9cab7ddnickname\ndomain_term_30fd4ed55b：domain_term_e0425e3f5d#131234 -> domain_term_25124ed74c：domain_term_e0425e3f5d"
+  },
+  {
+    "sql_id": "sql_6",
+    "question": "domain_term_ca8ffc39902025.6.12-2025.7.14domain_term_53e72a0d53T2domain_term_8de3c727ba20250529domain_term_d85030d97a。\ndomain_term_ded698ae1e：vplayerid",
+    "domain_term_8a53ded169": "domain_term_64ef687a16",
+    "table_list": [
+      "dim_argothek_gplayerid2qqwxid_df",
+      "dws_argothek_ce1_cbt2_vplayerid_suserid_di"
+    ],
+    "knowledge": "domain_term_c3da8fe2aa：\nitag=\"T2\""
+  },
+  {
+    "sql_id": "sql_7",
+    "question": "domain_term_ca8ffc39902025.7.3-2025.7.6 domain_term_a27c4f8d83，domain_term_ec9570f815\ndomain_term_253bfa9237，domain_term_8801d89ed5\n89903934\n89903933\n89903932\n89902725\n89902724\n89902723\n89900960\n89900961\n89900962\ndomain_term_ded698ae1e：domain_term_b6fed9af83（20250703、...、20250706）、domain_term_f0ae82e4aa、domain_term_3b6cf1cef7",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dws_argothek_ce1_cbt2_vplayerid_suserid_di",
+      "dwd_argothek_cbt2kaibai_hi"
+    ],
+    "knowledge": "domain_term_b36ada9582：domain_term_dcc4233255sourcenamedomain_term_529ee89d40\ndomain_term_0414115c6b:\niregway in (\"89903934\", \"89903933\", \"89903932\", \"89902725\", \"89902724\", \"89902723\", \"89900960\", \"89900961\", \"89900962\")"
+  },
+  {
+    "sql_id": "sql_8",
+    "question": "domain_term_ca8ffc399025domain_term_6f14c2641c4domain_term_50e42cec5925domain_term_6f14c2641c6domain_term_d9b59879f3，domain_term_2818373c6cgamePodIddomain_term_c173a5e0f1。\ndomain_term_ded698ae1e：\ndomain_term_51d806399a(2025-04、2025-05、2025-06)\ndomain_term_2b32cc53ab\ndomain_term_551433f0db\ndomain_term_988f7795d7\ndomain_term_c1d0a983b0\ndomain_term_27559c8192\ndomain_term_5bbed3de2f",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dwd_argothek_matchdetails_hi"
+    ],
+    "knowledge": "domain_term_62a0ef897f:\nlower(completionState) in (\"completed\", \"surrendered\")\ndomain_term_7c25cd755b（domain_term_9681772266、domain_term_1fb668d204、domain_term_e8a4554eb3）domain_term_851da21d2a:\nqueueId in (\"swiftplay\", \"competitive\", \"unrated\")\ncount(distinct matchId) domain_term_e6d3885b26，domain_term_0fafa9e341dtEventTime"
+  },
+  {
+    "sql_id": "sql_9",
+    "question": "domain_term_ca8ffc399020250702domain_term_c7f1e756c2fpsdomain_term_e19711edbe。\ndomain_term_ded698ae1e：domain_term_77e67092e1，domain_term_075657546d",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dim_mgamejp_account_allinfo_nf",
+      "dim_uf_player_gameinfo_mf"
+    ],
+    "knowledge": "domain_term_8130f2c70c:\nand saccounttype = \"-100\" -- domain_term_3d8bf833ba-100\nand suseridtype in (\"qq\",\"wxid\") -- domain_term_bdc23b73fcqqdomain_term_30f4d7cfe8wxid\nand sgamecode in (\"esports\",\"mobile_live\",\"initiatived\",\"allianceforce\",\"strategy\",\"jordass\",\"su\",\"playzone\",\"battlezone\",\"battlearena\",\"weapon\",\"playhub\",\"manager\",\"apgame\") -- domain_term_dbba8ec1fcfps\nand splattype = \"-100\" -- domain_term_e34fba128e-100\ndomain_term_3d4d35e34a:\ndomain_term_5042bc63d420250702domain_term_a58840b7756domain_term_99e3f5f282，domain_term_08d04eb3bfilastactdate >= \"20250104\"\ndomain_term_62219e6c7a：\ndomain_term_46c3ac091c20250702，domain_term_7decb8398b，domain_term_6dca7780aakp_imp_date = \"202506\"domain_term_9a045028ce"
+  },
+  {
+    "sql_id": "sql_10",
+    "question": "domain_term_ca8ffc39902023.7.12-2025.6.15，domain_term_ff2ad0e91abpdomain_term_f187849bbd。\ndomain_term_ded698ae1e：domain_term_51fd93fb67id、domain_term_a1b4cf13d6、domain_term_6fb1090810、domain_term_c2c7b5ca49",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dwd_argothek_playerloadout_expressions_hi",
+      "dwd_argothek_playerloadout_hi",
+      "dwd_argothek_playerloadout_sprayslots_hi",
+      "dwd_argothek_commercialization_gearid_df",
+      "dim_argothek_seasondate_df"
+    ],
+    "knowledge": "bpdomain_term_fd32ddc450:\nand purchaseSource = \"BATTLEPASS_PROGRESS\" -- domain_term_a9e464dca2BATTLEPASS_PROGRESS\nand itemtype = \"d5f120f8-ff8c-4aac-92ea-f2b5acbe9475\" -- domain_term_dcce9a144aitemtypedomain_term_990dac305f\ndomain_term_d67b4cb53d：\nexpressionassetid is not null and expressiontypeid = \"d5f120f8-ff8c-4aac-92ea-f2b5acbe9475\""
+  },
+  {
+    "sql_id": "sql_11",
+    "question": "domain_term_6f4375476330domain_term_bdfec5a82c，domain_term_d8c84172ac30domain_term_dee95c3fb3\ndomain_term_ded698ae1e：domain_term_d8c84172ac30domain_term_bdfec5a82c、domain_term_d8c84172ac30domain_term_dee95c3fb3\ndomain_term_ee71941a80：\ndomain_term_cfeb00627e：'20250617'\ndomain_term_acb542bae2iddomain_term_b7a385ec00：\n71d260ca-4bad-81f2-0298-44860341a7a6\n48601754-442d-98cb-2109-3fb2075500ec\na9126263-439c-7be6-d668-52a6c0c0a36f\n34ecc788-4034-71d2-a0ac-c398b8ecb2ae\n56f98991-43f8-dcc8-189e-08b7ae6c42ad\n8453f8ef-4c0b-46e2-8768-3e9e45c67a2c\n06d90274-435f-3e32-9d57-26bc228ae2e5\n8196dea4-4229-c951-13a9-088fb13b3512\n3abc330f-444a-6dfd-5863-81856ba62624\n041a43a4-46fe-dab7-c974-36bf91eab33d\n5b863cb9-4e41-ec89-69ee-49a223d05ff1\n",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dwd_argothek_gearrecord_df",
+      "dws_argothek_oss_useractivity_df"
+    ],
+    "knowledge": "domain_term_d5c7b6efc7iworldid = 255domain_term_56860128c0， domain_term_06d56a00d9：\niGoodsId in (\n\"71d260ca-4bad-81f2-0298-44860341a7a6\",\n\"48601754-442d-98cb-2109-3fb2075500ec\",\n\"a9126263-439c-7be6-d668-52a6c0c0a36f\",\n\"34ecc788-4034-71d2-a0ac-c398b8ecb2ae\",\n\"56f98991-43f8-dcc8-189e-08b7ae6c42ad\",\n\"8453f8ef-4c0b-46e2-8768-3e9e45c67a2c\",\n\"06d90274-435f-3e32-9d57-26bc228ae2e5\",\n\"8196dea4-4229-c951-13a9-088fb13b3512\",\n\"3abc330f-444a-6dfd-5863-81856ba62624\",\n\"041a43a4-46fe-dab7-c974-36bf91eab33d\",\n\"5b863cb9-4e41-ec89-69ee-49a223d05ff1\""
+  },
+  {
+    "sql_id": "sql_13",
+    "question": "domain_term_ca8ffc399020230712domain_term_e4abda32bb，domain_term_ba3acd7ed930domain_term_58c7e85ac7，domain_term_2ef5469df53domain_term_d9b59879f312domain_term_48ed614644 1500 domain_term_1128177db2wxid\ndomain_term_ded698ae1e：domain_term_e7c31937dbwxid\ndomain_term_d3bd484591:20230712-20250612",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dim_mgamejp_tbplayerid2wxid_nf",
+      "dws_argothek_oss_portaltransaction_di",
+      "dim_mgamejp_idconversion_wxid_qq_nf",
+      "dws_argothek_oss_login_di",
+      "dim_mgamejp_tbplayerid2qq_nf"
+    ],
+    "knowledge": "domain_term_f8b1f3abd61500domain_term_ba5760af3b：\nsum(ftranamt)/100 > 1500\ndomain_term_ac90b44261sappid in (\"qq\",\"wx\")"
+  },
+  {
+    "sql_id": "sql_14",
+    "question": "domain_term_ca8ffc39902025domain_term_6f14c2641c5domain_term_af5a0e16612025domain_term_6f14c2641c6domain_term_1c8dcd5a78qqdomain_term_4a528101a2\ndomain_term_ded698ae1e:domain_term_9ba763ea34suserid",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dws_argothek_oss_login_di",
+      "dim_argothek_gplayerid2qqwxid_df"
+    ],
+    "knowledge": "domain_term_70c3158069dim_argothek_gplayerid2qqwxid_dfdomain_term_e52ca50fc0\"20250610\""
+  },
+  {
+    "sql_id": "sql_15",
+    "question": "domain_term_ca8ffc39902025domain_term_6f14c2641c5domain_term_c643a65d8b，domain_term_2491ae7f9ePCdomain_term_72d8da83c6gplayerid\ndomain_term_ded698ae1e：domain_term_e7c31937dbgplayerid",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dws_argothek_oss_useractivity_df",
+      "dim_argothek_gplayerid2qqwxid_df",
+      "dws_mgamejp_login_user_activity_di"
+    ],
+    "knowledge": "sgamecode = \"initiatived\" -- domain_term_b9203e2c37\nand itimes >= 1 -- domain_term_36f39e88cf\nand saccounttype = \"-100\" -- domain_term_0871491a52，domain_term_91a5212271-100domain_term_e39d88044d\nand suseridtype in (\"qq\", \"wxid\") -- domain_term_f63da5b695，domain_term_91a5212271qqdomain_term_30f4d7cfe8wxid\nand splattype = \"PC\" -- domain_term_d3296b6b0b\nand splat = \"-100\" -- domain_term_2dd771658f-100\n5domain_term_d3bdd89e5a：domain_term_70c3158069INSTR(SUBSTR(REVERSE(RPAD(iactivity,128,'0')),1,31),'1') = 0 AND INSTR(SUBSTR(REVERSE(RPAD(iactivity,128,'0')),32,31),'1') > 0\ndomain_term_91a521227120250608domain_term_c2895f2699"
+  },
+  {
+    "sql_id": "sql_16",
+    "question": "domain_term_ca8ffc3990：domain_term_4636680d1c（2023/7/12-2025/5/31）domain_term_48816d7c26，domain_term_a43e2761cc。\ndomain_term_ded698ae1e：domain_term_b6fed9af83（20230712-20250531）、domain_term_1279939a74（domain_term_9429eba2f6、...、domain_term_4117d4fbcd、domain_term_3fbcb17d04）domain_term_a6e72c254b、domain_term_cf134fc795、domain_term_228492be95 domain_term_4046494f89>=6domain_term_05cde8b681>=8domain_term_934ea03664",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dwd_argothek_playermatchstats_hi"
+    ],
+    "knowledge": "domain_term_39a1df151c：\ncase\nwhen competitiveTier in (3, 4, 5) then \"domain_term_9429eba2f6\"\nwhen competitiveTier in (6, 7, 8) then \"domain_term_8fe8875283\"\nwhen competitiveTier in (9, 10, 11) then \"domain_term_bc916383f6\"\nwhen competitiveTier in (12, 13, 14) then \"domain_term_3713947f42\"\nwhen competitiveTier in (15, 16, 17) then \"domain_term_e506cf878f\"\nwhen competitiveTier in (18, 19, 20) then \"domain_term_a768735ad5\"\nwhen competitiveTier in (21, 22, 23) then \"domain_term_ed5a47708f\"\nwhen competitiveTier >= 24 then \"domain_term_329000b58d\"\nelse \"domain_term_4117d4fbcd\"\ndomain_term_3cbfc42e4c：domain_term_ed0eea8f20iddomain_term_bd0f309115\"competitive\"\ndomain_term_c3956e760c:\ndomain_term_0e2d3a3c09completion_statedomain_term_881748abba；domain_term_0e2d3a3c09roundsdiffdomain_term_06f14e64fe"
+  },
+  {
+    "sql_id": "sql_18",
+    "question": "domain_term_ca8ffc399020250506-20250512domain_term_a9fed3708e\ndomain_term_ded698ae1e：domain_term_b6fed9af83（20250506、...、20250512）、domain_term_c152be9f50、domain_term_ce06f579c1\ndomain_term_c78428b106：domain_term_e178ecdba1：iloginway in (1,10,11,12,35,20,28,29,30,31,32,33,34,36)",
+    "domain_term_8a53ded169": "domain_term_64ef687a16",
+    "table_list": [
+      "dws_argothek_oss_login_di"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_19",
+    "question": "domain_term_ca8ffc39902024domain_term_6f14c2641c5domain_term_d9b59879f302domain_term_15917f3b32-2024domain_term_6f14c2641c5domain_term_d9b59879f302domain_term_15917f3b32，domain_term_59d9129a7a。\n\ndomain_term_682558e796：\"20250426-20250502\"\n\ndomain_term_ded698ae1e：\ndomain_term_d19e819043QuickMatchdomain_term_a8f11bce00\ndomain_term_d19e819043RushModedomain_term_a8f11bce00\ndomain_term_d19e819043CombatArenadomain_term_a8f11bce00\ndomain_term_c67c350d04\ndomain_term_88bd1b23b5\n",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_argothek_oss_login_di",
+      "dwd_argothek_playermatchstats_hi",
+      "dim_argothek_gplayerid_vroleid_df"
+    ],
+    "knowledge": "domain_term_57e81ef09f：\nhaving count(distinct queueid) = 1 -- domain_term_16d62bd9d9\nand max(queueid) = \"xxx\" -- domain_term_ed0eea8f20IDdomain_term_b7a385ec00RushMode\ndomain_term_8529354d30：\niareaid = \"101\""
+  },
+  {
+    "sql_id": "sql_20",
+    "question": "domain_term_ca8ffc399020240101-20240430，domain_term_e9cb82ae38。\ndomain_term_ded698ae1e：\ndomain_term_51d806399a（domain_term_7bae1e0954：202401、202402、202403、202404）\ndomain_term_6f34fb6796（domain_term_99f6904ff3）\ndomain_term_eb85a431ca\ndomain_term_269d5042d8\ndomain_term_2d9f167716（domain_term_99f6904ff3）\ndomain_term_0b95be7cfa\ndomain_term_7f471c720b\ndomain_term_d9b59879f3ARPA\ndomain_term_d9b59879f3ARPPA\ndomain_term_e761e6bef9\n\n",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_argothek_oss_login_di",
+      "dwd_argothek_playerlogout_hi",
+      "dws_argothek_oss_portaltransaction_di",
+      "dwd_argothek_playermatchstats_hi"
+    ],
+    "knowledge": "domain_term_1fb668d204：queueId=\"competitive\"\ndomain_term_b44cb3bf99：inetbarlevel = 2\ndomain_term_fc62dfffcf：icampuslevel > 0\ndomain_term_85429a36a8"
+  },
+  {
+    "sql_id": "sql_22",
+    "question": "domain_term_ca8ffc3990：domain_term_d8c84172ac30domain_term_76ddd28a465domain_term_792bbe6e088domain_term_c3304d1e49，domain_term_bc40cc088e，domain_term_337cadbc8fIDdomain_term_285bfecdeeqq\ndomain_term_ded698ae1e：QQ\ndomain_term_77282a67dd：20250330-20250428",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dws_argothek_oss_login_di",
+      "dim_argothek_gplayerid2qqwxid_df"
+    ],
+    "knowledge": "domain_term_9a9c5c6fb3：iloginway = 3\ndomain_term_9ba763ea34IDdomain_term_dcce9a144aswxid_type = \"qq\" -- domain_term_dcce9a144aswxid_typedomain_term_b7a385ec00\"qq\"\ndim_argothek_gplayerid2qqwxid_dfdomain_term_70c315806920250428"
+  },
+  {
+    "sql_id": "sql_23",
+    "question": "domain_term_ca8ffc39902025domain_term_6f14c2641c3domain_term_d9b59879f324domain_term_b67cfe1d552025domain_term_6f14c2641c3domain_term_d9b59879f330domain_term_15917f3b32，domain_term_452b05bfa5，domain_term_e203a80153qq\ndomain_term_ded698ae1e:qq",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dws_argothek_oss_login_di",
+      "dim_argothek_gplayerid2qqwxid_df",
+      "dwd_argothek_playermatchstats_hi",
+      "dim_argothek_gplayerid_vroleid_df"
+    ],
+    "knowledge": "domain_term_9a9c5c6fb3：iloginway = 3\ndomain_term_9ba763ea34IDdomain_term_dcce9a144aswxid_type = \"qq\" -- domain_term_dcce9a144aswxid_typedomain_term_b7a385ec00\"qq\""
+  },
+  {
+    "sql_id": "sql_24",
+    "question": "domain_term_0c38256c26，domain_term_fa0eb26c48。domain_term_218a02bc96，domain_term_339681e312、domain_term_7bdf7f1315\ndomain_term_ded698ae1e：domain_term_d4aba4491did、domain_term_e4333d4f553domain_term_4e2f4d67d3、domain_term_e4333d4f5510domain_term_4e2f4d67d3、domain_term_dc5d27d736、domain_term_84b78fb0073domain_term_1c4d5c4847、domain_term_84b78fb00710domain_term_1c4d5c4847\n\n",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dwd_argothek_playermatchdetail_hi"
+    ],
+    "knowledge": "domain_term_e613395b63：\ndomain_term_d4aba4491d1domain_term_819d86ef07：2023/07/26\ndomain_term_d4aba4491d2domain_term_819d86ef07：2023/11/01\ndomain_term_d4aba4491d3domain_term_819d86ef07：2024/03/27\ndomain_term_d4aba4491d4domain_term_819d86ef07：2024/08/29\ndomain_term_d4aba4491d5domain_term_819d86ef07：2025/01/09\ndomain_term_d4aba4491d6domain_term_819d86ef07：2025/03/06\ndomain_term_d4aba4491d1domain_term_ca06362d50id:\"e370fa57-4757-3604-3648-499e1f642d3f\",\"cc8b64c8-4b25-4ff9-6e7f-37b4da43d235\"\ndomain_term_d4aba4491d2domain_term_ca06362d50id:\"0e38b510-41a8-5780-5e8f-568b2a4f2d6c\"\ndomain_term_d4aba4491d3domain_term_ca06362d50id:\"1dbf2edd-4729-0984-3115-daa5eed44993\"\ndomain_term_d4aba4491d4domain_term_ca06362d50id:\"efba5359-4016-a1e5-7626-b1ae76895940\"\ndomain_term_d4aba4491d5domain_term_ca06362d50id:\"b444168c-4e35-8076-db47-ef9bf368f384\"\ndomain_term_d4aba4491d6domain_term_ca06362d50id:\"df1cb487-4902-002e-5c17-d28e83e78588\"\n\ndomain_term_c3956e760c：\nprovisioningflowid = \"Matchmaking\" -- domain_term_361de1e5f7、domain_term_339681e312、domain_term_7bdf7f1315"
+  },
+  {
+    "sql_id": "sql_26",
+    "question": "domain_term_ca8ffc3990：2024-01-01domain_term_792bbe6e082024-12-16，domain_term_5960d51f4bxdomain_term_5e5b8169ee、domain_term_3b2589a0cdxdomain_term_5e5b8169ee，domain_term_361de1e5f7、domain_term_339681e312、domain_term_7bdf7f1315。\ndomain_term_ded698ae1e：domain_term_5960d51f4bxdomain_term_5e5b8169ee、domain_term_3b2589a0cdxdomain_term_5e5b8169ee",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dwd_argothek_matchdetails_hi",
+      "dwd_argothek_abilityinfo_effects_hi"
+    ],
+    "knowledge": "provisioningflowid = \"Matchmaking\" -- domain_term_361de1e5f7、domain_term_339681e312、domain_term_7bdf7f1315\n\ndomain_term_9fe45d49f6：\ndomain_term_0d7436f96e：tag = \"EnemiesBlinded\"\ndomain_term_73334745e6：tag = \"AlliesBlinded\""
+  },
+  {
+    "sql_id": "sql_27",
+    "question": "domain_term_ca8ffc3990：2024-01-01domain_term_792bbe6e082024-12-16，domain_term_92b479edf9xdomain_term_0fed1c7a3c，domain_term_361de1e5f7、domain_term_339681e312、domain_term_7bdf7f1315。\ndomain_term_ded698ae1e：domain_term_a21b3ae2ce",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dwd_argothek_matchdetails_hi",
+      "dwd_argothek_apinventorymovementlog_hi"
+    ],
+    "knowledge": "provisioningflowid = \"Matchmaking\" -- domain_term_361de1e5f7、domain_term_339681e312、domain_term_7bdf7f1315\n\ndomain_term_8b8cb66903：\nTransactionType = \"FulfillRequest\""
+  },
+  {
+    "sql_id": "sql_29",
+    "question": "domain_term_9507bdf912：2024.6.18domain_term_43401e739e2025domain_term_6f14c2641c3domain_term_d9b59879f330domain_term_15917f3b32\ndomain_term_ded698ae1e：domain_term_e62d5e1b54（20240617、20240624、...、20250324），domain_term_36b518c7f1，domain_term_4f38ad253d，domain_term_bef053f000，domain_term_19a8c5d86a\n\ndomain_term_8a0ce9ab48：domain_term_075f61f600 / domain_term_fef566845d\ndomain_term_19a8c5d86a：domain_term_9efc666084",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_login_di",
+      "dws_jordass_mode_roundrecord_di"
+    ],
+    "knowledge": "domain_term_ea80b64fd5，domain_term_2913d52f1f\n\ndomain_term_801dac8dc4：domain_term_53f80989d6，domain_term_2f5d2e9c22，domain_term_92ed3a94af“domain_term_9464b2154c”。\ndomain_term_6cc12b0b95“domain_term_3b87e170bd”，domain_term_a28ad41abc“CG”domain_term_25829b81c4，domain_term_f745580dea“domain_term_3d39b3c319”，domain_term_97b2c7fdd5“domain_term_124eca6c09”；\ndomain_term_6cc12b0b95“domain_term_3b87e170bd”domain_term_f745580dea“domain_term_3d39b3c319”，domain_term_97b2c7fdd5“domain_term_9424c3ec03”；\ndomain_term_6cc12b0b95“domain_term_3b87e170bd”domain_term_f745580dea“domain_term_7fd6c807a2”，domain_term_97b2c7fdd5“domain_term_7fd6c807a2”；\ndomain_term_6cc12b0b95“domain_term_3b87e170bd”domain_term_f745580dea“domain_term_d52ab87191”，domain_term_97b2c7fdd5“domain_term_d52ab87191”；\ndomain_term_2efc8e1ed1“domain_term_289f963191”，domain_term_97b2c7fdd5“domain_term_4b98916e48”；\ndomain_term_2efc8e1ed1“domain_term_e11fdd8c9f”，domain_term_97b2c7fdd5“domain_term_93da0581e7”；\ndomain_term_2d45201b52“domain_term_8a6c6ccf17”，domain_term_97b2c7fdd5“domain_term_170f5d71af”；\ndomain_term_2d45201b52“domain_term_68f20c1125”，domain_term_97b2c7fdd5“domain_term_b750b1321f”；\ndomain_term_2d45201b52“domain_term_372cbd9462”，domain_term_97b2c7fdd5“domain_term_372cbd9462”；\ndomain_term_2d45201b52“domain_term_aa6a118e23”，domain_term_97b2c7fdd5“domain_term_aa6a118e23”；\ndomain_term_2d45201b52“domain_term_4e5ccfc9be”，domain_term_97b2c7fdd5“domain_term_4e5ccfc9be”\ndomain_term_2d45201b52“domain_term_41ca2be751”，domain_term_97b2c7fdd5“domain_term_96bfff66c5”。"
+  },
+  {
+    "sql_id": "sql_31",
+    "question": "domain_term_ca8ffc399020250217-20250318domain_term_95ed5d7828\ndomain_term_ded698ae1e：domain_term_e78df76d5e（domain_term_3b87e170bd、domain_term_68f20c1125、...、domain_term_41ca2be751）、domain_term_ca62426403",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_matchlog_stat_di",
+      "dwd_jordass_buttonpress_pre_di",
+      "dws_jordass_mode_roundrecord_di"
+    ],
+    "knowledge": "domain_term_c947b56c77：domain_term_0fc1fc9726；\ndomain_term_4002360f45 modename in ('domain_term_3b87e170bd','domain_term_68f20c1125','domain_term_8a6c6ccf17','domain_term_aa6a118e23','domain_term_372cbd9462','domain_term_4e5ccfc9be','domain_term_685408e56a','domain_term_41ca2be751')\ndomain_term_b5ffb0129a：ugcmbuttonclickdomain_term_a78a1e5226；\ndomain_term_389ca318db：vtemp1='domain_term_de1af83a46' domain_term_a8002aebc0"
+  },
+  {
+    "sql_id": "sql_32",
+    "question": "domain_term_ca8ffc39902023/1/14-2023/1/28\n2024/2/2-2024/2/16\n2025/1/21-2025/2/4\ndomain_term_ce7876ed36，domain_term_f4893f3121\ndomain_term_ded698ae1e：domain_term_b6fed9af83（20230101、20230102、...、20230128、20240202、...、20250204），domain_term_f2f555f386，domain_term_29d0552d2e（domain_term_28bf227b9b）",
+    "domain_term_8a53ded169": "domain_term_64ef687a16",
+    "table_list": [
+      "dws_jordass_mode_roundrecord_di"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_40",
+    "question": "sql_40domain_term_7f344627082024.3.1-2024.6.30domain_term_d93ca1a59b domain_term_4e22acf47f、domain_term_1816af9ef5、domain_term_b65fab437c、domain_term_61d862abb9、domain_term_0e3a85045f\n\ndomain_term_ded698ae1e：domain_term_51d806399a(202403、...、202406)、domain_term_9c14445b43、domain_term_4e9fa857cb、domain_term_3cfae6cbda、domain_term_18381cd366、domain_term_ebfb719c55\n",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_login_di",
+      "dws_jordass_login_df"
+    ],
+    "knowledge": "domain_term_4e22acf47f：domain_term_15e71bd0e7\ndomain_term_1816af9ef5：domain_term_d686de7b2d，domain_term_79592c3fea\ndomain_term_b65fab437c：domain_term_d4513692a9（domain_term_f81ac0d7c5，domain_term_8860a83f4a）domain_term_e68b004c081-4domain_term_c3304d1e49\ndomain_term_61d862abb9：domain_term_d4513692a9（domain_term_f81ac0d7c5，domain_term_8860a83f4a）domain_term_e68b004c085-15domain_term_c3304d1e49\ndomain_term_0e3a85045f：domain_term_d4513692a9（domain_term_f81ac0d7c5，domain_term_8860a83f4a）domain_term_e68b004c0816domain_term_0ae70bf4b8"
+  },
+  {
+    "sql_id": "sql_41",
+    "question": "domain_term_ca8ffc39902024.1.1～1.3，domain_term_41e40873b1\ndomain_term_ded698ae1e：domain_term_77282a67dd(20240101、20240102、20240103)、domain_term_ce06f579c1",
+    "domain_term_8a53ded169": "domain_term_64ef687a16",
+    "table_list": [
+      "dws_jordass_login_di"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_42",
+    "question": "domain_term_ca8ffc39902021.11.1-2021.11.30domain_term_77d19a251bextarg2domain_term_a6684732ba\"_\"domain_term_82e00fd5082domain_term_e97ff45ec5(8,16,17)domain_term_a7493745e7\ndomain_term_ded698ae1e：domain_term_b6fed9af83，domain_term_fb2ea9e2dfextarg2domain_term_a6684732ba\"_\"domain_term_82e00fd5082domain_term_74c77a8ab0，domain_term_ca62426403，domain_term_d4a97e7577",
+    "domain_term_8a53ded169": "domain_term_64ef687a16",
+    "table_list": [
+      "dws_jordass_buttonpress_pre_di"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_43",
+    "question": "domain_term_ca8ffc39902025.1.1-2025.1.31domain_term_3e9f63c5cc\ndomain_term_ded698ae1e：domain_term_98eede69b7（domain_term_c34638dd57、domain_term_3b2e3b88bb、domain_term_5eb9e016e0）、domain_term_ce06f579c1\n\ndomain_term_98eede69b7：domain_term_c34638dd571-5domain_term_c3304d1e49，domain_term_3b2e3b88bb6-15domain_term_c3304d1e49，domain_term_bda61235e216domain_term_c3304d1e49",
+    "domain_term_8a53ded169": "domain_term_64ef687a16",
+    "table_list": [
+      "dws_jordass_login_di"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_44",
+    "question": "domain_term_ca8ffc39902024.01.01-2024.12.31domain_term_24cd18eefa，domain_term_724d1ba208\ndomain_term_ded698ae1e：domain_term_972cf91c9c(domain_term_922517cc73R、domain_term_0869071c92R、domain_term_0889c34972R、domain_term_51708ecb5dR、domain_term_d9c32a4c3d)、domain_term_970f516842、domain_term_4ee46c7663（domain_term_622f3c5acb）\n\ndomain_term_972cf91c9c：domain_term_922517cc73Rdomain_term_7701dee4c912，domain_term_0869071c92R(12,60]，domain_term_0889c34972R(60,180]，domain_term_51708ecb5dR(180+)",
+    "domain_term_8a53ded169": "domain_term_64ef687a16",
+    "table_list": [
+      "dws_jordass_water_di"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_47",
+    "question": "domain_term_ca8ffc39902023.07.01-08.31domain_term_24cd18eefa，domain_term_62583afaf42023.09.1-09.21domain_term_0d21ac5d602023.07.01-08.31domain_term_e44ae60e79\ndomain_term_ded698ae1e：domain_term_ca62426403",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dws_jordass_water_di",
+      "dws_jordass_login_di"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_50",
+    "question": "domain_term_ca8ffc39902024.10.1-2024.10.31domain_term_9f9163fd42400211，domain_term_7d2dca8341400212，domain_term_7d2dca8341400211domain_term_22579e1b76400212domain_term_7360c771f1，domain_term_2627e298e5、domain_term_d3dd9c5bc3\n\ndomain_term_ded698ae1e：domain_term_31ab92d142（400211、400212、400211&400212、other），domain_term_b290eae82e（male、female、other）、domain_term_ce1e9840c9（light、medium、heavy、other）、domain_term_c806213101（light、medium、heavy、other），domain_term_ca62426403\n\ndomain_term_6408c9f75d： domain_term_c34638dd571-4domain_term_c3304d1e49；domain_term_3b2e3b88bb5-15domain_term_c3304d1e49；domain_term_5eb9e016e0>=16domain_term_c3304d1e49",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dws_jordass_matchlog_stat_di",
+      "dws_jordass_login_di",
+      "dwd_jordass_playerlogin_hi",
+      "dws_jordass_buttonpress_pre_di"
+    ],
+    "knowledge": "domain_term_12f377f863"
+  },
+  {
+    "sql_id": "sql_51",
+    "question": "domain_term_ca8ffc39904domain_term_e6cc36e666\n\ndomain_term_7f344627081：domain_term_8a12b121251：2024.11.08-11.21，domain_term_8a12b121252：2024.11.22-12.4\ndomain_term_7f344627082：domain_term_8a12b121251：2024.11.10-11.23，domain_term_8a12b121252：2024.11.24-12.4\ndomain_term_7f344627083：domain_term_8a12b121251：2024.11.15-11.28，domain_term_8a12b121252：2024.11.29-12.4\ndomain_term_7f344627084：domain_term_8a12b121251：2024.11.17-11.30，domain_term_8a12b121252：2024.12.1-12.4\ndomain_term_ded698ae1e：domain_term_7f34462708（domain_term_7f344627081、domain_term_7f344627082、domain_term_7f344627083、domain_term_7f344627084），domain_term_dae828fe4f1domain_term_b81b6a08ba，domain_term_b42aaf390e",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_buttonpress_pre_di",
+      "dim_jordass_submodeonlinedate_conf"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_52",
+    "question": "2024.10.01-10.08domain_term_8198d905bb20%domain_term_0120194321\ndomain_term_547f27268c：1，2，3，4，5，6-10，11-20，21domain_term_496edef086\ndomain_term_ded698ae1e：domain_term_77282a67dd(20241001、...、20241008)、domain_term_547f27268c、domain_term_ca62426403\n\ndomain_term_8a0ce9ab48：domain_term_cef4fbdcd3",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_matchlog_stat_di"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_53",
+    "question": "domain_term_ca8ffc39902024.10.21-11.21domain_term_1aa7d6889e2024.10.14-10.20domain_term_b584249438，domain_term_18707b400810.20domain_term_0746bd6249\n1.domain_term_073d8528408-14domain_term_c3304d1e49 (10.7-10.13)domain_term_82cf6bc9b4\n2.domain_term_073d85284015-29domain_term_90985eea43\n3.domain_term_073d85284030-59domain_term_90985eea43\n4.domain_term_073d85284060-179domain_term_90985eea43\n5.domain_term_073d852840180-364domain_term_90985eea43\ndomain_term_ded698ae1e：domain_term_7b46c4bbbc，domain_term_073d8528408-14domain_term_2d16e6e780，domain_term_073d85284015-29domain_term_2d16e6e780，domain_term_073d85284030-59domain_term_2d16e6e780，domain_term_073d85284060-179domain_term_2d16e6e780，domain_term_073d852840180-364domain_term_2d16e6e780\n\n",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_login_di",
+      "dws_jordass_login_df"
+    ],
+    "knowledge": "dtstatdatedomain_term_5eb9c7afc4 20241121、20240813、20240505、20240126 domain_term_542523173c4domain_term_7d4c6755d0\n"
+  },
+  {
+    "sql_id": "sql_54",
+    "question": "domain_term_ca8ffc39902024.9.20domain_term_792bbe6e082024.10.20domain_term_24cd18eefamatchmode=1003 domain_term_22b9935402\ndomain_term_ded698ae1e：domain_term_801dac8dc4、domain_term_819d86ef07、domain_term_2ddf5ac098、domain_term_9e48939cd2、domain_term_b085861513",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dwd_jordass_player_matchrecord_hi",
+      "dim_jordass_imode_leyuan_nf"
+    ],
+    "knowledge": "domain_term_8bb821428b：domain_term_022fc492632domain_term_0fefbceed5\ndomain_term_73018d15a9：domain_term_5e698bb2b6"
+  },
+  {
+    "sql_id": "sql_55",
+    "question": "domain_term_ca8ffc3990：2024.11.1-11.30，domain_term_2447b0e992180domain_term_d08d4d2cf9，domain_term_4a23f89abe domain_term_8a0ce9ab48+domain_term_9c19e2c4a0+domain_term_e0dd137552 domain_term_bc0d7e511e，domain_term_6782f66012\n\ndomain_term_ded698ae1e，domain_term_77282a67dd、domain_term_aacce43525、domain_term_fcd00a40c5、domain_term_63abb990a3、domain_term_26d11c9eeb、domain_term_d19590fe35",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_matchlog_stat_di",
+      "dws_jordass_login_di",
+      "dim_jordass_submodeonline_nf"
+    ],
+    "knowledge": "7domain_term_3ef33d6b9c：domain_term_b3275c871a/domain_term_84d837466f,domain_term_5a0d61615d\n7domain_term_4c9cec0572：domain_term_a92979f3d6/domain_term_b3275c871a,domain_term_5a0d61615d\n7domain_term_fc036b4eff：domain_term_86260ac2c47domain_term_6e8e3f00da/domain_term_b3275c871a,domain_term_5a0d61615d\ndomain_term_d30f460d1a、domain_term_9c19e2c4a0、domain_term_5c8cf098dc，domain_term_eddf93238e，domain_term_d973a8f5b1orderdomain_term_a682cf4c9c，domain_term_62229d0f6a11.1domain_term_7f5716be5c，domain_term_801dac8dc4Adomain_term_c4923bd2a410.25-10.31domain_term_3626f96abe，domain_term_80e548862a，domain_term_f8fa78f62d，domain_term_55f12d2c53，domain_term_a5938714b91+3+4=8，domain_term_801dac8dc4Bdomain_term_cc107a006910，domain_term_801dac8dc4Cdomain_term_cc107a00692，domain_term_d61589f356C=2>A=8>B=10"
+  },
+  {
+    "sql_id": "sql_58",
+    "question": "\ndomain_term_58ca332e34iddomain_term_b243ddb5ad\n'20240717'-'20240723' 1310822585431254784'20241116'-'20241122' 1282371711108385024'20241123'-'20241129' 1287652322611036928'20240301'-'20240307' 1294211358396518400'20240607''20240613' 1297394991875754752\ndomain_term_2e44d85b22 [0-10min)，[10-30min)，[30min-1h)，[1h,2h)，[2h,3h)，[3h,4h)， [4h,5h)， [5h,6h)，[6h,7h)，[7h,8h)，[8h,9h)，[9h,10h)，[10h,∞) domain_term_adf908d510：domain_term_801dac8dc4id、domain_term_9a0485ec08、domain_term_ca62426403\n",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_matchlog_stat_di"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_60",
+    "question": "domain_term_ca8ffc399020250226domain_term_4a072301aa180domain_term_c7005bc346，domain_term_08e92a8cd930domain_term_db9107e20c\ndomain_term_ded698ae1e：domain_term_77282a67dd（YYYYMMDD），domain_term_cb7c6deac8",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dws_jordass_water_di",
+      "dws_jordass_uid_login_df",
+      "dwd_jordass_player_allianceactive_hi"
+    ],
+    "knowledge": "domain_term_62f7b731a4：\nwhere tdbank_imp_date>=date_sub(\"20250226\",180) and tdbank_imp_date<\"20250226\"\ndomain_term_47b272c143：\nwhere dtstatdate>=date_sub(\"20250226\",210) and dtstatdate<\"20250226\" and platid=255"
+  },
+  {
+    "sql_id": "sql_61",
+    "question": "domain_term_ca8ffc39902024.2.9domain_term_f1ee0dcd02R\ndomain_term_ded698ae1e：domain_term_31ab92d142（domain_term_5604b184cf、domain_term_ad47bf6fee、domain_term_922517cc73R、domain_term_0869071c92R、domain_term_0889c34972R、domain_term_51708ecb5dR），domain_term_d0e9de543d、domain_term_30e0a39424，domain_term_ad1138d7dbARPU，domain_term_8db00c0404\n\ndomain_term_5604b184cf：domain_term_b61aac3d361domain_term_54210f4574\ndomain_term_76776b50d6R：\ndomain_term_d250baa908，domain_term_b445321cbd100domain_term_1b011b8c2cR，[100-500)domain_term_cde313ffc2R，[500,1500)domain_term_2b7462bc64R，domain_term_2a2be930f01500 - domain_term_9100777371R\n",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dws_jordass_water_di",
+      "dws_jordass_login_di",
+      "dwd_jordass_currencylog_hi",
+      "dws_jordass_water_df"
+    ],
+    "knowledge": "domain_term_7ec5921cc6：\nactid = 2402096612 and awardidx between 1 and 7\ndomain_term_e5badf90e7\nActType = 661 and RecodType = 1\n\ndomain_term_ad1138d7dbARPUdomain_term_e13f097b9b：domain_term_1e49179597（domain_term_4987045177）/domain_term_654c8beb36\n\ndomain_term_ef6d382605：1:10（rmb:domain_term_4987045177）"
+  },
+  {
+    "sql_id": "sql_62",
+    "question": "domain_term_ca8ffc399020250226domain_term_65cc31c665180domain_term_15917f3b32（domain_term_f7914825eb）domain_term_16810fb932 domain_term_26670dda42：domain_term_c7617b77a3uiddomain_term_27849e9d21\ndomain_term_ded698ae1e：domain_term_77282a67dd（YYYYMMDD），domain_term_6b26695e4dDAU，domain_term_1eeb5ee988，domain_term_0eb0ec6ebd，domain_term_b9ca09126c",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dwd_jordass_allianceshopbuy_hi",
+      "dwd_jordass_player_allianceactive_hi",
+      "dwd_jordass_alliancebootcamprecord_hi",
+      "dwd_jordass_playerlogout_hi",
+      "dwd_jordass_playerlogin_hi"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_64",
+    "question": "domain_term_ca8ffc3990：2024.10.22-2024.11.19、2024.11.22-2024.12.19、2024.10.22-10.27、2024.10.28-11.03、2024.11.04-11.10、2024.11.11-11.17、2024.11.18-11.19、2024.11.22-11.24、2024.11.25-12.01、2024.12.02-12.08、2024.12.09-12.15、2024.12.16-12.19domain_term_52c5b732bb（UV）、domain_term_734d1079c6（PV）\ndomain_term_ded698ae1e：domain_term_77282a67dd（domain_term_2ad574bdbf:20241023）、UV、PV\n",
+    "domain_term_8a53ded169": "domain_term_64ef687a16",
+    "table_list": [
+      "dws_jordass_buttonpress_pre_di"
+    ],
+    "knowledge": "buttontype=\"410012\"domain_term_2741de51e1，domain_term_68e73387b5"
+  },
+  {
+    "sql_id": "sql_65",
+    "question": "domain_term_711363c4242024.11.29-2024.12.19domain_term_02e6d76678，domain_term_165cd67545（domain_term_0bb80ee7aa）\ndomain_term_ded698ae1e ：domain_term_b6fed9af83（YYYYMMDD、domain_term_3824d4e12a），domain_term_e4e46c7235，domain_term_ca62426403，domain_term_d4a97e7577",
+    "domain_term_8a53ded169": "domain_term_64ef687a16",
+    "table_list": [
+      "dwd_jordass_activity_rewardrecord_hi"
+    ],
+    "knowledge": "domain_term_68372e3747：actid = 2411291018and acttype = 10045 and awardidx in (1, 2, 3)，domain_term_796262bcb1"
+  },
+  {
+    "sql_id": "sql_67",
+    "question": "domain_term_ca8ffc39902025.1.24-2025.2.6domain_term_37f9e760cf，domain_term_eb7725e4d7430487,430485,602004025,602002011 domain_term_221de13c07\ndomain_term_ded698ae1e：domain_term_51fd93fb67id，domain_term_19a0540e31",
+    "domain_term_8a53ded169": "domain_term_64ef687a16",
+    "table_list": [
+      "dwd_jordass_gearlog_hi"
+    ],
+    "knowledge": " addorreduce=0domain_term_b0686c6720，1domain_term_462c3b028a"
+  },
+  {
+    "sql_id": "sql_68",
+    "question": "domain_term_3a14e07c1f：25.1.28-25.2.10，domain_term_2a83d448b2id：848，841\ndomain_term_ded698ae1e：domain_term_b6fed9af83（YYDDMM），domain_term_ca62426403",
+    "domain_term_8a53ded169": "domain_term_64ef687a16",
+    "table_list": [
+      "dwd_jordass_lotteryrecord_hi"
+    ],
+    "knowledge": "domain_term_2a83d448b2：\nactivitytype in (848, 841)"
+  },
+  {
+    "sql_id": "sql_69",
+    "question": "domain_term_ca8ffc39902024.12.25——2025.1.5 ，domain_term_3f626a666f\n\ndomain_term_149ca46813:chattype in (20,25,26,16,27,8)\n\ndomain_term_ded698ae1e domain_term_b6fed9af83（20241225-20250105），domain_term_149ca46813，domain_term_ca62426403，domain_term_d4a97e7577",
+    "domain_term_8a53ded169": "domain_term_64ef687a16",
+    "table_list": [
+      "dwd_jordass_msgchatrecord_hi"
+    ],
+    "knowledge": "chattype in (20,25,26,16,27,8)"
+  },
+  {
+    "sql_id": "sql_70",
+    "question": "domain_term_ca8ffc39902024.11.29-2024.12.19domain_term_24cd18eefa，domain_term_235091322e\ndomain_term_ded698ae1e domain_term_6489deaf08（domain_term_7220ca0546），domain_term_ca62426403",
+    "domain_term_8a53ded169": "domain_term_64ef687a16",
+    "table_list": [
+      "dwd_jordass_activity_rewardrecord_hi"
+    ],
+    "knowledge": "domain_term_08a6dfb02c：actid = 2411291018\ndomain_term_3824d4e12a：domain_term_7a20b5b73b"
+  },
+  {
+    "sql_id": "sql_71",
+    "question": "domain_term_ca8ffc39902024.11.29-2024.12.19domain_term_24cd18eefa，domain_term_0697a4fb7f\ndomain_term_ded698ae1e domain_term_3783f29c30（20241129-20241205、20241206-20241212、20241213-20241219），extarg1domain_term_e4e46c7235，domain_term_ef68fea4ff，domain_term_d4a97e7577",
+    "domain_term_8a53ded169": "domain_term_64ef687a16",
+    "table_list": [
+      "dwd_jordass_activitypress_hi"
+    ],
+    "knowledge": "domain_term_996d7e60d7：ireason = 2411291018 and buttontype = 10045 and extarg1 in (101,109,110)"
+  },
+  {
+    "sql_id": "sql_73",
+    "question": "domain_term_ca8ffc399020241123-20241222domain_term_249cdf8d4d，domain_term_9f63acb1f6，domain_term_5f4a27b55a domain_term_e636651526\ndomain_term_ded698ae1e：domain_term_b89e7c9805，domain_term_63e655697c，domain_term_824855ab33，domain_term_dbc8688fad，domain_term_7e3aa1a1c7，domain_term_a7a3d37640，domain_term_cfbe5e8f98，domain_term_feb56dd3ad，domain_term_54fa64e6e8，domain_term_102fd02770，domain_term_32db38ea07，domain_term_33e6cd7d0e",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dwd_jordass_player_matchrecord_hi"
+    ],
+    "knowledge": "domain_term_249cdf8d4d：matchmode=1003 and matchsubmodegroup=1345785623905087744\ndomain_term_9f63acb1f6：matchmode=1003 and matchsubmodegroup<>1345785623905087744\ndomain_term_b35308c3fd：matchmode=1003\ndomain_term_80641bbbc2 matchresult=\"ok\"\ndomain_term_8f6962c3b3：teamnum>1"
+  },
+  {
+    "sql_id": "sql_74",
+    "question": "domain_term_ca8ffc3990 SS30domain_term_bfacb07b1eSS29domain_term_d415c7d341\nSS30domain_term_ff2ad0e91a:2024112305 - 2024112616\nSS29domain_term_ff2ad0e91a:2024092405 - 2024092716\ndomain_term_ded698ae1e：domain_term_b183425946，SS30domain_term_df0d27df39，SS29domain_term_df0d27df39",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dwd_jordass_pressbutton_hi"
+    ],
+    "knowledge": "domain_term_a6a6eaa2f1：buttontypesdomain_term_bd0f309115411130domain_term_30f4d7cfe8411200"
+  },
+  {
+    "sql_id": "sql_75",
+    "question": "domain_term_ca8ffc3990：2022080400-2024112400domain_term_05c22766a3\ndomain_term_ded698ae1e：baseid,domain_term_21fe62eb2f",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dwd_jordass_voicethemelog_hi"
+    ],
+    "knowledge": "domain_term_b5a0f7b0ab：baseid in (3336008, 3304024, 3336012, 3306028, 3304030, 3336016, 3336018, 3304038, 3336023, 3306033, 3349004, 3308014, 3336032, 3304043, 3306039, 3336041, 3301024, 3336045, 3306042)"
+  },
+  {
+    "sql_id": "sql_77",
+    "question": "domain_term_ca8ffc3990：20230123domain_term_79cc871ca97domain_term_09575009e9\ndomain_term_ded698ae1e：domain_term_b6fed9af83（20230123-20230129），domain_term_ca62426403，domain_term_ceca058e02",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dwd_jordass_currencylog_hi"
+    ],
+    "knowledge": "domain_term_70c3158069：reason in (189, 190)\ndomain_term_b95d65a41b：imoneytype = 1027\ndomain_term_ceca058e02：imoney"
+  },
+  {
+    "sql_id": "sql_78",
+    "question": "domain_term_ca8ffc3990：domain_term_3202e7c3bf（20250119）domain_term_1b86cef987\ndomain_term_ded698ae1e：domain_term_173bd0dc5f&domain_term_d3f6b4a776\ndomain_term_173bd0dc5f&domain_term_d8abed9f5d\ndomain_term_173bd0dc5f&domain_term_a9f9c140f6\ndomain_term_173bd0dc5f&domain_term_4864c37d6f&domain_term_908fc3e78d\ndomain_term_173bd0dc5f&domain_term_a57fadaa26&domain_term_908fc3e78d\ndomain_term_173bd0dc5f&domain_term_adcc06d878&domain_term_908fc3e78d\ndomain_term_173bd0dc5f&【domain_term_067d4b17f7】domain_term_ca62426403\ndomain_term_173bd0dc5f&【domain_term_82c884b89c】domain_term_ca62426403\ndomain_term_173bd0dc5f&【domain_term_4dabac6652】domain_term_ca62426403\ndomain_term_ea00060e2f【domain_term_708aac6934&domain_term_88f51d0e64&domain_term_e7f86f3ca3】domain_term_5324f2cd80",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dwd_jordass_gearlog_hi",
+      "dwd_jordass_lotteryrecord_hi"
+    ],
+    "knowledge": "domain_term_91f3ca4d99：\ndomain_term_708aac6934：20240426-20240606\ndomain_term_117597882b：20240607-20240725\ndomain_term_e7f86f3ca3：20240726-20240822\ndomain_term_971c3b6f86：\ndomain_term_173bd0dc5f activitytype = 815\ndomain_term_4864c37d6f activitytype = 690\ndomain_term_a57fadaa26 activitytype = 748\ndomain_term_adcc06d878 activitytype = 750\ndomain_term_6c0652ddb6：\ndomain_term_6242d5a152-domain_term_c33c2340f6 igoodsid = 430179 and addorreduce = 0\ndomain_term_7aab470d00-domain_term_c33c2340f6 igoodsid = 430265 and addorreduce = 0\ndomain_term_0df6274a2f-domain_term_41c0407e15 igoodsid = 430225 and addorreduce = 0"
+  },
+  {
+    "sql_id": "sql_80",
+    "question": "domain_term_ca8ffc3990：2024.10.2-2025.1.8domain_term_55f45903e8，domain_term_36144cefaa，domain_term_1d51cf91a2，domain_term_fe2d3324d7、domain_term_b493171436\ndomain_term_ded698ae1e：domain_term_2666aee5fb（2024-10-09-2025-01-08），domain_term_2d7ef23039，domain_term_e9d6f9e2af，domain_term_4d6024ea65，domain_term_87054e8f6d，domain_term_b49104d845",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_mode_roundrecord_di"
+    ],
+    "knowledge": "domain_term_813b0e7514modename = \"domain_term_372cbd9462\" AND submodename = \"domain_term_249cdf8d4d\"\ndomain_term_648e9a585c10.2domain_term_5dee0ca4bf，domain_term_680d2d9d2510.1domain_term_7092081572\n\ndomain_term_cb2444878e\ncase when modename=\"domain_term_3b87e170bd\" and submodename like \"CG%\" and mapname=\"domain_term_3d39b3c319\" then \"domain_term_124eca6c09\"\nwhen modename=\"domain_term_3b87e170bd\" and mapname=\"domain_term_3d39b3c319\" then \"domain_term_9424c3ec03\"\nwhen modename=\"domain_term_3b87e170bd\" and mapname=\"domain_term_7fd6c807a2\" then \"domain_term_7fd6c807a2\"\nwhen submodename = \"domain_term_289f963191\" then \"domain_term_4b98916e48\"\nWHEN submodename=\"domain_term_e11fdd8c9f\" THEN \"domain_term_93da0581e7\"\nwhen modename=\"domain_term_8a6c6ccf17\" then \"domain_term_170f5d71af\"\nwhen modename=\"domain_term_68f20c1125\" then \"domain_term_b750b1321f\"\nwhen modename=\"domain_term_372cbd9462\" then \"domain_term_372cbd9462\"\nwhen modename=\"domain_term_aa6a118e23\" then \"domain_term_aa6a118e23\"\nwhen modename=\"domain_term_4e5ccfc9be\" then \"domain_term_4e5ccfc9be\"\nwhen modename=\"domain_term_41ca2be751\" then \"domain_term_96bfff66c5\"\nelse \"domain_term_9464b2154c\"\n\ndomain_term_c947b56c77：domain_term_123e0d5a4c"
+  },
+  {
+    "sql_id": "sql_82",
+    "question": "domain_term_ca8ffc399020220408-20220410domain_term_e9265131ad domain_term_2273a6597b（domain_term_3d39b3c319 domain_term_dd9a88a9b7 domain_term_7fd6c807a2）domain_term_5c0f738dcc\ndomain_term_ded698ae1e：domain_term_2273a6597b，domain_term_cdf3855f5a，domain_term_a1cd19aabb（[1,2) 、[2,3).. domain_term_0a96375ed0），domain_term_ca62426403",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dwd_jordass_roundflow_hi"
+    ],
+    "knowledge": "domain_term_9a6c1e50a8：domain_term_5cb7809bc81.2，domain_term_5cabf059b91\ndomain_term_3d39b3c319: submode in (1001, 1002, 1003, 1064, 1065, 1066, 1076, 1077, 1078, 1091, 1092, 1093, 1137, 1138, 1139, 1143, 1144, 1145, 1152, 1153, 1154, 1158, 1159, 1160, 2029, 2030, 2031, 2044, 2045, 2046, 2122, 2123, 2124, 2129, 2130, 2131, 2166, 2167, 2168, 2169, 2170, 2171, 2172, 2173, 2174, 2203, 2216, 2217, 2218, 2219, 2220, 2221, 2297, 2298, 2299, 2300, 2301, 2302, 2304, 2305, 2306, 2322, 2323, 2324, 2325, 2326, 2327, 2359, 2360, 2361, 2368, 2367, 2366, 2419, 2420, 2421, 2422, 2423, 2424, 2425, 2426, 2427, 2453, 2454, 2455, 2460, 2461, 2462, 2472, 2473, 2474, 2463, 2464, 2465, 2466, 2467, 2468), domain_term_dd9a88a9b7: submode in (2160, 2161, 2162, 2163, 2164, 2165, 2334, 2335, 2336, 2337, 2338, 2339), domain_term_7fd6c807a2: submode in (2396, 2397, 2398, 2399, 2400, 2401)\ndomain_term_c6f6368f20mode=103\ndomain_term_ce6e556584：ChangedRatingValue/(SurvivalTime / 60)"
+  },
+  {
+    "sql_id": "sql_83",
+    "question": "domain_term_5e2e27579e14domain_term_254fe1cb2e、domain_term_fcdb8c77f5\ndomain_term_77282a67dd\n2024/1/2\n2023/12/19\n2023/12/12\n2023/12/5\n2023/10/10\n2023/9/19\n2023/1/3\n2022/12/20\ndomain_term_ded698ae1e：domain_term_1ddc5f9129（YYYYMMDD）、domain_term_31ab92d142（'domain_term_d510ebb4fd14domain_term_6736aa6c3d'）、domain_term_b725036692、domain_term_b8a34aefa9、domain_term_e88a98fefb、domain_term_a731b70108",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_matchlog_stat_di",
+      "dws_jordass_login_df",
+      "dws_jordass_buttonpress_pre_di"
+    ],
+    "knowledge": "domain_term_2505d27c10：buttontype =10370\ndomain_term_15e058ca0e：buttontype 10373domain_term_30f4d7cfe810374\ndomain_term_d510ebb4fd14domain_term_6736aa6c3d：domain_term_39aaeb95bc14domain_term_2a071e67fb，domain_term_c0f8664a87，domain_term_32fe6b583f2024-1-2，domain_term_4735398f512023-12-19domain_term_792bbe6e082024-1-1domain_term_542523173c14domain_term_fc4905d76d，domain_term_ce00122aa32023-12-18domain_term_dd5842af6a，domain_term_931fe70bd12024-1-2domain_term_cce2a5565714domain_term_6736aa6c3d，domain_term_5ef784f214。"
+  },
+  {
+    "sql_id": "sql_84",
+    "question": "domain_term_ca8ffc39902018domain_term_c3938852be30domain_term_c45d318af1，domain_term_ce00122aa32020domain_term_6f14c2641c9domain_term_50e42cec5922domain_term_6f14c2641c4domain_term_ff9ed5e74a，domain_term_0a97954cac\ndomain_term_ded698ae1e：domain_term_ab891672ab（YYYYMM），domain_term_09b041b434",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_login_df",
+      "dwd_jordass_playerlogin_hi",
+      "dwd_jordass_friendlist_hi"
+    ],
+    "knowledge": "domain_term_dd00e8343a：type=2"
+  },
+  {
+    "sql_id": "sql_85",
+    "question": "domain_term_ca8ffc3990 20220506-20220508，20220513-20220515 domain_term_fa4d50a1ed\ndomain_term_ded698ae1e：domain_term_77282a67dd（YYYYMMDD），domain_term_d0e9de543d，domain_term_8c2a887ed2，domain_term_c02209feb1，domain_term_eb6c0b7ec0",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_login_di",
+      "dwd_jordass_player_matchrecord_hi",
+      "dwd_jordass_roundflow_entertain_hi"
+    ],
+    "knowledge": "domain_term_e01a3f9ab5 matchresult ='ok' ；\ndomain_term_aebcbf8a97：domain_term_5e4715ffc019-21domain_term_1d59ea7cbb"
+  },
+  {
+    "sql_id": "sql_87",
+    "question": "domain_term_ca8ffc39902023.07.02domain_term_9a3eb340972023.07.09 domain_term_cad181461d，domain_term_2335fbbb9d、domain_term_1816af9ef5、domain_term_0254cc2a96\ndomain_term_e566be729d：domain_term_4e22acf47f，domain_term_1816af9ef5，domain_term_4765d07e177domain_term_ed71693492\ndomain_term_ded698ae1e：domain_term_77282a67dd（YYYYMMDD），domain_term_801dac8dc4，domain_term_e4e46c7235（domain_term_4e22acf47f、domain_term_1816af9ef5、domain_term_08fa3138d4），domain_term_ca62426403",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dws_jordass_login_df",
+      "dim_jordass_leyuan_participate_cdf_nf"
+    ],
+    "knowledge": "domain_term_9530f05741：\ninstr(substr(cbitmap,1,7),'1')>0\ndomain_term_b2bcfe1fb6：\ncase when datediff(dtstatdate,dregdate)<=6 then 'domain_term_4e22acf47f'\nwhen instr(substr(cbitmap,8,7),'1')>0 then 'domain_term_08fa3138d4'\nwhen instr(substr(cbitmap,8,7),'1')=0 then 'domain_term_1816af9ef5'\ndomain_term_b637041aa5"
+  },
+  {
+    "sql_id": "sql_88",
+    "question": "domain_term_d1b3315b89（20230529-20230627）domain_term_07cac3a767，domain_term_8ab977960a3.22-6.27domain_term_0746bd6249，domain_term_c481385f10\ndomain_term_ded698ae1e：domain_term_8a12b12125（7domain_term_06e5ced1cd），domain_term_98eede69b7(domain_term_c34638dd57、domain_term_3b2e3b88bb、domain_term_5eb9e016e0、domain_term_033f46605d)，domain_term_801dac8dc4（domain_term_124eca6c09、domain_term_3d39b3c319、domain_term_67e58939f2、domain_term_68f20c1125、...），domain_term_1279939a74，domain_term_ca62426403",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dwd_jordass_playerlogin_hi",
+      "dws_jordass_mode_roundrecord_di"
+    ],
+    "knowledge": "domain_term_2ac8e2f10f：\n domain_term_c34638dd57：1-4domain_term_c3304d1e49，domain_term_3b2e3b88bb：5-15domain_term_c3304d1e49，domain_term_5eb9e016e0：16-30domain_term_c3304d1e49\ndomain_term_07e8ef15b4:\ndomain_term_622ddf2fcasubmode IN (1265972235155284992,1278160113246405632)domain_term_bc97a2a3ca（domain_term_f08b55c42csubmodedomain_term_0001098fc5）\ndomain_term_42f1cac345： modename = 'domain_term_372cbd9462' and submode IN (1265972235155284992,1278160113246405632\ndomain_term_3f9aadc0fe：seasonmaxsegmentdomain_term_f88db75267 1-7domain_term_be7bcb5621、domain_term_bc916383f6、domain_term_3713947f42、domain_term_868b6db912、domain_term_c69716199f、domain_term_2602f9e563、domain_term_51b4f9b2b3\ndomain_term_70c3158069modename in ('domain_term_3b87e170bd','domain_term_68f20c1125','domain_term_8a6c6ccf17','domain_term_aa6a118e23','domain_term_372cbd9462','domain_term_4e5ccfc9be','domain_term_685408e56a'), case when modename='domain_term_3b87e170bd' and mapname='domain_term_3d39b3c319' and submode in (2557,2558,2559) then 'domain_term_124eca6c09'\nwhen modename='domain_term_3b87e170bd' and mapname='domain_term_3d39b3c319' then 'domain_term_3d39b3c319'\nwhen modename='domain_term_3b87e170bd' then 'domain_term_67e58939f2'\nelse modename end"
+  },
+  {
+    "sql_id": "sql_89",
+    "question": "domain_term_9534f6ab85（20230529-20230627）domain_term_07cac3a767，domain_term_8ab977960a3.22-6.27domain_term_0746bd6249，domain_term_eaf6569e40 domain_term_9a3eb34097 domain_term_faa7d46a7a\ndomain_term_ded698ae1e：domain_term_8a12b12125（7domain_term_06e5ced1cd），domain_term_98eede69b7，domain_term_f9a46c9a52，domain_term_ca62426403",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_login_di",
+      "dws_jordass_mode_roundrecord_di"
+    ],
+    "knowledge": "domain_term_2ac8e2f10f：\n when active_days between 1 and 4 then 'domain_term_c34638dd57'\n when active_days between 5 and 15 then 'domain_term_3b2e3b88bb'\n when active_days between 16 and 30 then 'domain_term_5eb9e016e0'\ndomain_term_07e8ef15b4:\ndomain_term_622ddf2fcasubmode IN (1265972235155284992,1278160113246405632)domain_term_bc97a2a3ca（domain_term_f08b55c42csubmodedomain_term_0001098fc5）\ndomain_term_42f1cac345： modename = 'domain_term_372cbd9462' and submode IN (1265972235155284992,1278160113246405632"
+  },
+  {
+    "sql_id": "sql_90",
+    "question": "domain_term_698a381cea2023.6.30domain_term_f1f7727656，domain_term_0d196785392023.7.01~2023.7.16domain_term_0d83d98c3d，domain_term_f9e8a7c4a82023.7.17-2023.7.23domain_term_5ea711f3a3\ndomain_term_ded698ae1e：domain_term_f1f7727656（360domain_term_c5ffab0448、180domain_term_c5ffab0448、90domain_term_c5ffab0448、60domain_term_c5ffab0448、30domain_term_c5ffab0448、14domain_term_c5ffab0448、7domain_term_c5ffab0448、7domain_term_b59dcd1aad），domain_term_488b8a685e",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_login_df",
+      "dwd_jordass_player_matchrecord_hi"
+    ],
+    "knowledge": "domain_term_af91ee87d9 MatchSubModeGroup=1310822585431254784\ndomain_term_0e2d3a3c09dws_jordass_login_df，domain_term_87c84d60bbdtStatDate = '20230630'\n"
+  },
+  {
+    "sql_id": "sql_91",
+    "question": "domain_term_ca8ffc39902023.7.12-7.18,2023.7.19-7.25domain_term_804720b8ef(7domain_term_08fa3138d4，14domain_term_08fa3138d4，30domain_term_08fa3138d4，60domain_term_08fa3138d4，90domain_term_08fa3138d4，180domain_term_08fa3138d4)\ndomain_term_ded698ae1e：domain_term_77282a67dd（20230712，20230713...20230725），domain_term_e4e46c7235（domain_term_4e22acf47f，7，14，30，60，90，180），domain_term_ca62426403",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_login_df"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_92",
+    "question": "domain_term_77282a67dd： domain_term_39678c8dcf：2023.7.5-2023.7.11 domain_term_e16e8248b1：2023.7.12-2023.7.18\ndomain_term_11d6c9d335（7domain_term_e1eb44a83d、30domain_term_e1eb44a83d），domain_term_f375862c59（domain_term_dd280fed31）\n,[1,2]domain_term_9b680e35ae，[3,5]domain_term_341e8f6d3f，[6,7]domain_term_dd2cf671d8，domain_term_7e6a8ef558。domain_term_ded698ae1e：domain_term_56db792ea9（7domain_term_804568fa7f，30domain_term_804568fa7f），domain_term_9ab9bcfc83（domain_term_dd280fed31）,domain_term_ca62426403",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_login_di",
+      "dws_jordass_login_df"
+    ],
+    "knowledge": "domain_term_c88c162bfbdws_jordass_login_didomain_term_6a954390e3，domain_term_bf1ca86e89dws_jordass_login_df"
+  },
+  {
+    "sql_id": "sql_93",
+    "question": "domain_term_ca8ffc39902024.1domain_term_792bbe6e082024.5domain_term_21d630cb5d、domain_term_89f7d91a36\ndomain_term_ded698ae1e：domain_term_ab891672ab（202401,...,2024.5），domain_term_e4e46c7235（1domain_term_ca06362d50 domain_term_fea4f32fbe； 2domain_term_ca06362d50 domain_term_f2f6185303；3domain_term_ca06362d50 domain_term_2d7814f28d）,domain_term_ca62426403，domain_term_4ee46c7663（domain_term_622f3c5acb）",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_water_di",
+      "dws_jordass_water_df"
+    ],
+    "knowledge": "domain_term_55ca54df23：domain_term_009cb953bf\ndomain_term_ec437e5aad：domain_term_375d87fe6b30domain_term_08e59c5dcb\ndomain_term_912b5c65c4：domain_term_375d87fe6b30domain_term_58c7e85ac7"
+  },
+  {
+    "sql_id": "sql_94",
+    "question": "domain_term_ca8ffc399020241123-20241128 domain_term_e78b629d19\ndomain_term_ded698ae1e：domain_term_77282a67dd(20241123-20241128)，domain_term_47a991d18c（domain_term_9c01ad0911、domain_term_4b90f29fa5），domain_term_6892b159ce，domain_term_e1ff86bfe8，domain_term_9d3f470174，domain_term_600dda6790，domain_term_b538aead7a",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_device_login_di",
+      "dws_jordass_login_df",
+      "dws_jordass_mode_roundrecord_di"
+    ],
+    "knowledge": "domain_term_47a991d18c：device_type 0-domain_term_9c01ad0911 1,5-domain_term_4b90f29fa5\ndomain_term_41ca2be751：modename='domain_term_41ca2be751'"
+  },
+  {
+    "sql_id": "sql_97",
+    "question": "domain_term_686b703f412023.7.19-2023.7.25domain_term_325f73dafb，domain_term_70aee539c6、domain_term_e9d1e62d2b、domain_term_248c04015a\ndomain_term_ded698ae1e：domain_term_c04e69c7e7、domain_term_cf1ec6636b、domain_term_1b42132657\n",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dws_jordass_matchlog_stat_di",
+      "dws_jordass_mode_roundrecord_di"
+    ],
+    "knowledge": "domain_term_3f98028f4e：imode = 1307095884553538304 and platid <> 255\ndomain_term_bfc093da5c：imode = 1310822585431254784 and platid <> 255\ndomain_term_009e9e9c0a：mode=2370"
+  },
+  {
+    "sql_id": "sql_98",
+    "question": "domain_term_ca8ffc39902024.05.27-2024.6.16domain_term_b25f4eefce、\ndomain_term_33612023b8\ndomain_term_ded698ae1e：domain_term_b6fed9af83（YYYYMMDD），domain_term_31ab92d142（domain_term_30ba885427、domain_term_d64e69608d），domain_term_075657546d，domain_term_e9a3a24a73",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dws_jordass_login_di",
+      "dim_jordass_packet_conf",
+      "dws_jordass_buttonpress_pre_di"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_99",
+    "question": "domain_term_ca8ffc39902024.6.1-2024.6.30domain_term_e9f3a7fe4e,domain_term_4236f1fd16\ndomain_term_20682b054e（domain_term_922517cc73R 1-30，domain_term_666f983f73R 30-100，domain_term_0869071c92R 100-500，domain_term_0889c34972R 500-1500，domain_term_51708ecb5dR 1500+，domain_term_412d936d66），domain_term_277afe6313sum(Amount/10)\ndomain_term_ded698ae1e：domain_term_f370913d13、domain_term_435c5259e4（domain_term_8d676dba29ordomain_term_372cbd9462），domain_term_20682b054e，domain_term_ca62426403",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dwd_jordass_payrespond_hi"
+    ],
+    "knowledge": "res = 'ok'"
+  },
+  {
+    "sql_id": "sql_100",
+    "question": "domain_term_ca8ffc39902024.3.26~2024.5.27 domain_term_c9720d4671(7domain_term_a00a2c22cc/30domain_term_a00a2c22cc/domain_term_2b4a5109b0)，domain_term_ea1e671c8a、domain_term_a8cd8319cd、domain_term_083a989078，domain_term_57d86959f6，domain_term_d95e39e88b，domain_term_794f480d0f/domain_term_ebde1dd3f3，domain_term_41432ee12b\n\ndomain_term_ded698ae1e：domain_term_b6fed9af83(yyyymmdd)，domain_term_c5a4b48e66（7domain_term_a00a2c22cc/30domain_term_a00a2c22cc/domain_term_4e22acf47f），domain_term_ea1e671c8a、domain_term_a8cd8319cd、domain_term_083a989078，domain_term_57d86959f6（domain_term_7fb713d3d0、domain_term_07ebf19898、domain_term_053dfaa4b1、domain_term_12cadd0375、domain_term_74f529b607、domain_term_4330364dd1、domain_term_52a143d649），domain_term_d95e39e88b，domain_term_794f480d0f,domain_term_41432ee12b",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dwd_jordass_lotteryrecord_hi",
+      "dwd_jordass_lotterylog_twostage_hi",
+      "dwd_jordass_privpackagelog_hi",
+      "dwd_jordass_currencylog_hi",
+      "dws_jordass_login_df",
+      "dwd_jordass_marketpurchase_hi"
+    ],
+    "knowledge": "\n\ndomain_term_87e282006a：domain_term_12cadd0375、domain_term_053dfaa4b1、domain_term_4330364dd1（*10），domain_term_07ebf19898、domain_term_52a143d649、domain_term_74f529b607、domain_term_7fb713d3d0（*1）\ndomain_term_794f480d0f：domain_term_fe987100b7，domain_term_c5890c9194；\ndomain_term_b29f5e29f7：\ndomain_term_07ebf19898：when itemid_1 in (1515013,1515020,1515023,1515060,1515277,1515279) then 'domain_term_07ebf19898'\ndomain_term_52a143d649：when itemid_1 not in (1515013,1515020,1515023,1515060,1515277,1515279,1515029,1515120,1515123,1515122,1515121) then 'domain_term_52a143d649'\ndomain_term_74f529b607：when (Reason in (189,190) and AddOrReduce=1 and iMoneyType=1027) then 'domain_term_74f529b607'\ndomain_term_7fb713d3d0：when (Reason in (143,144,156,158,246,269,273) and AddOrReduce=1 and iMoneyType=1 ) then 'domain_term_7fb713d3d0'\ndomain_term_4330364dd1：select 'domain_term_4330364dd1' itype,substr(tdbank_imp_date,1,8) dt,vplayerid,sum(moneycnt)*10.0 money,count(*) icnt\ndomain_term_12cadd0375：select 'domain_term_12cadd0375' itype,substr(tdbank_imp_date,1,8) dt,vplayerid, sum(CostNum)*10.0 money,sum(LotteryRound) icnt from dwd_jordass_lotteryrecord_hi where tdbank_imp_date >= '2024032600' and tdbank_imp_date <= '2024052723' group by substr(tdbank_imp_date,1,8),vplayerid\nunion all\ndomain_term_053dfaa4b1：select 'domain_term_053dfaa4b1' itype,substr(tdbank_imp_date,1,8) dt,vplayerid, sum(CostNum)*10.0 CostNum,count(*) icnt from dwd_jordass_lotterylog_twostage_hi where tdbank_imp_date >= '2024032600' and tdbank_imp_date <= '2024052723' group by substr(tdbank_imp_date,1,8),vplayerid\ndomain_term_4e03faf500"
+  },
+  {
+    "sql_id": "sql_101",
+    "question": "domain_term_1ddc5f9129(2024.9.2,2024.9.3,2025.9.8,2025.9.9) domain_term_73f22343a8\ndomain_term_ded698ae1e：domain_term_1ddc5f9129，domain_term_a4fa483d91，domain_term_fef566845d，domain_term_2515d26f54，domain_term_8a0ce9ab48",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dws_jordass_mode_roundrecord_di",
+      "dws_jordass_login_di",
+      "dwd_jordass_playerlogin_hi"
+    ],
+    "knowledge": "domain_term_449111d6dd：modename='domain_term_3b87e170bd' and submodename like 'CG%'\ndomain_term_e3fa34dd89：case when substr(seasonmaxsegment, 1, 1) = '1' then 'domain_term_6dae199fa1'\n when substr(seasonmaxsegment, 1, 1) = '2' then 'domain_term_bc916383f6'\n when substr(seasonmaxsegment, 1, 1) = '3' then 'domain_term_3713947f42'\n when substr(seasonmaxsegment, 1, 1) = '4' then 'domain_term_868b6db912'\n when substr(seasonmaxsegment, 1, 1) = '5' then 'domain_term_c69716199f'\n when substr(seasonmaxsegment, 1, 1) = '6' then 'domain_term_2602f9e563'\n when substr(seasonmaxsegment, 1, 1) >= '7' then 'domain_term_51b4f9b2b3'\n else 'domain_term_4117d4fbcd'\n\t end"
+  },
+  {
+    "sql_id": "sql_103",
+    "question": "domain_term_ca8ffc39902025.9.1domain_term_792bbe6e089.10domain_term_5e4715ffc0productiddomain_term_78a974e697，domain_term_a0f0a4f8ce，domain_term_da3d45c8be\ndomain_term_ded698ae1e：domain_term_77282a67dd(yyyymmdd),productid,domain_term_7e633fb364,domain_term_149e03ae07,domain_term_f27bacd85e",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dws_jordass_login_df",
+      "dwd_jordass_directpaycommflow_hi"
+    ],
+    "knowledge": "productiddomain_term_4eb27adc00：op='take' and opres='ok'\n\tand productid in ('package_6','package_18','outfit_pack','weapon_pack')"
+  },
+  {
+    "sql_id": "sql_105",
+    "question": "domain_term_ca8ffc399020240101-20250601domain_term_00918ef7d3\ndomain_term_ded698ae1e：domain_term_77282a67dd(yyyymmdd)，domain_term_85becfe6c6，domain_term_080d439ce4",
+    "domain_term_8a53ded169": "domain_term_64ef687a16",
+    "table_list": [
+      "dws_jordass_water_di",
+      "dwd_jordass_currencylog_hi"
+    ],
+    "knowledge": "domain_term_14f14fee80：AddOrReduce=1 and imoneytype=1\n domain_term_204dce3d3cimoney "
+  },
+  {
+    "sql_id": "sql_107",
+    "question": "domain_term_ca8ffc39902022.1.18-1.24domain_term_e182e21dfd2021.10.19-12.20domain_term_250f15ec6f\n buttontype =99123domain_term_0772c40cb6 ireason=3domain_term_6fc1783fcf，domain_term_4361efe2cb\ndomain_term_ded698ae1e：2022.1.18-1.24domain_term_ca62426403，2021.10.19-12.20domain_term_ca62426403，domain_term_a635a769f6",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dwd_jordass_activitypress_hi"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_108",
+    "question": "domain_term_ca8ffc39902025.4domain_term_d9b59879f324domain_term_15917f3b32，domain_term_7a630340c6 + domain_term_6991721af8 +domain_term_d3bdd89e5a domain_term_7e396634c6 + domain_term_d8c84172ac30domain_term_6f374d655c3domain_term_cfea8141ea\ndomain_term_ded698ae1e：domain_term_e4e46c7235（iweek，doubleiweek，imonth，30dayxioayu3day）、QQ domain_term_7f5716be5c",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dws_jordass_login_df",
+      "dws_jordass_login_di",
+      "dim_mgamejp_tbplayerid2qq_nf"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_109",
+    "question": " domain_term_ca8ffc3990 20250424-20250508 domain_term_24cd18eefa domain_term_b5fd515057\n\n domain_term_e2951adf68：1,2-10,11-20,21-50,51-80,81-100，101-200,201-500,501domain_term_496edef086\n domain_term_ded698ae1e：domain_term_e2951adf68，domain_term_ca62426403",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dwd_jordass_roundlog_funnymode_hi",
+      "dwd_jordass_roundflow_hi"
+    ],
+    "knowledge": " domain_term_3b87e170bd： mode in(101,102,103,401,402,403)\n domain_term_b750b1321f：mode in(201,202,203,601,602,603)\n domain_term_3d90ba4a09：teamrank =1 "
+  },
+  {
+    "sql_id": "sql_110",
+    "question": "domain_term_ca8ffc399020220413-20220421domain_term_409f1b5e7e，3domain_term_0990e460ad，7domain_term_518e765e7f（domain_term_d54ab4c160）\ndomain_term_ded698ae1e：domain_term_77282a67dd(yyyymmdd),domain_term_d157af86f2，domain_term_c0d138689a，domain_term_21f1e882753domain_term_0990e460ad，domain_term_21f1e882757domain_term_0990e460ad，domain_term_3710ce0645，domain_term_b2548636f03domain_term_0990e460ad，domain_term_b2548636f07domain_term_0990e460ad",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dws_jordass_login_di",
+      "dwd_jordass_activity_rewardrecord_hi"
+    ],
+    "knowledge": "domain_term_b2548636f0:actid = 2201123904"
+  },
+  {
+    "sql_id": "sql_111",
+    "question": "domain_term_ca8ffc399020220425domain_term_b740c375d42.0domain_term_dae017c466（domain_term_89fb2371fd）  domain_term_c631b35ead，domain_term_ca0f5fc095\ndomain_term_e30fda8a65：（domain_term_447c2e95cd，domain_term_45af4bc6ea，domain_term_700a21894f，domain_term_28fc023a76，domain_term_1788c54454，domain_term_e4e2cbf78a，domain_term_a0a6edca89）\n\ndomain_term_ded698ae1e：domain_term_77282a67dd(yyyymmdd)，domain_term_e4e46c7235，x,y,z,domain_term_d4a97e7577",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dwd_jordass_vsteaminfectlog_hi"
+    ],
+    "knowledge": "domain_term_aa01a62c76\ndomain_term_557d4f6218：\ndomain_term_447c2e95cd domain_term_61410653c6 SwiftMorphInfo domain_term_7e4a4a8aff（domain_term_d5a54c51dc3,4,5domain_term_ca06362d50x,y,z）\ndomain_term_45af4bc6ea domain_term_61410653c6 StealthMorphInfo domain_term_7e4a4a8aff（domain_term_d5a54c51dc3,4,5domain_term_ca06362d50x,y,z）\ndomain_term_700a21894f domain_term_61410653c6 GrappleMorphInfo domain_term_7e4a4a8aff（domain_term_d5a54c51dc3,4,5domain_term_ca06362d50x,y,z）\ndomain_term_28fc023a76 domain_term_61410653c6 HeroMorphInfo domain_term_7e4a4a8aff（domain_term_d5a54c51dc3,4,5domain_term_ca06362d50x,y,z）\ndomain_term_1788c54454 domain_term_61410653c6 IceAdvMorphInfo domain_term_7e4a4a8aff（domain_term_d5a54c51dc3,4,5domain_term_ca06362d50x,y,z）\ndomain_term_e4e2cbf78a domain_term_61410653c6 PowerAdvMorphInfo domain_term_7e4a4a8aff（domain_term_d5a54c51dc3,4,5domain_term_ca06362d50x,y,z）\ndomain_term_a0a6edca89 domain_term_61410653c6 DragonHeroMorphInfo domain_term_7e4a4a8aff（domain_term_d5a54c51dc3,4,5domain_term_ca06362d50x,y,z）\ndomain_term_b93d72fe7b"
+  },
+  {
+    "sql_id": "sql_112",
+    "question": "domain_term_ca8ffc39902022.04.23-2022.04.30domain_term_9a3eb340972022.05.01-2022.05.08domain_term_70966fbac190domain_term_664adbc22a，domain_term_211156c4b5\ndomain_term_ded698ae1e：domain_term_77282a67dd(yyyymmdd)，domain_term_ca62426403",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dwd_jordass_roundflow_hi"
+    ],
+    "knowledge": "domain_term_3b87e170bdmode in(101,102,103,401,402,403)"
+  },
+  {
+    "sql_id": "sql_113",
+    "question": "domain_term_ca8ffc399020220425-20220508domain_term_bcb228f2b3\ndomain_term_ded698ae1e：domain_term_77282a67dd（YYYYMMDD），domain_term_83eff41a2eid，domain_term_ca62426403，domain_term_d4a97e7577",
+    "domain_term_8a53ded169": "domain_term_64ef687a16",
+    "table_list": [
+      "dwd_jordass_vsteamshoplog_hi"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_115",
+    "question": "domain_term_ca8ffc3990 domain_term_327501365a\n\tdomain_term_aa2c6ca745（20240202-20240204，20240209-20240211）\n\tdomain_term_5cc38d5275（20231208-20231210，20231215-20231217）\n\tdomain_term_061443b35f（20231006-20231008，20230929-20231001，20230922-20230924）\n\tdomain_term_46d830e5a0（20230721-20230723，20230728-20230730）\n\tdomain_term_cbbde20c18（20230519-20230611，20230616-20230625）\n\tdomain_term_330e1b3c26（20230505-20230507，20230512-20230514）\n\tdomain_term_dd26a78af4（20230121-20230127）\n\tdomain_term_a6657ec141（20221125-20221127，20221202-20221204）\n\tdomain_term_e43919bb4f（20220819-20220821，20220826-20220828）\n\tdomain_term_e378cb02bb（20220722-20220724，20220729-20220731）\n\tdomain_term_f54fe1c760（20220506-20220508，20220513-20220515，20220520-20220522）domain_term_0b2c440d0ematchmodedomain_term_b7a385ec00（1503,1603）domain_term_24e8031f0f\n\tdomain_term_ded698ae1e：domain_term_d17c56bfec",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dwd_jordass_player_matchrecord_hi"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_116",
+    "question": "domain_term_dddbbdd1c620250225domain_term_5916c5ac63（domain_term_011d8e557f，domain_term_1f334c2cdf，domain_term_8fef16a10e），domain_term_a6f5614136，domain_term_5e47df0f43\n\tdomain_term_ded698ae1e：domain_term_31ab92d142，domain_term_a6f5614136，domain_term_27000bc800，domain_term_ca62426403",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_login_df",
+      "dws_jordass_water_di",
+      "dws_jordass_uid_login_df",
+      "dws_jordass_water_df"
+    ],
+    "knowledge": "domain_term_20682b054e：\n\t\t0\n\t\t(0-1200]\n\t\t(1200-6000]\n\t\t(6000-18000]\n\t\t(18000+]\ndomain_term_a6f5614136：MAX(historymaxsegment)"
+  },
+  {
+    "sql_id": "sql_117",
+    "question": "domain_term_dddbbdd1c620250331-20250510domain_term_f5cb72ae2530domain_term_66fab19b0e （domain_term_8c0daf7f81，7domain_term_a00a2c22cc，14domain_term_a00a2c22cc，30domain_term_a00a2c22cc），domain_term_ca62426403\n\tdomain_term_ded698ae1e：domain_term_66fab19b0e（domain_term_8c0daf7f81，7domain_term_a00a2c22cc，14domain_term_a00a2c22cc，30domain_term_a00a2c22cc）， domain_term_ca62426403",
+    "domain_term_8a53ded169": "domain_term_839de24a0c",
+    "table_list": [
+      "dws_jordass_login_df"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_118",
+    "question": "domain_term_ca8ffc399020240426-20240505domain_term_54b5ba1a021193536domain_term_f0b389f586\ndomain_term_2c154b7266：itype='1'\ndomain_term_d9702f047c：itype in ('10','200','201','202','203','204','31','32','33','34','35','702','703')\ndomain_term_ded698ae1e：domain_term_2a0c6a9de0（domain_term_c7b64cd031，domain_term_d440a94159）,domain_term_ca62426403，domain_term_d15820c997，domain_term_e3c548248d，domain_term_67cd2e52d3，domain_term_d0e9de543d，domain_term_c4c9f57f0b，domain_term_8fb916d186，domain_term_4466c30ed0（domain_term_3eb35687d7）",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_mode_roundrecord_di",
+      "dws_jordass_login_di",
+      "dwd_jordass_playerprofstagechange_hi",
+      "dwd_jordass_mysteryplaylog_hi"
+    ],
+    "knowledge": "domain_term_a7e800be57nulldomain_term_bba2e9bf270\ndomain_term_e8fe821dc4：platid=255\ndomain_term_51cb076743id：TournamentID = 30002"
+  },
+  {
+    "sql_id": "sql_119",
+    "question": "2025domain_term_6f14c2641c4domain_term_d9b59879f329domain_term_15917f3b32，2025domain_term_6f14c2641c6domain_term_d9b59879f31domain_term_877fe978a8\ndomain_term_65cc2c4ebe，domain_term_7add65c56c：\ndomain_term_ded698ae1e：domain_term_77282a67dd（yyyymmdd）,domain_term_31ab92d142（domain_term_02be4896f1，domain_term_b2bc50a390，domain_term_2cd9e6ce81、7domain_term_b7a40ed54a（domain_term_1965380253）、7~14domain_term_a00a2c22cc、14~30domain_term_a00a2c22cc、30~90domain_term_a00a2c22cc、90domain_term_3fe45d4a78），domain_term_ca62426403",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_jordass_login_df",
+      "dws_jordass_login_di"
+    ],
+    "knowledge": ""
+  },
+  {
+    "sql_id": "sql_120",
+    "question": "domain_term_1a2ee08648（2025.7domain_term_d9b59879f324~7domain_term_d9b59879f325domain_term_3057200429，2025.7.24domain_term_8c0daf7f817.25domain_term_1ec0b9e893），domain_term_8fc3886f0dqqdomain_term_a33fb452f4\ndomain_term_ded698ae1e：domain_term_31ab92d142（7domain_term_d9b59879f324~7domain_term_d9b59879f325domain_term_3057200429，7.24domain_term_8c0daf7f817.25domain_term_1ec0b9e893）,domain_term_fe8aa4ef93,domain_term_ca62426403",
+    "domain_term_8a53ded169": "domain_term_2415d7b5a6",
+    "table_list": [
+      "dws_mgamejp_login_user_activity_di",
+      "dws_jordass_login_df",
+      "dim_mgamejp_tbplayerid2qq_nf",
+      "dws_jordass_uid_login_df"
+    ],
+    "knowledge": "ndomain_term_204ea54307：\nWHERE dtstatdate='20250725'\n AND platid = 255\n AND substr(cbitmap,1,2)='01')\ndomain_term_12ce61d2e5vplayeriddomain_term_8f541f6c49qq，domain_term_f44976816c：iqq, splayerid\ndomain_term_c69dcd537f：dtstatdate='20250725' AND saccounttype='-100' AND sgamecode='-100' AND splattype='-100' AND splat='-100'"
+  }
+]
