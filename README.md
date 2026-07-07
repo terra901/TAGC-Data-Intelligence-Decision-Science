@@ -4,9 +4,15 @@
 
 This repository contains a research-oriented Text-to-SQL pipeline for StarRocks databases. The project combines schema profiling, domain-knowledge construction, error-feedback mining, few-shot retrieval, prompt engineering, SQL generation, and iterative correction. The codebase has been normalized into English for academic review and GitHub publication.
 
+## Competition Snapshot
+
+![Team ranking interface](TAGC.png)
+
+*Figure 1. Team ranking interface for the data-intelligence decision-science competition track.*
+
 ## Repository Structure
 
-- `1.knowledge_base/1.1_schema_completion_knowledge_base/`: schema profiling, join-candidate discovery, and LLM-assisted schema enrichment.
+- `1.knowledge_base/1.1_schema_completion_knowledge_base/`: schema profiling, MinHash join-candidate discovery, SQL-verified join graph generation, and LLM-assisted schema enrichment.
 - `1.knowledge_base/1.2_positive_knowledge_sources_and_construction/`: construction of positive domain knowledge from validated SQL and execution traces.
 - `1.knowledge_base/1.3_knowledge_validation_and_negative_constraints/`: validation artifacts, error feedback, and negative constraints derived from failed SQL attempts.
 - `1.knowledge_base/1.4_few_shot_cot_generation/`: generation of few-shot chain-of-thought examples.
@@ -20,6 +26,28 @@ This repository contains a research-oriented Text-to-SQL pipeline for StarRocks 
 4. **Negative constraint mining**: failed queries are analyzed to identify syntax, schema, and business-logic failure patterns.
 5. **Few-shot retrieval**: gold SQL examples are embedded and indexed with FAISS to retrieve semantically similar demonstrations.
 6. **SQL generation and repair**: prompts encode StarRocks dialect restrictions, self-checklists, and correction protocols.
+7. **Join graph construction**: SQL-validated MinHash column matches are aggregated into a table-level graph whose edges store candidate join keys, similarity scores, and validation evidence. This graph is intended to be merged into the enhanced schema to reduce ambiguous column interpretation and join-path hallucination.
+
+## Join Graph Extension
+
+The MinHash relationship-discovery module now includes `build_join_graph()` and `save_join_graph()` in `1.knowledge_base/1.1_schema_completion_knowledge_base/analyza_join.py`. These functions transform verified column-level join candidates into a table-level graph with three synchronized views: `nodes`, `edges`, and `adjacency`. The graph provides explicit join-path evidence for downstream schema augmentation and retrieval-aware Text-to-SQL prompting.
+
+```python
+# Conceptual usage after MinHash candidate discovery and SQL validation
+from pathlib import Path
+import importlib.util
+
+module_path = Path("1.knowledge_base/1.1_schema_completion_knowledge_base/analyza_join.py")
+spec = importlib.util.spec_from_file_location("analyza_join", module_path)
+analyza_join = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(analyza_join)
+
+analyza_join.save_join_graph(
+    "join_candidates_verified.json",
+    "join_graph.json",
+    min_similarity=0.8,
+)
+```
 
 ## Data and Artifacts
 
