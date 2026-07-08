@@ -1,4 +1,4 @@
-# TGAC 2025 Solution Writeup and Proof
+# TGAC 2025 Solution
 
 English | [中文](README.zh.md)
 

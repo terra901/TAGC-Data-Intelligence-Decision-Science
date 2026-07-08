@@ -112,7 +112,7 @@ assert.match(html, /<meta name="description" content="[^"]*TGAC 2025[^"]*Text-to
 assertIncludes(
   readme,
   [
-    "TGAC 2025 Solution Writeup and Proof",
+    "TGAC 2025 Solution",
     "English | [中文](README.zh.md)",
     "rank.png",
     "docs/source",
