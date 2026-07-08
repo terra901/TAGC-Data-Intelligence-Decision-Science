@@ -14,6 +14,8 @@ const architectureImagePath = join(docsDir, "assets", "text-to-sql-architecture-
 const sourceDir = join(docsDir, "source");
 const sourceReadmePath = join(sourceDir, "README.md");
 const gitignorePath = join(root, ".gitignore");
+const readmePath = join(root, "README.md");
+const englishReadmePath = join(root, "README.en.md");
 
 const expectedPdfHash = "1FD24D09D2E1D5EBBC887B75B59DCE129F63BE14D276B428C01C011C1189128C";
 
@@ -48,7 +50,8 @@ assert.ok(existsSync(architectureImagePath), "architecture preview image must be
 assert.ok(existsSync(sourceReadmePath), "sanitized source README must exist");
 
 const html = readText(indexPath);
-const readme = readText(join(root, "README.md"));
+const readme = readText(readmePath);
+const englishReadme = readText(englishReadmePath);
 const sourceReadme = readText(sourceReadmePath);
 const configExample = readText(join(sourceDir, "pipeline", "config.example.py"));
 const gitignore = readText(gitignorePath);
@@ -110,13 +113,29 @@ assert.match(html, /<meta name="description" content="[^"]*TGAC 2025[^"]*Text-to
 assertIncludes(
   readme,
   [
+    "TGAC 2025 方案复盘与获奖证明",
+    "[English](README.en.md)",
+    "TAGC.png",
+    "https://terra901.github.io/TAGC-Data-Intelligence-Decision-Science/",
+    "docs/source",
+    "脱敏",
+    expectedPdfHash
+  ],
+  "README.md"
+);
+
+assertIncludes(
+  englishReadme,
+  [
     "TGAC 2025 Solution Writeup and Proof",
+    "[中文](README.md)",
+    "TAGC.png",
     "https://terra901.github.io/TAGC-Data-Intelligence-Decision-Science/",
     "docs/source",
     "sanitized",
     expectedPdfHash
   ],
-  "README.md"
+  "README.en.md"
 );
 
 assertIncludes(
@@ -170,7 +189,8 @@ const secretPattern = /(sk-[A-Za-z0-9][A-Za-z0-9._-]{10,}|AIza[0-9A-Za-z_-]{20,}
 const removedPublicConfigPattern = /(https:\/\/api\.wapq\.cn\/v1|gpt-5\.5|LLM_PROVIDER\s*=\s*os\.getenv\("LLM_PROVIDER",\s*"openai"\))/;
 const textExtensions = new Set([".html", ".md", ".mjs", ".py", ".json", ".txt", ".css"]);
 const publicFiles = [
-  join(root, "README.md"),
+  readmePath,
+  englishReadmePath,
   join(root, ".gitignore"),
   ...walkFiles(docsDir)
 ].filter((path) => textExtensions.has(extname(path)));
