@@ -15,7 +15,7 @@ const sourceDir = join(docsDir, "source");
 const sourceReadmePath = join(sourceDir, "README.md");
 const gitignorePath = join(root, ".gitignore");
 const readmePath = join(root, "README.md");
-const englishReadmePath = join(root, "README.en.md");
+const chineseReadmePath = join(root, "README.zh.md");
 
 const expectedPdfHash = "1FD24D09D2E1D5EBBC887B75B59DCE129F63BE14D276B428C01C011C1189128C";
 
@@ -51,7 +51,7 @@ assert.ok(existsSync(sourceReadmePath), "sanitized source README must exist");
 
 const html = readText(indexPath);
 const readme = readText(readmePath);
-const englishReadme = readText(englishReadmePath);
+const chineseReadme = readText(chineseReadmePath);
 const sourceReadme = readText(sourceReadmePath);
 const configExample = readText(join(sourceDir, "pipeline", "config.example.py"));
 const gitignore = readText(gitignorePath);
@@ -64,13 +64,11 @@ assertIncludes(
     "Second Place",
     "Data-Intelligence Decision Science",
     "数智决策科学赛道",
-    "帮帮我！肯德基爷爷",
-    "高海圳",
+    "Help Me! KFC Grandpa",
     "Haizhen Gao",
-    "许刚",
     "Gang Xu",
-    "陈继昀",
     "Jiyun Chen",
+    "https://github.com/gstranded",
     "2026-01-06",
     expectedPdfHash,
     "方案总览",
@@ -96,7 +94,7 @@ assertIncludes(
 
 assert.match(
   html,
-  /<img[^>]+src="assets\/tgac-2025-second-place-certificate\.png"[^>]+alt="TGAC 2025 Second Place certificate for team 帮帮我！肯德基爷爷"/
+  /<img[^>]+src="assets\/tgac-2025-second-place-certificate\.png"[^>]+alt="TGAC 2025 Second Place certificate for team Help Me! KFC Grandpa"/
 );
 assert.match(
   html,
@@ -113,29 +111,33 @@ assert.match(html, /<meta name="description" content="[^"]*TGAC 2025[^"]*Text-to
 assertIncludes(
   readme,
   [
-    "TGAC 2025 方案复盘与获奖证明",
-    "[English](README.en.md)",
+    "TGAC 2025 Solution Writeup and Proof",
+    "English | [中文](README.zh.md)",
     "TAGC.png",
     "https://terra901.github.io/TAGC-Data-Intelligence-Decision-Science/",
     "docs/source",
-    "脱敏",
+    "sanitized",
+    "Help Me! KFC Grandpa",
+    "[Haizhen Gao](https://github.com/gstranded)",
     expectedPdfHash
   ],
   "README.md"
 );
 
 assertIncludes(
-  englishReadme,
+  chineseReadme,
   [
-    "TGAC 2025 Solution Writeup and Proof",
-    "[中文](README.md)",
+    "TGAC 2025 方案复盘与获奖证明",
+    "[English](README.md) | 中文",
     "TAGC.png",
     "https://terra901.github.io/TAGC-Data-Intelligence-Decision-Science/",
     "docs/source",
-    "sanitized",
+    "脱敏",
+    "Help Me! KFC Grandpa",
+    "[Haizhen Gao](https://github.com/gstranded)",
     expectedPdfHash
   ],
-  "README.en.md"
+  "README.zh.md"
 );
 
 assertIncludes(
@@ -190,7 +192,7 @@ const removedPublicConfigPattern = /(https:\/\/api\.wapq\.cn\/v1|gpt-5\.5|LLM_PR
 const textExtensions = new Set([".html", ".md", ".mjs", ".py", ".json", ".txt", ".css"]);
 const publicFiles = [
   readmePath,
-  englishReadmePath,
+  chineseReadmePath,
   join(root, ".gitignore"),
   ...walkFiles(docsDir)
 ].filter((path) => textExtensions.has(extname(path)));

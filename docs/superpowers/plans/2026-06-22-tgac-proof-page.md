@@ -47,12 +47,9 @@ const requiredText = [
   "Second Place",
   "Data-Intelligence Decision Science",
   "数智决策科学赛道",
-  "帮帮我！肯德基爷爷",
-  "高海圳",
+  "Help Me! KFC Grandpa",
   "Haizhen Gao",
-  "许刚",
   "Gang Xu",
-  "陈继昀",
   "Jiyun Chen",
   "2026-01-06",
   "1FD24D09D2E1D5EBBC887B75B59DCE129F63BE14D276B428C01C011C1189128C",
@@ -65,7 +62,7 @@ for (const text of requiredText) {
   assert.ok(html.includes(text), `docs/index.html must include: ${text}`);
 }
 
-assert.match(html, /<img[^>]+src="assets\/tgac-2025-second-place-certificate\.png"[^>]+alt="TGAC 2025 Second Place certificate for team 帮帮我！肯德基爷爷"/);
+assert.match(html, /<img[^>]+src="assets\/tgac-2025-second-place-certificate\.png"[^>]+alt="TGAC 2025 Second Place certificate for team Help Me! KFC Grandpa"/);
 assert.match(html, /<a[^>]+href="assets\/sealdone_3-2\.pdf"/);
 assert.match(html, /<meta name="description" content="[^"]*TGAC 2025[^"]*Second Place[^"]*"/);
 
@@ -112,8 +109,8 @@ Create a single static page containing:
 - Title: `TGAC 2025 Second Place Proof`
 - Hero claim: `Tencent Games Algorithm Competition 2025 - Second Place`
 - Track: `Data-Intelligence Decision Science / 数智决策科学赛道`
-- Team: `帮帮我！肯德基爷爷`
-- Members: `高海圳 / Haizhen Gao`, `许刚 / Gang Xu`, `陈继昀 / Jiyun Chen`
+- Team: `Help Me! KFC Grandpa`
+- Members: `Haizhen Gao`, `Gang Xu`, `Jiyun Chen`
 - Date: `2026-01-06`
 - Links to:
   - `assets/sealdone_3-2.pdf`
@@ -122,7 +119,7 @@ Create a single static page containing:
   - `https://terra901.github.io/TAGC-Data-Intelligence-Decision-Science/`
 - Certificate preview image:
   - `src="assets/tgac-2025-second-place-certificate.png"`
-  - `alt="TGAC 2025 Second Place certificate for team 帮帮我！肯德基爷爷"`
+  - `alt="TGAC 2025 Second Place certificate for team Help Me! KFC Grandpa"`
 - SHA-256 hash exactly:
   - `1FD24D09D2E1D5EBBC887B75B59DCE129F63BE14D276B428C01C011C1189128C`
 

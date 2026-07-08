@@ -12,8 +12,8 @@ Create a public GitHub Pages site for `terra901` that verifies and explains a Te
   - Event: Tencent Games Algorithm Competition 2025
   - Award: Second Place
   - Track: Data-Intelligence Decision Science / 数智决策科学赛道
-  - Team: 帮帮我！肯德基爷爷
-  - Members: 高海圳 / Haizhen Gao, 许刚 / Gang Xu, 陈继昀 / Jiyun Chen
+  - Team: Help Me! KFC Grandpa
+  - Members: Haizhen Gao, Gang Xu, Jiyun Chen
   - Issuer shown on certificate: 腾讯游戏算法大赛组委会
   - Date shown on certificate: 2026-01-06
 - File integrity proof:
