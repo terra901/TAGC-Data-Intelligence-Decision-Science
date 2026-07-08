@@ -114,7 +114,7 @@ assertIncludes(
   [
     "TGAC 2025 Solution Writeup and Proof",
     "English | [中文](README.zh.md)",
-    "TAGC.png",
+    "rank.png",
     "docs/source",
     "sanitized",
     "Help Me! KFC Grandpa",
@@ -128,7 +128,7 @@ assertIncludes(
   [
     "TGAC-腾讯游戏算法-数智决策科学-第二名方案",
     "[English](README.md) | 中文",
-    "TAGC.png",
+    "rank.png",
     "docs/source",
     "脱敏",
     "Help Me! KFC Grandpa",

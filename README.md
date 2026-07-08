@@ -2,7 +2,7 @@
 
 English | [中文](README.zh.md)
 
-![TGAC 2025 Data-Intelligence Decision Science Second Place](TAGC.png)
+![TGAC 2025 Data-Intelligence Decision Science Second Place](rank.png)
 
 ## Overview
 

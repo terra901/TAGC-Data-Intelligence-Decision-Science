@@ -2,7 +2,7 @@
 
 [English](README.md) | 中文
 
-![TGAC 2025 数智决策科学赛道二等奖](TAGC.png)
+![TGAC 2025 数智决策科学赛道二等奖](rank.png)
 
 ## 项目简介
 
