@@ -14,6 +14,7 @@
 辅助产物：
 - `profiling_output_per_table/profile_*.json`：表剖析结果（NULL/基数/TopK/范围/MinHash 等）。
 - `join_candidates_verified.json`：验证通过的 join 候选。
+- `join_graph.json`：由验证通过的字段级 join 候选聚合出的表级 join graph（包含 `nodes`、`edges`、`adjacency` 三种视图）。
 - `profiling_output_merged/profile_*.json`：合并了 join 信息，并去掉 MinHash 签名后的剖析文件。
 
 ---
@@ -85,10 +86,21 @@
 
 **输出**：
 - `join_candidates_verified.json`
+- 可选：调用 `save_join_graph("join_candidates_verified.json", "join_graph.json")` 生成表级 join graph。
 
 **关键参数**：
 - `JACCARD_THRESHOLD=0.8`
 - `MIN_CARDINALITY_FOR_JOIN=1`（基数>1）
+
+**Join Graph 扩展**：
+- `build_join_graph(join_candidates, min_similarity=0.0, keep_evidence=False)`：
+  - 将字段级候选聚合为表级图。
+  - `nodes` 描述表节点、度数和观测到的 join 字段。
+  - `edges` 描述表对之间的 join keys、权重和验证次数。
+  - `adjacency` 提供检索友好的邻接表。
+- `save_join_graph(...)`：
+  - 支持直接从 `join_candidates_verified.json` 读取候选并保存 `join_graph.json`。
+  - 可通过 `min_similarity` 过滤低相似候选，通过 `keep_evidence=True` 保留原始候选证据。
 
 ---
 

@@ -8,8 +8,6 @@ English | [中文](README.zh.md)
 
 This repository publishes a public proof page and a sanitized technical writeup for a Tencent Games Algorithm Competition 2025 Second Place award in the Data-Intelligence Decision Science track.
 
-- Public page: https://terra901.github.io/TAGC-Data-Intelligence-Decision-Science/
-- GitHub repository: https://github.com/terra901/TAGC-Data-Intelligence-Decision-Science
 - Certificate PDF: `docs/assets/sealdone_3-2.pdf`
 - Architecture PDF: `docs/assets/text-to-sql-architecture.pdf`
 - Sanitized source snapshot: `docs/source`
@@ -39,43 +37,3 @@ The public page includes a Text-to-SQL solution writeup covering:
 - Majority Vote and LLM Judge arbitration
 
 The `docs/source` folder contains a sanitized source snapshot. It keeps the key module structure and selected build guides, but removes API keys, private database hosts, logs, model caches, large generated artifacts, and raw sensitive configuration.
-
-## File Integrity
-
-SHA-256 for `docs/assets/sealdone_3-2.pdf`:
-
-```text
-1FD24D09D2E1D5EBBC887B75B59DCE129F63BE14D276B428C01C011C1189128C
-```
-
-To verify locally on Windows PowerShell:
-
-```powershell
-Get-FileHash docs/assets/sealdone_3-2.pdf -Algorithm SHA256
-```
-
-## Local Verification
-
-```bash
-node tests/verify-site.mjs
-```
-
-Expected output:
-
-```text
-Site verification passed.
-```
-
-## GitHub Pages Setup
-
-Use these GitHub repository settings:
-
-- Repository: `TAGC-Data-Intelligence-Decision-Science`
-- Visibility: Public
-- Pages source: Deploy from a branch
-- Branch: `main`
-- Folder: `/docs`
-
-## Boundary
-
-This repository is an independently published proof and technical writeup. It is not an official Tencent page.

@@ -3,6 +3,8 @@ import json
 import os
 import glob
 import itertools
+from pathlib import Path
+from typing import Any, Iterable, Mapping
 from datasketch import MinHash
 from tqdm import tqdm
 import warnings
@@ -152,6 +154,181 @@ def analyze_join_candidates(table_a_name, table_a_cols, table_b_name, table_b_co
                 print(f"警告：比较 {table_a_name}.{col_a_name} 和 {table_b_name}.{col_b_name} 时出错: {e}")
 
     return candidates
+
+def _split_qualified_column(value):
+    """Split a table.column expression into table and column components."""
+    if value is None:
+        return None, None
+    text = str(value).strip()
+    if not text:
+        return None, None
+    if "." not in text:
+        return None, text
+    table_name, column_name = text.rsplit(".", 1)
+    return table_name.strip() or None, column_name.strip() or None
+
+def _extract_join_candidate(candidate):
+    """Normalize one verified MinHash join candidate into a graph edge record."""
+    left_column = candidate.get("column_A") or candidate.get("left_column")
+    right_column = candidate.get("column_B") or candidate.get("right_column")
+    left_table, left_field = _split_qualified_column(left_column)
+    right_table, right_field = _split_qualified_column(right_column)
+
+    left_table = str(candidate.get("table_A") or candidate.get("left_table") or left_table or "").strip()
+    right_table = str(candidate.get("table_B") or candidate.get("right_table") or right_table or "").strip()
+    if not left_table or not right_table or left_table == right_table:
+        return None
+
+    similarity = candidate.get("jaccard_similarity", candidate.get("similarity", 0.0))
+    try:
+        similarity = float(similarity)
+    except (TypeError, ValueError):
+        similarity = 0.0
+
+    return {
+        "source_table": left_table,
+        "target_table": right_table,
+        "source_column": left_field or str(left_column or "").strip(),
+        "target_column": right_field or str(right_column or "").strip(),
+        "jaccard_similarity": round(similarity, 6),
+        "sql_verified": bool(candidate.get("verified_by_db_join", candidate.get("sql_verified", True))),
+        "evidence": dict(candidate),
+    }
+
+def build_join_graph(
+    join_candidates: Iterable[Mapping[str, Any]],
+    min_similarity: float = 0.0,
+    keep_evidence: bool = False,
+) -> dict[str, Any]:
+    """
+    Build a table-level join graph from verified MinHash join candidates.
+
+    Each input candidate is expected to contain `column_A`, `column_B`, and
+    `jaccard_similarity`, as produced by the MinHash discovery stage after SQL
+    validation. The returned graph contains three synchronized views:
+
+    - `nodes`: one node per table, with degree and observed join columns;
+    - `edges`: one edge per table pair, aggregating all verified join keys;
+    - `adjacency`: a compact table-to-neighbor representation for retrieval.
+
+    The graph can be merged into an enhanced schema so downstream Text-to-SQL
+    prompts receive explicit join-path evidence instead of relying on implicit
+    or hallucinated table relationships.
+    """
+    table_columns: dict[str, set[str]] = {}
+    pair_edges: dict[tuple[str, str], dict[str, Any]] = {}
+
+    for raw_candidate in join_candidates:
+        normalized = _extract_join_candidate(raw_candidate)
+        if normalized is None:
+            continue
+        if normalized["jaccard_similarity"] < min_similarity:
+            continue
+
+        left_table = normalized["source_table"]
+        right_table = normalized["target_table"]
+        left_column = normalized["source_column"]
+        right_column = normalized["target_column"]
+
+        table_columns.setdefault(left_table, set()).add(left_column)
+        table_columns.setdefault(right_table, set()).add(right_column)
+
+        source, target = sorted((left_table, right_table))
+        if source == left_table:
+            source_column = left_column
+            target_column = right_column
+        else:
+            source_column = right_column
+            target_column = left_column
+
+        edge_key = (source, target)
+        edge = pair_edges.setdefault(
+            edge_key,
+            {
+                "source": source,
+                "target": target,
+                "weight": 0.0,
+                "verified_join_count": 0,
+                "join_keys": [],
+            },
+        )
+        edge["weight"] = max(edge["weight"], normalized["jaccard_similarity"])
+        edge["verified_join_count"] += 1
+        join_key = {
+            "source_column": source_column,
+            "target_column": target_column,
+            "jaccard_similarity": normalized["jaccard_similarity"],
+            "sql_verified": normalized["sql_verified"],
+        }
+        if keep_evidence:
+            join_key["evidence"] = normalized["evidence"]
+        edge["join_keys"].append(join_key)
+
+    adjacency: dict[str, list[dict[str, Any]]] = {table: [] for table in table_columns}
+    for edge in pair_edges.values():
+        compact_keys = [
+            {
+                "source_column": key["source_column"],
+                "target_column": key["target_column"],
+                "jaccard_similarity": key["jaccard_similarity"],
+            }
+            for key in edge["join_keys"]
+        ]
+        adjacency.setdefault(edge["source"], []).append(
+            {"table": edge["target"], "weight": edge["weight"], "join_keys": compact_keys}
+        )
+        adjacency.setdefault(edge["target"], []).append(
+            {"table": edge["source"], "weight": edge["weight"], "join_keys": compact_keys}
+        )
+
+    nodes = [
+        {
+            "id": table,
+            "degree": len(adjacency.get(table, [])),
+            "observed_join_columns": sorted(columns),
+        }
+        for table, columns in sorted(table_columns.items())
+    ]
+    edges = sorted(
+        pair_edges.values(),
+        key=lambda item: (-item["weight"], item["source"], item["target"]),
+    )
+    for neighbors in adjacency.values():
+        neighbors.sort(key=lambda item: (-item["weight"], item["table"]))
+
+    return {
+        "metadata": {
+            "construction_method": "MinHash candidate discovery followed by SQL validation",
+            "min_similarity": min_similarity,
+            "node_count": len(nodes),
+            "edge_count": len(edges),
+        },
+        "nodes": nodes,
+        "edges": edges,
+        "adjacency": dict(sorted(adjacency.items())),
+    }
+
+def save_join_graph(
+    join_candidates,
+    output_path="join_graph.json",
+    min_similarity=0.0,
+    keep_evidence=False,
+):
+    """Build and persist a join graph from a candidate list or JSON file."""
+    if isinstance(join_candidates, (str, Path)):
+        with Path(join_candidates).open("r", encoding="utf-8") as input_file:
+            candidate_data = json.load(input_file)
+    else:
+        candidate_data = list(join_candidates)
+
+    graph = build_join_graph(
+        candidate_data,
+        min_similarity=min_similarity,
+        keep_evidence=keep_evidence,
+    )
+    with Path(output_path).open("w", encoding="utf-8") as output_file:
+        json.dump(graph, output_file, ensure_ascii=False, indent=2)
+    return graph
 
 # --- 5. 主函数 (已重构) ---
 

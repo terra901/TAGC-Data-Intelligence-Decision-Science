@@ -53,6 +53,7 @@ const html = readText(indexPath);
 const readme = readText(readmePath);
 const chineseReadme = readText(chineseReadmePath);
 const sourceReadme = readText(sourceReadmePath);
+const joinAnalyzer = readText(join(sourceDir, "knowledge-base", "1.1-schema-completion", "analyza_join.py"));
 const configExample = readText(join(sourceDir, "pipeline", "config.example.py"));
 const gitignore = readText(gitignorePath);
 
@@ -114,12 +115,10 @@ assertIncludes(
     "TGAC 2025 Solution Writeup and Proof",
     "English | [中文](README.zh.md)",
     "TAGC.png",
-    "https://terra901.github.io/TAGC-Data-Intelligence-Decision-Science/",
     "docs/source",
     "sanitized",
     "Help Me! KFC Grandpa",
-    "[Haizhen Gao](https://github.com/gstranded)",
-    expectedPdfHash
+    "[Haizhen Gao](https://github.com/gstranded)"
   ],
   "README.md"
 );
@@ -127,15 +126,13 @@ assertIncludes(
 assertIncludes(
   chineseReadme,
   [
-    "TGAC 2025 方案复盘与获奖证明",
+    "TGAC-腾讯游戏算法-数智决策科学-第二名方案",
     "[English](README.md) | 中文",
     "TAGC.png",
-    "https://terra901.github.io/TAGC-Data-Intelligence-Decision-Science/",
     "docs/source",
     "脱敏",
     "Help Me! KFC Grandpa",
-    "[Haizhen Gao](https://github.com/gstranded)",
-    expectedPdfHash
+    "[Haizhen Gao](https://github.com/gstranded)"
   ],
   "README.zh.md"
 );
@@ -146,10 +143,23 @@ assertIncludes(
     "Sanitized Source Snapshot",
     "No API keys",
     "Agentic Workflow",
+    "Join Graph construction",
     "closed-loop knowledge evolution",
     "config.example.py"
   ],
   "docs/source/README.md"
+);
+
+assertIncludes(
+  joinAnalyzer,
+  [
+    "def build_join_graph(",
+    "def save_join_graph(",
+    "join_graph.json",
+    "adjacency",
+    "verified_join_count"
+  ],
+  "docs/source/knowledge-base/1.1-schema-completion/analyza_join.py"
 );
 
 assertIncludes(

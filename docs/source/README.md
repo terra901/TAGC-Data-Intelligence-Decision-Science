@@ -9,7 +9,7 @@ This folder is a public, sanitized snapshot of the TGAC 2025 Text-to-SQL solutio
 - `pipeline/utils.py`: schema filtering, retrieval helpers, SQL execution helpers, embedding, and FAISS index utilities.
 - `pipeline/build_vector_db.py`: few-shot vector index builder.
 - `pipeline/config.example.py`: environment-variable based configuration template.
-- `knowledge-base/`: build guides and scripts for Augmented Schema, Positive Knowledge, Verification Knowledge, negative constraints, and Few-shot CoT generation.
+- `knowledge-base/`: build guides and scripts for Augmented Schema, Join Graph construction, Positive Knowledge, Verification Knowledge, negative constraints, and Few-shot CoT generation.
 - `knowledge-base/full-knowledge-file/`: public notes describing the role of the knowledge files and selected non-secret knowledge docs.
 
 ## What Was Removed
@@ -23,7 +23,7 @@ This folder is a public, sanitized snapshot of the TGAC 2025 Text-to-SQL solutio
 
 The core idea is an Agentic Workflow with closed-loop knowledge evolution:
 
-1. Build an Augmented Schema from profiling statistics, join discovery, business metadata, and LLM descriptions.
+1. Build an Augmented Schema from profiling statistics, join discovery, table-level join graph evidence, business metadata, and LLM descriptions.
 2. Mine Positive Knowledge from gold SQL, correct answers, and evaluation feedback.
 3. Add Verification Knowledge and negative constraints through a Data Detective Agent and History Guard.
 4. Retrieve Few-shot CoT examples for each question.
