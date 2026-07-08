@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="TGAC 2025 Second Place proof and Text-to-SQL solution writeup with certificate, SHA-256 hash, architecture notes, and sanitized source snapshot.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://terra901.github.io/TAGC-Data-Intelligence-Decision-Science/">
+    <title>TGAC 2025 二等奖证明与 Text-to-SQL 方案复盘</title>
+    <style>
+      :root {
+        --ink: #17202a;
+        --muted: #5f6b7a;
+        --subtle: #eef1f4;
+        --line: #d6dde5;
+        --paper: #ffffff;
+        --field: #f7f9fb;
+        --brand: #0f766e;
+        --brand-dark: #0b5f59;
+        --warm: #b45309;
+        --danger: #991b1b;
+        --code: #263238;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        background: var(--field);
+        color: var(--ink);
+        font-family:
+          ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", "Noto Sans SC", "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.68;
+      }
+
+      a {
+        color: var(--brand-dark);
+        font-weight: 700;
+        text-decoration-thickness: 0.08em;
+        text-underline-offset: 0.18em;
+      }
+
+      a:hover {
+        color: var(--warm);
+      }
+
+      a:focus-visible {
+        border-radius: 4px;
+        outline: 3px solid rgba(15, 118, 110, 0.28);
+        outline-offset: 3px;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      .container {
+        width: min(1160px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .hero {
+        border-bottom: 1px solid var(--line);
+        background: var(--paper);
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.72fr);
+        gap: 36px;
+        align-items: center;
+        min-height: 86dvh;
+        padding: 48px 0 34px;
+      }
+
+      .eyebrow {
+        margin: 0 0 12px;
+        color: var(--brand-dark);
+        font-size: 0.88rem;
+        font-weight: 800;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 760px;
+        margin-bottom: 18px;
+        font-size: 3.4rem;
+        line-height: 1.08;
+        letter-spacing: 0;
+      }
+
+      h2 {
+        margin-bottom: 14px;
+        font-size: 2rem;
+        line-height: 1.2;
+        letter-spacing: 0;
+      }
+
+      h3 {
+        margin-bottom: 8px;
+        font-size: 1.16rem;
+        line-height: 1.32;
+      }
+
+      .lead {
+        max-width: 760px;
+        margin-bottom: 24px;
+        color: var(--muted);
+        font-size: 1.08rem;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 26px;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 46px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 10px 15px;
+        background: var(--paper);
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      .button.primary {
+        border-color: var(--brand);
+        background: var(--brand);
+        color: #ffffff;
+      }
+
+      .button.primary:hover {
+        background: var(--brand-dark);
+        color: #ffffff;
+      }
+
+      .fact-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--line);
+      }
+
+      .fact {
+        min-width: 0;
+        padding: 16px;
+        background: var(--field);
+      }
+
+      .fact span {
+        display: block;
+        margin-bottom: 3px;
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .fact strong {
+        display: block;
+        overflow-wrap: anywhere;
+        font-size: 1rem;
+      }
+
+      .certificate-frame {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--paper);
+        box-shadow: 0 18px 44px rgba(23, 32, 42, 0.12);
+      }
+
+      .certificate-frame img {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1488 / 2105;
+      }
+
+      .certificate-caption {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .proof-band {
+        border-bottom: 1px solid var(--line);
+        background: #f0f5f4;
+      }
+
+      .proof-band .container {
+        display: grid;
+        grid-template-columns: minmax(0, 0.65fr) minmax(0, 1fr);
+        gap: 24px;
+        padding: 28px 0;
+      }
+
+      .hash {
+        overflow-wrap: anywhere;
+        border: 1px solid #b8d2ce;
+        border-radius: 8px;
+        padding: 16px;
+        background: #ffffff;
+      }
+
+      .hash code,
+      code {
+        color: var(--code);
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: 0.92rem;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 240px minmax(0, 1fr);
+        gap: 44px;
+        padding: 44px 0 56px;
+      }
+
+      .toc {
+        position: sticky;
+        top: 18px;
+        align-self: start;
+        border-left: 3px solid var(--brand);
+        padding-left: 16px;
+      }
+
+      .toc h2 {
+        margin-bottom: 8px;
+        font-size: 0.92rem;
+        text-transform: uppercase;
+      }
+
+      .toc a {
+        display: block;
+        padding: 6px 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .toc a:hover {
+        color: var(--brand-dark);
+      }
+
+      article section {
+        scroll-margin-top: 24px;
+        border-bottom: 1px solid var(--line);
+        padding: 0 0 36px;
+        margin-bottom: 36px;
+      }
+
+      article section:last-child {
+        border-bottom: 0;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .section-copy {
+        max-width: 820px;
+        color: var(--muted);
+      }
+
+      .plain-list {
+        margin: 18px 0 0;
+        padding-left: 1.2rem;
+      }
+
+      .plain-list li {
+        margin-bottom: 8px;
+      }
+
+      .architecture {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        margin: 22px 0 16px;
+        background: var(--paper);
+      }
+
+      .architecture img {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1588 / 2246;
+      }
+
+      .module-grid,
+      .code-grid,
+      .lesson-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .module,
+      .code-card,
+      .lesson {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 18px;
+        background: var(--paper);
+      }
+
+      .module p,
+      .code-card p,
+      .lesson p {
+        margin-bottom: 0;
+        color: var(--muted);
+      }
+
+      .callout {
+        border-left: 4px solid var(--warm);
+        border-radius: 8px;
+        margin-top: 18px;
+        padding: 16px 18px;
+        background: #fff8ed;
+      }
+
+      .callout p {
+        margin-bottom: 0;
+      }
+
+      .proof-table {
+        display: grid;
+        gap: 1px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        margin-top: 18px;
+        background: var(--line);
+      }
+
+      .proof-row {
+        display: grid;
+        grid-template-columns: 180px minmax(0, 1fr);
+        gap: 16px;
+        padding: 15px 16px;
+        background: var(--paper);
+      }
+
+      .proof-row span {
+        color: var(--muted);
+        font-weight: 800;
+      }
+
+      .proof-row strong {
+        overflow-wrap: anywhere;
+      }
+
+      .boundary {
+        border: 1px solid #efcaca;
+        border-radius: 8px;
+        padding: 16px 18px;
+        background: #fff5f5;
+        color: var(--danger);
+      }
+
+      .footer {
+        border-top: 1px solid var(--line);
+        padding: 26px 0 40px;
+        color: var(--muted);
+        background: var(--paper);
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 920px) {
+        h1 {
+          font-size: 2.6rem;
+        }
+
+        .hero-grid,
+        .proof-band .container,
+        .layout {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-grid {
+          min-height: auto;
+        }
+
+        .toc {
+          position: static;
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 0 18px;
+          border: 1px solid var(--line);
+          border-radius: 8px;
+          padding: 14px 16px;
+          background: var(--paper);
+        }
+
+        .toc h2 {
+          grid-column: 1 / -1;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          width: min(100% - 24px, 1160px);
+        }
+
+        .hero-grid {
+          padding-top: 34px;
+        }
+
+        h1 {
+          font-size: 2.15rem;
+        }
+
+        h2 {
+          font-size: 1.55rem;
+        }
+
+        .actions,
+        .module-grid,
+        .code-grid,
+        .lesson-grid,
+        .fact-grid,
+        .toc {
+          grid-template-columns: 1fr;
+        }
+
+        .actions {
+          display: grid;
+        }
+
+        .button {
+          width: 100%;
+        }
+
+        .proof-row {
+          grid-template-columns: 1fr;
+          gap: 4px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">TGAC 2025 public proof and writeup</p>
+          <h1>TGAC 2025 二等奖证明与 Text-to-SQL 方案复盘</h1>
+          <p class="lead">
+            这个页面把 Tencent Games Algorithm Competition 2025 数智决策科学赛道的 Second Place 证书、
+            原始 PDF 哈希、Text-to-SQL 方案说明和脱敏代码快照放在同一个公开链接里，方便直接核验和阅读。
+          </p>
+          <div class="actions" aria-label="Primary links">
+            <a class="button primary" href="assets/sealdone_3-2.pdf">查看证书 PDF</a>
+            <a class="button" href="#solution">阅读方案复盘</a>
+            <a class="button" href="source/README.md">查看脱敏代码</a>
+            <a class="button" href="https://github.com/terra901/TAGC-Data-Intelligence-Decision-Science">GitHub repository</a>
+          </div>
+
+          <div class="fact-grid" aria-label="Award summary">
+            <div class="fact">
+              <span>Award</span>
+              <strong>Second Place</strong>
+            </div>
+            <div class="fact">
+              <span>Track</span>
+              <strong>Data-Intelligence Decision Science / 数智决策科学赛道</strong>
+            </div>
+            <div class="fact">
+              <span>Team</span>
+              <strong>帮帮我！肯德基爷爷</strong>
+            </div>
+            <div class="fact">
+              <span>Date</span>
+              <strong>2026-01-06</strong>
+            </div>
+          </div>
+        </div>
+
+        <figure>
+          <div class="certificate-frame">
+            <img
+              src="assets/tgac-2025-second-place-certificate.png"
+              alt="TGAC 2025 Second Place certificate for team 帮帮我！肯德基爷爷"
+              width="1488"
+              height="2105"
+              loading="eager"
+            >
+          </div>
+          <figcaption class="certificate-caption">
+            证书预览图来自仓库内公开 PDF 的第一页渲染版本。
+          </figcaption>
+        </figure>
+      </div>
+    </header>
+
+    <section class="proof-band" aria-labelledby="proof-title">
+      <div class="container">
+        <div>
+          <h2 id="proof-title">证明信息</h2>
+          <p class="section-copy">
+            证书原件保存在本仓库，公开页面和仓库链接可相互引用。下方 SHA-256 用于确认 PDF 文件没有被替换。
+          </p>
+        </div>
+        <div class="hash">
+          <strong>SHA-256 for docs/assets/sealdone_3-2.pdf</strong><br>
+          <code>1FD24D09D2E1D5EBBC887B75B59DCE129F63BE14D276B428C01C011C1189128C</code>
+        </div>
+      </div>
+    </section>
+
+    <main class="container layout">
+      <nav class="toc" aria-label="Page sections">
+        <h2>目录</h2>
+        <a href="#certificate">证书与事实</a>
+        <a href="#solution">方案总览</a>
+        <a href="#workflow">Agentic Workflow</a>
+        <a href="#knowledge">闭环知识进化</a>
+        <a href="#generation">生成与执行</a>
+        <a href="#lessons">经验复盘</a>
+        <a href="#code">代码与复现</a>
+        <a href="#links">直接链接</a>
+      </nav>
+
+      <article>
+        <section id="certificate">
+          <h2>证书与事实</h2>
+          <p class="section-copy">
+            这部分给出可直接核验的奖项事实。页面是独立发布的证明材料，不代表腾讯官方页面；官方赛事入口见
+            <a href="https://tgac.tencent.com/">https://tgac.tencent.com/</a>。
+          </p>
+          <div class="proof-table">
+            <div class="proof-row">
+              <span>Event</span>
+              <strong>Tencent Games Algorithm Competition 2025</strong>
+            </div>
+            <div class="proof-row">
+              <span>Award</span>
+              <strong>Second Place</strong>
+            </div>
+            <div class="proof-row">
+              <span>Track</span>
+              <strong>Data-Intelligence Decision Science / 数智决策科学赛道</strong>
+            </div>
+            <div class="proof-row">
+              <span>Team</span>
+              <strong>帮帮我！肯德基爷爷</strong>
+            </div>
+            <div class="proof-row">
+              <span>Members</span>
+              <strong>高海圳 / Haizhen Gao; 许刚 / Gang Xu; 陈继昀 / Jiyun Chen</strong>
+            </div>
+            <div class="proof-row">
+              <span>Certificate date</span>
+              <strong>2026-01-06</strong>
+            </div>
+          </div>
+        </section>
+
+        <section id="solution">
+          <h2>方案总览</h2>
+          <p class="section-copy">
+            本方案面向比赛中的 Text-to-SQL 任务：输入自然语言问题和赛题数据库 schema，输出可执行 SQL。
+            最终策略不是单一 prompt，而是围绕 schema 增强、知识库构建、候选生成、执行反馈和结果选择形成闭环。
+          </p>
+          <ul class="plain-list">
+            <li>先用数据剖析、join 发现、业务知识和 LLM 描述构建 Augmented Schema，提高选表选列的命中率。</li>
+            <li>从 gold SQL、正确样例和评测反馈中沉淀 Positive Knowledge，让系统复用已经验证过的业务规则。</li>
+            <li>通过 Verification Knowledge、负向约束和 History Guard，把历史错法转化为生成阶段的防线。</li>
+            <li>用多路线生成、Execution & Fix、Majority Vote 和 LLM Judge 降低单次生成不稳定带来的风险。</li>
+          </ul>
+        </section>
+
+        <section id="workflow">
+          <h2>Agentic Workflow</h2>
+          <p class="section-copy">
+            方案的核心是把 Text-to-SQL 拆成可检查、可回写、可复用的 Agentic Workflow。每次错误不是只修当前 SQL，
+            还会反向更新知识、负样例和验证规则，让后续问题少踩同一类坑。
+          </p>
+          <figure class="architecture">
+            <img
+              src="assets/text-to-sql-architecture-page-01.png"
+              alt="Text-to-SQL architecture overview"
+              width="1588"
+              height="2246"
+              loading="eager"
+            >
+          </figure>
+          <p class="section-copy">
+            完整方案 PDF：<a href="assets/text-to-sql-architecture.pdf">基于 Agentic Workflow 与闭环知识进化的 Text-to-SQL 架构</a>。
+          </p>
+        </section>
+
+        <section id="knowledge">
+          <h2>闭环知识进化</h2>
+          <p class="section-copy">
+            知识库是这个方案里最重要的资产。它把 schema、业务规则、正确推理和错误反馈拆成不同层级，供检索、prompt 组装和校验模块使用。
+          </p>
+          <div class="module-grid">
+            <article class="module">
+              <h3>Augmented Schema</h3>
+              <p>通过字段统计、TopK、时间范围、join 候选、SME 元数据和 LLM 描述，把静态 schema 变成适合 Agent 推理的富 schema。</p>
+            </article>
+            <article class="module">
+              <h3>Positive Knowledge</h3>
+              <p>从 gold SQL 与正确结果中提取稳定规则，例如时间分区、指标口径、固定过滤条件和常见汇总方式。</p>
+            </article>
+            <article class="module">
+              <h3>Verification Knowledge</h3>
+              <p>用 Data Detective Agent 主动探查数据分布，把可验证的业务逻辑写入知识库，避免只靠模型猜测字段含义。</p>
+            </article>
+            <article class="module">
+              <h3>Few-shot CoT</h3>
+              <p>通过反向推理生成可复用链路，结合向量检索为每个问题召回相似样例，让 prompt 里既有 SQL 也有推理过程。</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="generation">
+          <h2>生成与执行</h2>
+          <p class="section-copy">
+            SQL 生成阶段采用多策略并行，不把最终答案押在一次调用上。候选 SQL 进入执行验证后，根据报错、空结果、历史错法和结果一致性继续修正或裁决。
+          </p>
+          <div class="module-grid">
+            <article class="module">
+              <h3>Standard / Schema-COT / Divide / Plan</h3>
+              <p>四类路线覆盖直接生成、schema 推理、问题拆解和计划式生成，让不同题型可以走更合适的思考路径。</p>
+            </article>
+            <article class="module">
+              <h3>Execution & Fix</h3>
+              <p>候选 SQL 会在 StarRocks 兼容环境中执行，语法错误、列名错误、类型错误会被回传给模型进行定向修复。</p>
+            </article>
+            <article class="module">
+              <h3>History Guard</h3>
+              <p>历史错误结果会被签名化保存，后续遇到相似问题时作为负向约束，阻止系统重复选择已知错误路线。</p>
+            </article>
+            <article class="module">
+              <h3>Majority Vote 与 LLM Judge</h3>
+              <p>多个候选结果归一化后做 Majority Vote；如果结果冲突，再交给 LLM Judge 结合问题、证据和执行结果仲裁。</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="lessons">
+          <h2>经验复盘</h2>
+          <div class="lesson-grid">
+            <article class="lesson">
+              <h3>Prompt 不是全部</h3>
+              <p>Text-to-SQL 的瓶颈经常在 schema 质量、指标口径和数据分布。先把上下文做扎实，比继续堆长 prompt 更有效。</p>
+            </article>
+            <article class="lesson">
+              <h3>正确知识要沉淀</h3>
+              <p>每次跑通的 SQL 都应该转化为可复用规则，尤其是时间分区、去重口径、状态过滤和多段汇总。</p>
+            </article>
+            <article class="lesson">
+              <h3>错误也有价值</h3>
+              <p>错误 SQL、错误结果和空结果可以变成负向约束。比赛后期，防止重复犯错比多生成几个候选更关键。</p>
+            </article>
+            <article class="lesson">
+              <h3>执行反馈必须闭环</h3>
+              <p>只让模型“看起来合理”是不够的；把执行错误、结果差异和历史反馈接回系统，才能稳定提高命中率。</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="code">
+          <h2>代码与复现</h2>
+          <p class="section-copy">
+            仓库公开的是脱敏精简版代码，保留方案结构和关键模块，移除 API key、私有数据库地址、运行日志、大型结果文件、模型缓存和原始敏感配置。
+          </p>
+          <div class="code-grid">
+            <article class="code-card">
+              <h3>Source overview</h3>
+              <p><a href="source/README.md">source/README.md</a></p>
+            </article>
+            <article class="code-card">
+              <h3>Runtime agent</h3>
+              <p><a href="source/pipeline/agent.py">source/pipeline/agent.py</a></p>
+            </article>
+            <article class="code-card">
+              <h3>Config template</h3>
+              <p><a href="source/pipeline/config.example.py">source/pipeline/config.example.py</a></p>
+            </article>
+            <article class="code-card">
+              <h3>Knowledge guides</h3>
+              <p><a href="source/knowledge-base/1.1-schema-completion/BUILD_GUIDE.md">Schema completion guide</a></p>
+            </article>
+          </div>
+          <div class="callout">
+            <p>
+              公开代码用于说明方案思路和模块边界。真实复现仍需要本地准备比赛数据、StarRocks/MySQL 兼容环境、embedding 模型、LLM key 和私有配置。
+            </p>
+          </div>
+        </section>
+
+        <section id="links">
+          <h2>直接链接</h2>
+          <div class="code-grid">
+            <article class="code-card">
+              <h3>Published proof URL</h3>
+              <p><a href="https://terra901.github.io/TAGC-Data-Intelligence-Decision-Science/">https://terra901.github.io/TAGC-Data-Intelligence-Decision-Science/</a></p>
+            </article>
+            <article class="code-card">
+              <h3>GitHub repository</h3>
+              <p><a href="https://github.com/terra901/TAGC-Data-Intelligence-Decision-Science">https://github.com/terra901/TAGC-Data-Intelligence-Decision-Science</a></p>
+            </article>
+            <article class="code-card">
+              <h3>Certificate PDF</h3>
+              <p><a href="assets/sealdone_3-2.pdf">assets/sealdone_3-2.pdf</a></p>
+            </article>
+            <article class="code-card">
+              <h3>Architecture PDF</h3>
+              <p><a href="assets/text-to-sql-architecture.pdf">assets/text-to-sql-architecture.pdf</a></p>
+            </article>
+          </div>
+          <div class="boundary">
+            This page is an independently published proof and writeup. It is not an official Tencent page.
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        Search keywords: TGAC 2025 Second Place, Tencent Games Algorithm Competition 2025,
+        Data-Intelligence Decision Science, 数智决策科学赛道, 帮帮我！肯德基爷爷, 高海圳, Text-to-SQL.
+      </div>
+    </footer>
+  </body>
+</html>

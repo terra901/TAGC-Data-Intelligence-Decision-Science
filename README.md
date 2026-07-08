@@ -1,80 +1,105 @@
-# StarRocks Text-to-SQL Knowledge-Augmented Pipeline
+# TGAC 2025 Solution Writeup and Proof / TGAC 2025 方案复盘与获奖证明
 
-## Abstract
+![TAGC 2025 Data-Intelligence Decision Science Second Place](TAGC.png)
 
-This repository contains a research-oriented Text-to-SQL pipeline for StarRocks databases. The project combines schema profiling, domain-knowledge construction, error-feedback mining, few-shot retrieval, prompt engineering, SQL generation, and iterative correction. The codebase has been normalized into English for academic review and GitHub publication.
+## 中文
 
-## Competition Snapshot
+本仓库发布 TGAC 2025 腾讯游戏算法竞赛「数智决策科学赛道」二等奖的公开证明页面，以及经过脱敏处理的 Text-to-SQL 技术方案复盘。
 
-![Team ranking interface](TAGC.png)
+- 在线页面: https://terra901.github.io/TAGC-Data-Intelligence-Decision-Science/
+- GitHub 仓库: https://github.com/terra901/TAGC-Data-Intelligence-Decision-Science
+- 证书 PDF: `docs/assets/sealdone_3-2.pdf`
+- 架构 PDF: `docs/assets/text-to-sql-architecture.pdf`
+- 脱敏源码快照: `docs/source`
+- TGAC 官网: https://tgac.tencent.com/
 
-*Figure 1. Team ranking interface for the data-intelligence decision-science competition track.*
+## 获奖信息
 
-## Repository Structure
+- 赛事: Tencent Games Algorithm Competition 2025
+- 奖项: 二等奖 / Second Place
+- 赛道: Data-Intelligence Decision Science / 数智决策科学赛道
+- 队伍: 帮帮我！肯德基爷爷
+- 成员: 高海圳 / Haizhen Gao, 许刚 / Gang Xu, 陈继昀 / Jiyun Chen
+- 证书日期: 2026-01-06
 
-- `1.knowledge_base/1.1_schema_completion_knowledge_base/`: schema profiling, MinHash join-candidate discovery, SQL-verified join graph generation, and LLM-assisted schema enrichment.
-- `1.knowledge_base/1.2_positive_knowledge_sources_and_construction/`: construction of positive domain knowledge from validated SQL and execution traces.
-- `1.knowledge_base/1.3_knowledge_validation_and_negative_constraints/`: validation artifacts, error feedback, and negative constraints derived from failed SQL attempts.
-- `1.knowledge_base/1.4_few_shot_cot_generation/`: generation of few-shot chain-of-thought examples.
-- `2.pipeline/`: the integrated Text-to-SQL runtime, including prompts, configuration, retrieval utilities, datasets, StarRocks dialect notes, and FAISS few-shot indexes.
+## 方案材料
 
-## Methodological Overview
+公开页面包含 Text-to-SQL 方案复盘，重点覆盖:
 
-1. **Schema profiling**: table-level and column-level statistics are collected to summarize metadata, cardinality, and candidate join keys.
-2. **Schema completion**: profiling artifacts are merged with LLM-generated descriptions to produce richer database metadata.
-3. **Knowledge construction**: validated SQL cases are distilled into positive rules, business mappings, and domain-specific constraints.
-4. **Negative constraint mining**: failed queries are analyzed to identify syntax, schema, and business-logic failure patterns.
-5. **Few-shot retrieval**: gold SQL examples are embedded and indexed with FAISS to retrieve semantically similar demonstrations.
-6. **SQL generation and repair**: prompts encode StarRocks dialect restrictions, self-checklists, and correction protocols.
-7. **Join graph construction**: SQL-validated MinHash column matches are aggregated into a table-level graph whose edges store candidate join keys, similarity scores, and validation evidence. This graph is intended to be merged into the enhanced schema to reduce ambiguous column interpretation and join-path hallucination.
+- Agentic Workflow
+- 闭环知识进化
+- Augmented Schema
+- Positive Knowledge
+- Verification Knowledge
+- Few-shot CoT
+- Execution & Fix
+- History Guard
+- Majority Vote 与 LLM Judge 仲裁
 
-## Join Graph Extension
+`docs/source` 目录保留了脱敏后的核心模块结构和构建说明，移除了 API key、私有数据库地址、日志、模型缓存、大型生成产物和原始敏感配置。
 
-The MinHash relationship-discovery module now includes `build_join_graph()` and `save_join_graph()` in `1.knowledge_base/1.1_schema_completion_knowledge_base/analyza_join.py`. These functions transform verified column-level join candidates into a table-level graph with three synchronized views: `nodes`, `edges`, and `adjacency`. The graph provides explicit join-path evidence for downstream schema augmentation and retrieval-aware Text-to-SQL prompting.
+## 文件完整性
 
-```python
-# Conceptual usage after MinHash candidate discovery and SQL validation
-from pathlib import Path
-import importlib.util
+`docs/assets/sealdone_3-2.pdf` 的 SHA-256:
 
-module_path = Path("1.knowledge_base/1.1_schema_completion_knowledge_base/analyza_join.py")
-spec = importlib.util.spec_from_file_location("analyza_join", module_path)
-analyza_join = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(analyza_join)
-
-analyza_join.save_join_graph(
-    "join_candidates_verified.json",
-    "join_graph.json",
-    min_similarity=0.8,
-)
+```text
+1FD24D09D2E1D5EBBC887B75B59DCE129F63BE14D276B428C01C011C1189128C
 ```
 
-## Data and Artifacts
+Windows PowerShell 本地校验:
 
-The JSON files in `2.pipeline/` and `1.knowledge_base/` include benchmark questions, gold SQL, verified knowledge, execution feedback, schema descriptions, and retrieval metadata. Domain terms originally written in Chinese were translated where direct terminology was clear. Low-frequency or ambiguous residual expressions were normalized into stable English placeholders of the form `domain_term_<hash>` to avoid introducing unsupported semantic assumptions.
+```powershell
+Get-FileHash docs/assets/sealdone_3-2.pdf -Algorithm SHA256
+```
 
-## Environment Notes
-
-The repository was prepared for documentation and academic inspection rather than guaranteed immediate execution. Some paths, model names, API keys, and database endpoints are environment-specific and should be reviewed before execution. In particular, update `2.pipeline/config.py` before running experiments.
-
-## Suggested Usage
+## 本地验证
 
 ```bash
-python 2.pipeline/build_vector_db.py
+node tests/verify-site.mjs
 ```
 
-Then run the generation pipeline after configuring the StarRocks connection, model provider, and local embedding model path.
+期望输出:
 
-## Limitations
+```text
+Site verification passed.
+```
 
-- The database endpoint, credentials, and local model paths are deployment-specific.
-- Some generated English placeholders intentionally preserve uncertainty for rare domain expressions.
-- SQL executability depends on the target StarRocks version, schema availability, and external service configuration.
+## GitHub Pages 设置
 
-## Citation-Oriented Description
+在仓库设置中启用 GitHub Pages:
 
-This codebase implements a knowledge-augmented Text-to-SQL framework in which structured schema evidence, verified domain knowledge, negative feedback, and retrieval-based demonstrations jointly constrain large-language-model SQL synthesis for an MPP analytical database dialect.
+- Repository: `TAGC-Data-Intelligence-Decision-Science`
+- Visibility: Public
+- Pages source: Deploy from a branch
+- Branch: `main`
+- Folder: `/docs`
 
-## Translation and Execution Note
+## English
 
-The user-facing objective of this version is English-language academic review and GitHub publication. Python scripts are therefore preserved as English-normalized archival modules: each file exposes `TRANSLATED_SOURCE_LINES` and `get_translated_source()` so that the translated source text remains inspectable and syntactically valid. The original computational behavior should be restored or re-validated before production execution.
+This repository publishes a public proof page and a sanitized technical writeup for a Tencent Games Algorithm Competition 2025 Second Place award in the Data-Intelligence Decision Science track.
+
+- Public page: https://terra901.github.io/TAGC-Data-Intelligence-Decision-Science/
+- GitHub repository: https://github.com/terra901/TAGC-Data-Intelligence-Decision-Science
+- Certificate PDF: `docs/assets/sealdone_3-2.pdf`
+- Architecture PDF: `docs/assets/text-to-sql-architecture.pdf`
+- Sanitized source snapshot: `docs/source`
+- TGAC official website: https://tgac.tencent.com/
+
+## Award Claim
+
+- Event: Tencent Games Algorithm Competition 2025
+- Award: Second Place
+- Track: Data-Intelligence Decision Science / 数智决策科学赛道
+- Team: 帮帮我！肯德基爷爷
+- Members: 高海圳 / Haizhen Gao, 许刚 / Gang Xu, 陈继昀 / Jiyun Chen
+- Certificate date: 2026-01-06
+
+## Solution Material
+
+The public page includes a Text-to-SQL solution writeup covering Agentic Workflow, closed-loop knowledge evolution, Augmented Schema, Positive Knowledge, Verification Knowledge, Few-shot CoT, Execution & Fix, History Guard, Majority Vote, and LLM Judge arbitration.
+
+The `docs/source` folder contains a sanitized source snapshot. It keeps the key module structure and selected build guides, but removes API keys, private database hosts, logs, model caches, large generated artifacts, and raw sensitive configuration.
+
+## Boundary
+
+This repository is an independently published proof and technical writeup. It is not an official Tencent page.

@@ -1,0 +1,10 @@
+tmp/
+/sealdone_3-2.pdf
+/code/
+/final/
+/新建文件夹/
+/基于Agentic Workflow与闭环知识进化的Text-to-SQL架构.pdf
+/数智决策科学赛道比赛指南.pdf
+.DS_Store
+Thumbs.db
+*.log
