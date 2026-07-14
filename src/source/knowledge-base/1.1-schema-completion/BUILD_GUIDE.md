@@ -15,6 +15,7 @@
 - `profiling_output_per_table/profile_*.json`：表剖析结果（NULL/基数/TopK/范围/MinHash 等）。
 - `join_candidates_verified.json`：验证通过的 join 候选。
 - `join_graph.json`：由验证通过的字段级 join 候选聚合出的表级 join graph（包含 `nodes`、`edges`、`adjacency` 三种视图）。
+- `pipeline/data/join_graph.json`（或 `TGAC_JOIN_GRAPH_PATH` 指向的同一文件）：运行时 Agent 消费的 Join Graph 工件。
 - `profiling_output_merged/profile_*.json`：合并了 join 信息，并去掉 MinHash 签名后的剖析文件。
 
 ---
@@ -86,7 +87,7 @@
 
 **输出**：
 - `join_candidates_verified.json`
-- 可选：调用 `save_join_graph("join_candidates_verified.json", "join_graph.json")` 生成表级 join graph。
+- 脚本会自动生成 `join_graph.json`；可用环境变量 `JOIN_GRAPH_OUTPUT_FILE` 改写输出路径。
 
 **关键参数**：
 - `JACCARD_THRESHOLD=0.8`
@@ -101,6 +102,13 @@
 - `save_join_graph(...)`：
   - 支持直接从 `join_candidates_verified.json` 读取候选并保存 `join_graph.json`。
   - 可通过 `min_similarity` 过滤低相似候选，通过 `keep_evidence=True` 保留原始候选证据。
+
+**运行时交接（必须）**：
+1. 将 `join_graph.json` 放入 `pipeline/data/join_graph.json`，或设置 `TGAC_JOIN_GRAPH_PATH` 指向该工件。
+2. `pipeline/agent.py` 会在启动后按需加载图，为每个任务在给定 `table_list` 中检索高置信、有限跳数的连接路径；默认仅保留权重不低于 `0.8`、最多 `2` 跳的路径。
+3. 找到桥接表时，Agent 将其加入本题的 Schema 上下文；随后把图证据同时传给 SQL 生成、执行失败修复和候选裁决，并把选中的边、路径数和桥接表写入结果记录，便于做开关消融。
+
+> 图中的边只是“存在观测到匹配值的等值 JOIN”证据，不应被解释为外键方向、基数、业务口径或强制使用 INNER JOIN。运行时 Prompt 会保留这一约束，避免图带来新的业务幻觉。
 
 ---
 
@@ -169,8 +177,9 @@
 ## 4. 质量控制与验收
 - **Profiling 完整性**：`profiling_output_per_table` 中每表都有 `total_records`，列统计非空。
 - **Join 可信度**：
-  - 同时满足 MinHash 高相似 + DB join 可执行。
+  - 同时满足 MinHash 高相似 + DB join 可执行且 `LIMIT 1` 实际返回匹配行。
   - `potential_links` 按 jaccard 排序，优先用于 join 推断。
+  - Join Graph 只用于缩小候选连接空间；仍需按题目口径验证时间、过滤条件和 JOIN 类型。
 - **时间字段辨析**：
   - deep_stats 的 `distinct_count` 与 `total_present` 可帮助区分“分区/统计时间” vs “属性时间”。
 - **表类型验证**：

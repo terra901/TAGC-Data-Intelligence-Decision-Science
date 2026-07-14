@@ -74,6 +74,27 @@ from config import (
     RESUME_FROM_EXISTING_RESULTS,
 )
 
+# Keep legacy private config files working: the Join Graph is optional at
+# runtime, so old configs fall back to conservative public defaults.
+try:
+    from config import (
+        JOIN_GRAPH_ENABLED,
+        JOIN_GRAPH_PATH,
+        JOIN_GRAPH_MAX_HOPS,
+        JOIN_GRAPH_MAX_PATHS_PER_PAIR,
+        JOIN_GRAPH_MIN_WEIGHT,
+        JOIN_GRAPH_MAX_EDGES,
+        JOIN_GRAPH_MAX_KEYS_PER_EDGE,
+    )
+except ImportError:
+    JOIN_GRAPH_ENABLED = os.getenv("JOIN_GRAPH_ENABLED", "1") == "1"
+    JOIN_GRAPH_PATH = Path(os.getenv("TGAC_JOIN_GRAPH_PATH", str(DATA_DIR / "join_graph.json")))
+    JOIN_GRAPH_MAX_HOPS = int(os.getenv("JOIN_GRAPH_MAX_HOPS", "2"))
+    JOIN_GRAPH_MAX_PATHS_PER_PAIR = int(os.getenv("JOIN_GRAPH_MAX_PATHS_PER_PAIR", "2"))
+    JOIN_GRAPH_MIN_WEIGHT = float(os.getenv("JOIN_GRAPH_MIN_WEIGHT", "0.8"))
+    JOIN_GRAPH_MAX_EDGES = int(os.getenv("JOIN_GRAPH_MAX_EDGES", "8"))
+    JOIN_GRAPH_MAX_KEYS_PER_EDGE = int(os.getenv("JOIN_GRAPH_MAX_KEYS_PER_EDGE", "2"))
+
 print("[*] 正在导入 t2sql.utils 和 t2sql.prompts...")
 # 假设 utils 和 prompts 在 t2sql 子目录中
 # 如果它们和 agent.py 在同一目录，就去掉 't2sql.'
@@ -82,6 +103,7 @@ print("[*] 正在导入 t2sql.utils 和 t2sql.prompts...")
 # 假设 utils.py 和 prompts.py 就在 t2sql-backup 目录下：
 import utils as t2sql_utils
 import prompts as t2sql_prompts
+import join_graph as t2sql_join_graph
 # 如果它们真的在 t2sql 子目录:
 # from t2sql import utils as t2sql_utils
 # from t2sql import prompts as t2sql_prompts
@@ -89,7 +111,38 @@ import prompts as t2sql_prompts
 _rng = random.Random(RANDOM_SEED)
 ERROR_FEEDBACK_PATH = DATA_DIR / "error_feedback.json"
 
+_runtime_join_graph: Optional[Dict[str, Any]] = None
+_runtime_join_graph_loaded = False
+
 DEBUG_PRINT_RAW_RESP = os.getenv("DEBUG_PRINT_RAW_RESP", "1") == "1"
+
+
+def load_runtime_join_graph() -> Optional[Dict[str, Any]]:
+    """Load the verified graph once and degrade cleanly when it is absent."""
+    global _runtime_join_graph, _runtime_join_graph_loaded
+    if _runtime_join_graph_loaded:
+        return _runtime_join_graph
+
+    _runtime_join_graph_loaded = True
+    if not JOIN_GRAPH_ENABLED:
+        print("[*] Join Graph 已禁用 (JOIN_GRAPH_ENABLED=0)。")
+        return None
+    graph_path = Path(JOIN_GRAPH_PATH)
+    if not graph_path.exists():
+        print(f"[*] 未找到 Join Graph，按原有流程运行: {graph_path}")
+        return None
+    try:
+        _runtime_join_graph = t2sql_join_graph.load_join_graph(graph_path)
+        meta = _runtime_join_graph.get("metadata", {})
+        print(
+            "[*] Join Graph 已加载: "
+            f"nodes={meta.get('node_count', 0)}, edges={meta.get('edge_count', 0)} "
+            f"({graph_path})"
+        )
+    except Exception as exc:
+        print(f"[warn] Join Graph 加载失败，按原有流程运行: {exc}")
+        _runtime_join_graph = None
+    return _runtime_join_graph
 
 
 def _seed_rng_for_task(sql_id: str) -> None:
@@ -775,7 +828,11 @@ def load_schema_map() -> Dict[str, Dict[str, Any]]:
 
 def select_schema_tables(schema_map: Dict[str, Dict[str, Any]], table_list: List[str]) -> List[Dict[str, Any]]:
     tables = []
+    seen = set()
     for name in table_list or []:
+        if name in seen:
+            continue
+        seen.add(name)
         t = schema_map.get(name)
         if t:
             tables.append(t)
@@ -1058,6 +1115,7 @@ def generate_candidates(
     question: str,
     gold_map: Dict[str, Dict[str, str]],
     few_shot_ids: List[str],
+    join_graph_context: str = "",
 ) -> List[str]:
     candidates: List[str] = []
 
@@ -1075,7 +1133,12 @@ def generate_candidates(
     # 1. Standard (基准，快) - 原始 schema
     print("    ... [Candidate 1] 策略: Standard ...")
     msgs1 = t2sql_prompts.build_sql_generation_messages(
-        schema_tables, knowledge_text, fs_standard, question, strategy="standard"
+        schema_tables,
+        knowledge_text,
+        fs_standard,
+        question,
+        strategy="standard",
+        join_graph_context=join_graph_context,
     )
     sql1 = extract_sql_from_response(chat_complete(msgs1))
     if sql1:
@@ -1085,7 +1148,12 @@ def generate_candidates(
     print("    ... [Candidate 2] 策略: Ali-CoT (Column Shuffle) ...")
     tables2 = schema_shuffle_columns(schema_tables)
     msgs2 = t2sql_prompts.build_sql_generation_messages(
-        tables2, knowledge_text, fs_ali_cot, question, strategy="ali_cot"
+        tables2,
+        knowledge_text,
+        fs_ali_cot,
+        question,
+        strategy="ali_cot",
+        join_graph_context=join_graph_context,
     )
     sql2 = extract_sql_from_response(chat_complete(msgs2))
     if sql2:
@@ -1095,7 +1163,12 @@ def generate_candidates(
     print("    ... [Candidate 3] 策略: Divide & Conquer (Table Shuffle) ...")
     tables3 = schema_shuffle_tables(schema_tables)
     msgs3 = t2sql_prompts.build_sql_generation_messages(
-        tables3, knowledge_text, fs_divide, question, strategy="divide"
+        tables3,
+        knowledge_text,
+        fs_divide,
+        question,
+        strategy="divide",
+        join_graph_context=join_graph_context,
     )
     sql3 = extract_sql_from_response(chat_complete(msgs3))
     if sql3:
@@ -1104,7 +1177,12 @@ def generate_candidates(
     # 4. Query Plan (重 Join 路径) - 原始 schema
     print("    ... [Candidate 4] 策略: Query Plan ...")
     msgs4 = t2sql_prompts.build_sql_generation_messages(
-        schema_tables, knowledge_text, fs_plan, question, strategy="plan"
+        schema_tables,
+        knowledge_text,
+        fs_plan,
+        question,
+        strategy="plan",
+        join_graph_context=join_graph_context,
     )
     sql4 = extract_sql_from_response(chat_complete(msgs4))
     if sql4:
@@ -1169,6 +1247,7 @@ def validate_and_fix(
     question: str,
     schema_tables: List[Dict[str, Any]],
     knowledge_text: str,
+    join_graph_context: str = "",
 ) -> Tuple[bool, List[Tuple], str]:
     print(f"    ... 正在执行 SQL 验证...")
     ok, rows, err = t2sql_utils.execute_sql(conn, sql_candidate)
@@ -1194,6 +1273,7 @@ def validate_and_fix(
         question=question,
         wrong_sql=sql_candidate,
         error_msg=err_msg,
+        join_graph_context=join_graph_context,
     )
     fixed_raw = chat_complete(messages, correct=True).strip()
     fixed = extract_sql_from_response(fixed_raw)
@@ -1266,6 +1346,7 @@ def llm_judge_selection(
     question: str,
     knowledge_text: str,
     candidates_detail: List[Dict[str, Any]],
+    join_graph_context: str = "",
 ) -> Tuple[str, Tuple]:
     """使用 LLM 作为裁判，在多个产生不同结果的候选 SQL 中选择最佳方案。
 
@@ -1286,6 +1367,8 @@ def llm_judge_selection(
 
     user_prompt = f"### User Question:\n{question}\n\n"
     user_prompt += f"### Domain Knowledge:\n{knowledge_text}\n\n"
+    if join_graph_context:
+        user_prompt += join_graph_context.strip() + "\n\n"
     user_prompt += "### Candidates for Review:\n"
 
     candidate_map: Dict[int, Dict[str, Any]] = {}
@@ -1359,6 +1442,7 @@ def smart_sql_selection(
     sql_id: str,
     question: str,
     knowledge_text: str,
+    join_graph_context: str = "",
 ) -> Tuple[str, Tuple]:
     """基于投票结果的分级智能选择策略。
 
@@ -1420,21 +1504,62 @@ def smart_sql_selection(
     for _h, items in results_map.items():
         unique_candidates.append(items[0])
 
-    judge_sql, judge_hash = llm_judge_selection(question, knowledge_text, unique_candidates)
+    judge_sql, judge_hash = llm_judge_selection(
+        question,
+        knowledge_text,
+        unique_candidates,
+        join_graph_context=join_graph_context,
+    )
     return judge_sql, judge_hash
 
 
 def process_task(conn, task: Dict[str, Any], schema_map: Dict[str, Dict[str, Any]], gold_map: Dict[str, Dict[str, str]], common_knowledge: str, added_knowledge_map: Dict[str, str], verified_kb_map: Dict[str, str]) -> Dict[str, Any]:
     sql_id = task.get("sql_id", "")
     question = task.get("question", "")
-    table_list = task.get("table_list", [])
+    table_list = list(
+        dict.fromkeys(
+            str(table).strip()
+            for table in (task.get("table_list", []) or [])
+            if table is not None and str(table).strip()
+        ),
+    )
     task_knowledge = task.get("knowledge", "")
 
     _seed_rng_for_task(str(sql_id))
 
     print(f"\n--- 开始处理任务: {sql_id} | 问题: {question[:50]}... ---")
 
-    schema_tables = select_schema_tables(schema_map, table_list)
+    join_context: Dict[str, Any] = {}
+    join_graph_context = ""
+    effective_table_list = list(table_list)
+    runtime_join_graph = load_runtime_join_graph()
+    if runtime_join_graph is not None:
+        join_context = t2sql_join_graph.build_join_context(
+            runtime_join_graph,
+            table_list,
+            max_hops=JOIN_GRAPH_MAX_HOPS,
+            max_paths_per_pair=JOIN_GRAPH_MAX_PATHS_PER_PAIR,
+            min_weight=JOIN_GRAPH_MIN_WEIGHT,
+            max_edges=JOIN_GRAPH_MAX_EDGES,
+        )
+        join_graph_context = t2sql_join_graph.format_join_graph_context(
+            join_context,
+            max_keys_per_edge=JOIN_GRAPH_MAX_KEYS_PER_EDGE,
+        )
+        bridge_tables = [
+            table
+            for table in join_context.get("bridge_tables", [])
+            if table in schema_map and table not in effective_table_list
+        ]
+        effective_table_list.extend(bridge_tables)
+        if join_graph_context:
+            print(
+                "  [Join Graph] 注入 "
+                f"{len(join_context.get('edges', []))} 条边、{len(join_context.get('paths', []))} 条路径"
+                + (f"，补充中间表: {', '.join(bridge_tables)}" if bridge_tables else "")
+            )
+
+    schema_tables = select_schema_tables(schema_map, effective_table_list)
     knowledge_text = (task_knowledge or "").strip()
     if common_knowledge:
         knowledge_text = f"{knowledge_text}\n\n[通用知识]\n{common_knowledge}" if knowledge_text else common_knowledge
@@ -1454,14 +1579,21 @@ def process_task(conn, task: Dict[str, Any], schema_map: Dict[str, Dict[str, Any
     print("  [步骤 1/4] 检索 Few-shot 示例 sql_id...")
     few_shot_ids = retrieve_few_shot_ids(
         question=question,
-        table_list=table_list,
+        table_list=effective_table_list,
         knowledge=knowledge_text,
         exclude_sql_id=sql_id,
         top_k=5,
     )
     # print(f"  [步骤 1/4] 检索 Few-shot 示例 sql_id: {few_shot_ids}")
     print("  [步骤 2/4] 生成 SQL candidates (4次 API 调用)...")
-    candidates = generate_candidates(schema_tables, knowledge_text, question, gold_map, few_shot_ids)
+    candidates = generate_candidates(
+        schema_tables,
+        knowledge_text,
+        question,
+        gold_map,
+        few_shot_ids,
+        join_graph_context=join_graph_context,
+    )
 
     filtered_candidates = _filter_candidates_by_question(question, candidates)
     if len(filtered_candidates) != len(candidates):
@@ -1475,7 +1607,15 @@ def process_task(conn, task: Dict[str, Any], schema_map: Dict[str, Dict[str, Any
     wrong_guard = get_wrong_guard()
     for i, cand in enumerate(candidates):
         print(f"    -> 正在验证 Candidate #{i+1}...")
-        ok, rows, used_sql = validate_and_fix(conn, cand, sql_id, question, schema_tables, knowledge_text)
+        ok, rows, used_sql = validate_and_fix(
+            conn,
+            cand,
+            sql_id,
+            question,
+            schema_tables,
+            knowledge_text,
+            join_graph_context=join_graph_context,
+        )
         h = t2sql_utils.compute_result_hash(rows)
         try:
             h_disp = str(h)
@@ -1515,6 +1655,14 @@ def process_task(conn, task: Dict[str, Any], schema_map: Dict[str, Dict[str, Any
         "sql_id": sql_id,
         "question": question,
         "table_list": table_list,
+        "resolved_table_list": effective_table_list,
+        "join_graph": {
+            "enabled": bool(join_context.get("enabled")),
+            "bridge_tables": join_context.get("bridge_tables", []),
+            "path_count": len(join_context.get("paths", [])),
+            "edge_count": len(join_context.get("edges", [])),
+            "unresolved_pairs": join_context.get("unresolved_pairs", []),
+        },
         "few_shot_count": len(few_shot_ids),
         "candidate_count": len(candidates),
         "exec_ok_count": len(executed_all),
@@ -1554,7 +1702,14 @@ def process_task(conn, task: Dict[str, Any], schema_map: Dict[str, Dict[str, Any
         print("[WrongGuard] 当前题目的全部可执行候选结果都命中历史错题，将忽略错题拦截，使用全部候选参与投票。")
         used_for_vote = executed_all_nonempty
 
-    final_sql, winner_hash = smart_sql_selection(used_for_vote, candidates_detail, sql_id, question, knowledge_text)
+    final_sql, winner_hash = smart_sql_selection(
+        used_for_vote,
+        candidates_detail,
+        sql_id,
+        question,
+        knowledge_text,
+        join_graph_context=join_graph_context,
+    )
     result["final_sql"] = final_sql
     return result
 

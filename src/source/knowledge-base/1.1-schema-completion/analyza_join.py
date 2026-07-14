@@ -25,6 +25,7 @@ DB_CONFIG = {
 DATASET_FILE = 'final_dataset.json'      # 包含 table_list 的 JSON 文件
 PROFILING_DIR = 'profiling_output_per_table' # 从这个目录读取剖析数据
 OUTPUT_FILE = 'join_candidates_verified.json' # 将结果保存到这个文件
+JOIN_GRAPH_OUTPUT_FILE = os.getenv('JOIN_GRAPH_OUTPUT_FILE', 'join_graph.json')
 
 # 算法配置
 MINHASH_PERMUTATIONS = 128               # 必须与阶段1脚本中的值一致
@@ -87,7 +88,10 @@ def load_all_profiles():
 
 def verify_join_with_db(t1_name, c1_name, t2_name, c2_name, conn):
     """
-    2. 尝试在数据库中真实执行一个 JOIN LIMIT 1 查询来验证连接。
+    在数据库中确认该等值 JOIN 不仅可执行，而且至少存在一条匹配记录。
+
+    仅验证 SQL 类型兼容会把“可执行但没有交集”的列对误写入 Join Graph；
+    因此必须检查 LIMIT 1 是否实际返回了一行。
     """
     query = f"""
         SELECT 1
@@ -98,8 +102,7 @@ def verify_join_with_db(t1_name, c1_name, t2_name, c2_name, conn):
     try:
         with conn.cursor() as cursor:
             cursor.execute(query)
-            cursor.fetchone() # 尝试获取数据
-        return True # 查询成功
+            return cursor.fetchone() is not None
     except mysql.connector.Error as e:
         # 如果 JOIN 失败（例如类型不匹配），则返回 False
         # print(f"  验证失败: {t1_name}.{c1_name} x {t2_name}.{c2_name} | 错误: {e}")
@@ -222,6 +225,8 @@ def build_join_graph(
         normalized = _extract_join_candidate(raw_candidate)
         if normalized is None:
             continue
+        if not normalized["sql_verified"]:
+            continue
         if normalized["jaccard_similarity"] < min_similarity:
             continue
 
@@ -326,7 +331,9 @@ def save_join_graph(
         min_similarity=min_similarity,
         keep_evidence=keep_evidence,
     )
-    with Path(output_path).open("w", encoding="utf-8") as output_file:
+    destination = Path(output_path)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    with destination.open("w", encoding="utf-8") as output_file:
         json.dump(graph, output_file, ensure_ascii=False, indent=2)
     return graph
 
@@ -426,6 +433,21 @@ def main():
         print(f"\n完整结果已保存到: {os.path.abspath(OUTPUT_FILE)}")
     except Exception as e:
         print(f"\n!! 严重错误: 无法写入 JSON 文件 {OUTPUT_FILE}: {e}")
+        return
+
+    try:
+        graph = save_join_graph(
+            sorted_candidates,
+            output_path=JOIN_GRAPH_OUTPUT_FILE,
+            min_similarity=JACCARD_THRESHOLD,
+            keep_evidence=False,
+        )
+        print(
+            f"Join Graph 已保存到: {os.path.abspath(JOIN_GRAPH_OUTPUT_FILE)} "
+            f"(nodes={graph['metadata']['node_count']}, edges={graph['metadata']['edge_count']})"
+        )
+    except Exception as e:
+        print(f"\n!! 严重错误: 无法写入 Join Graph {JOIN_GRAPH_OUTPUT_FILE}: {e}")
 
 if __name__ == "__main__":
     # 用于在 main() 中访问用户请求的片段

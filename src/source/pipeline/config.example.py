@@ -22,6 +22,16 @@ STARROCK_KNOWLEDGE_PATH = DATA_DIR / "starrock_knowledge.md"
 ADDED_KNOWLEDGE_LIST_PATH = DATA_DIR / "knowledge_add_clean_list.json"
 VERIFIED_KB_PATH = DATA_DIR / "correct_verified_knowledge.json"
 
+# Verified Join Graph. The offline schema-completion stage writes this artifact
+# from MinHash candidates that have an observed database join result.
+JOIN_GRAPH_ENABLED = os.getenv("JOIN_GRAPH_ENABLED", "1") == "1"
+JOIN_GRAPH_PATH = Path(os.getenv("TGAC_JOIN_GRAPH_PATH", str(DATA_DIR / "join_graph.json")))
+JOIN_GRAPH_MAX_HOPS = int(os.getenv("JOIN_GRAPH_MAX_HOPS", "2"))
+JOIN_GRAPH_MAX_PATHS_PER_PAIR = int(os.getenv("JOIN_GRAPH_MAX_PATHS_PER_PAIR", "2"))
+JOIN_GRAPH_MIN_WEIGHT = float(os.getenv("JOIN_GRAPH_MIN_WEIGHT", "0.8"))
+JOIN_GRAPH_MAX_EDGES = int(os.getenv("JOIN_GRAPH_MAX_EDGES", "8"))
+JOIN_GRAPH_MAX_KEYS_PER_EDGE = int(os.getenv("JOIN_GRAPH_MAX_KEYS_PER_EDGE", "2"))
+
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 OPENAI_BASE_URL = os.getenv("OPENAI_BASE_URL", "")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "")

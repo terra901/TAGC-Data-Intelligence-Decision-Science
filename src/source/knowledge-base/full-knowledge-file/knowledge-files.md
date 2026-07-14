@@ -1,6 +1,6 @@
 # Knowledge Files
 
-This public note describes the role of the private knowledge files used by the solution. Large JSON artifacts are not published in this proof repository because they may contain competition data, generated outputs, or internal execution traces.
+This note describes the role of the private knowledge files used by the solution. Large JSON artifacts are excluded because they may contain competition data, generated outputs, or internal execution traces.
 
 ## Main Files
 
@@ -14,6 +14,6 @@ This public note describes the role of the private knowledge files used by the s
 - `error_feedback.json`: negative constraints and wrong-result signatures used by the History Guard.
 - `correct_60.json`: gold or aligned answer results used for local evaluation and consistency checks.
 
-## Public Boundary
+## Data Boundary
 
-The repository publishes build guides and selected non-secret knowledge notes. It does not publish full task data, private database access, raw answer files, or any credential-bearing configuration.
+The repository includes build guides and selected non-secret knowledge notes. It excludes full task data, private database access, raw answer files, and credential-bearing configuration.

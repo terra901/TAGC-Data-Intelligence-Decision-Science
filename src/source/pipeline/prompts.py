@@ -28,6 +28,7 @@ SQL_SELF_CHECKLIST = """
 - [ ] 检查是否违反了《Strict StarRocks SQL Dialect Rules》中的任何一条（尤其是日期函数、CAST、引号、禁止的 Hive/Spark 语法）。
 - [ ] 检查日期区间是否与题目要求匹配（起止是否包含边界，单位是否一致）。
 - [ ] 检查 WHERE / JOIN 条件是否与业务描述一致，没有遗漏关键过滤条件。
+- [ ] 若提供了 [Verified Join Graph]，优先使用其中的已验证连接谓词，但不能把图证据当成业务口径或 JOIN 类型的替代品。
 """
 
 # 1. 标准模式 System Prompt (快速、直接，作为基准)
@@ -207,9 +208,11 @@ def build_sql_generation_messages(
     few_shots: List[Tuple[str, str]],
     question: str,
     strategy: str = "standard",
+    join_graph_context: str = "",
 ):
     schema_block = format_schema_block(schema_tables)
     fs_block = format_few_shots(few_shots)
+    join_graph_block = (join_graph_context.strip() + "\n\n") if join_graph_context and join_graph_context.strip() else ""
 
     # 根据策略选择 System Prompt
     if strategy == "divide":
@@ -228,6 +231,7 @@ def build_sql_generation_messages(
     user_content = (
         "[数据库元数据 (Schema)]\n---\n"
         f"{schema_block}\n\n"
+        f"{join_graph_block}"
         "[知识库 (Knowledge)]\n---\n"
         f"{knowledge_text}\n\n"
         "[少样本示例 (Few-shot Examples)]\n---\n"
@@ -242,13 +246,19 @@ def build_sql_generation_messages(
     ]
 
 
-def build_sql_fix_messages(sql_candidate: str, error_message: str, knowledge_text: str = ""):
+def build_sql_fix_messages(
+    sql_candidate: str,
+    error_message: str,
+    knowledge_text: str = "",
+    join_graph_context: str = "",
+):
     kb = ("\n\n[知识库 (Knowledge)]\n---\n" + knowledge_text + "\n") if knowledge_text else "\n"
+    graph = ("\n\n" + join_graph_context.strip() + "\n") if join_graph_context and join_graph_context.strip() else ""
     user_content = (
         "[错误的 SQL]\n"
         f"{sql_candidate}\n\n"
         "[StarRocks 错误信息]\n"
-        f"{error_message}" + kb +
+        f"{error_message}" + graph + kb +
         "[修正后的 SQL]\n"
     )
     return [
@@ -297,6 +307,7 @@ def build_sql_fix_messages_super(
     question: str,
     wrong_sql: str,
     error_msg: str,
+    join_graph_context: str = "",
 ):
     """
     Super Correction Prompt: 针对 Knowledge 和 Schema 的深度修正
@@ -312,6 +323,7 @@ def build_sql_fix_messages_super(
         error_type = "LogicTrap"
 
     correction_example = CORRECTION_FEW_SHOTS.get(error_type, CORRECTION_FEW_SHOTS["EmptyResult"])
+    join_graph_block = (join_graph_context.strip() + "\n\n") if join_graph_context and join_graph_context.strip() else ""
 
     system_content = (
         "You are a **SQL Debugging Expert** for StarRocks.\n"
@@ -330,6 +342,7 @@ def build_sql_fix_messages_super(
     user_content = (
         "[Database Schema] (Reference for Column Names)\n"
         f"{json.dumps(schema_tables, indent=2, ensure_ascii=False)}\n\n"
+        f"{join_graph_block}"
         "[Domain Knowledge] (CRITICAL: Check mappings here)\n"
         f"{knowledge_text}\n\n"
         "[Correction Example] (How to fix similar errors)\n"
